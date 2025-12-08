@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -53,7 +54,12 @@ namespace GameMaker.UI.Runtime
                 operationHandle.Release();
             }
         }
-
+        public BasePopup GetPopup<T>() where T : BasePopup
+        {
+            var popup = _instancePopupList.FirstOrDefault(x => x.GetType() == typeof(T));
+            if (!popup) popup = _waitingPopupQueue.FirstOrDefault(x => x.GetType() == typeof(T));
+            return popup;
+        }
         private async UniTask<(BasePopup basePopup, AsyncOperationHandle<GameObject> loadAsyncOperationHandle)> GetPopupAsync(string popupName)
         {
             var loadAsyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(popupName);

@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -7,23 +9,51 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace GameMaker.UI.Runtime
 {
+    public enum ViewShowType
+    {
+        Parallel,
+        Before,
+        After
+    }
     public class ViewManager : MonoBehaviour
     {
         [SerializeField] private Canvas _canvas;
         private BaseView _currentView;
         private Dictionary<string, BaseView> _viewCacheDict = new();
         public BaseView CurrentView => _currentView;
-        public async UniTask ShowAsync(string viewName,object data = null)
+        public async UniTask ShowAsync(string viewName,ViewShowType viewShowType = ViewShowType.Parallel, object data = null)
         {
             var newView = await GetViewAsync(viewName);
+            if (newView == _currentView) return;
             newView.SetData(data);
-            var tasks = new List<UniTask>(2);
-            if (_currentView != null)
+            if (viewShowType == ViewShowType.Parallel)
             {
-                tasks.Add(_currentView.HideAsync());
+                var tasks = new List<UniTask>(2);
+                if (_currentView != null)
+                {
+                    tasks.Add(_currentView.HideAsync());
+                }
+                tasks.Add(newView.ShowAsync());
+                await UniTask.WhenAll(tasks);
             }
-            tasks.Add(newView.ShowAsync());
-            await UniTask.WhenAll(tasks);
+            else if (viewShowType == ViewShowType.Before)
+            {
+                await newView.ShowAsync();
+                if(_currentView != null)
+                {
+                   await _currentView.HideAsync();
+                }
+            }
+            else
+            {
+                if(_currentView != null)
+                {
+                    await _currentView.HideAsync();
+                }
+                
+                await newView.ShowAsync();
+            }
+            
             _currentView = newView;
         }
         private async UniTask<BaseView> GetViewAsync(string viewName)

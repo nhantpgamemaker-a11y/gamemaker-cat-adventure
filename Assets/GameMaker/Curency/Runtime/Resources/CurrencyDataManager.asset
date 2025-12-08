@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfbccb516b69f5438425ae5c65274bd, type: 3}
+  m_Name: CurrencyDataManager
+  m_EditorClassIdentifier: GameMaker.Currency.Runtime::GameMaker.Currency.Runtime.CurrencyDataManager
+  definitions:
+  - rid: 335725076977811528
+  references:
+    version: 2
+    RefIds:
+    - rid: 335725076977811528
+      type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
+      data:
+        id: bd7d44f2-5fd2-46f0-8325-213693856991
+        name: 
+        title: 
+        _defaultValue: 0
+        _maxValue: 0
+        _isGain: 0
+        _perGainAmount: 0
+        _gainTime: 0
+        _maxGainValue: 0

@@ -34,19 +34,19 @@ namespace GameMaker.UI.Runtime
         }
         protected virtual async UniTask OnShowAsync()
         {
-
+            await UniTask.Yield(); 
         }
         protected virtual async UniTask OnShownAsync()
         {
-
+            await UniTask.Yield(); 
         }
         protected virtual async UniTask OnHideAsync()
         {
-
+            await UniTask.Yield(); 
         }
         protected virtual async UniTask OnHiddenAsync()
         {
-            
+            await UniTask.Yield(); 
         }
     }
 }

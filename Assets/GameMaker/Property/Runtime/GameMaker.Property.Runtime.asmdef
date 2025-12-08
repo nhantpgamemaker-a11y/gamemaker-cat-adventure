@@ -1,12 +1,10 @@
 {
-    "name": "GameMaker.Core.Editor",
-    "rootNamespace": "GameMaker.Core.Editor",
+    "name": "GameMaker.Property.Runtime",
+    "rootNamespace": "GameMaker.Property.Runtime",
     "references": [
         "GUID:908562e3f0b9fbd4dbcbcfc65c9363b0"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

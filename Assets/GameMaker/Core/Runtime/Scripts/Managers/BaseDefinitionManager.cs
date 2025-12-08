@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace GameMaker.Core.Runtime
+{
+    [System.Serializable]
+    public class BaseDefinitionManager<M> where M: IDefinition
+    {
+        [UnityEngine.SerializeReference]
+        protected List<M> definitions = new List<M>();
+        [NonSerialized]
+        private Dictionary<string, M> _definitionCache;
+        private void BuildCache()
+        {
+            _definitionCache = new Dictionary<string, M>();
+
+            foreach (var def in definitions)
+            {
+                if (def == null) continue;
+
+                string id = def.GetID();
+
+                if (string.IsNullOrEmpty(id))
+                {
+                    Debug.LogWarning($"{typeof(M).Name}: Definition has empty ID, skipping.");
+                    continue;
+                }
+
+                if (_definitionCache.ContainsKey(id))
+                {
+                    Debug.LogWarning($"{typeof(M).Name}: Duplicate ID '{id}' found.");
+                    continue;
+                }
+
+                _definitionCache.Add(id, def);
+            }
+        }
+        private void EnsureCache()
+        {
+            if (_definitionCache == null)
+                BuildCache();
+        }
+        public virtual void AddDefinition(M definition)
+        {
+            definitions.Add(definition);
+            BuildCache();
+        }
+        public virtual void AddDefinitions(List<M> definitions)
+        {
+            definitions.AddRange(definitions);
+            BuildCache();
+        }
+        public virtual void RemoveDefinition(M definition)
+        {
+            definitions.Remove(definition);
+            BuildCache();
+        }
+        public List<M> GetDefinitions(Func<M, bool> predicate = null)
+        {
+            if (predicate != null)
+                return definitions.Where(predicate).ToList();
+            return definitions.ToList();
+        }
+        public M GetDefinition(string id)
+        {
+            EnsureCache();
+
+            if (id == null) return default;
+            _definitionCache.TryGetValue(id, out var def);
+            return def;
+        }
+    }
+}

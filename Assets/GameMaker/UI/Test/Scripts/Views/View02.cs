@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using GameMaker.UI.Runtime;
-using UnityEngine;
 
 namespace GameMaker.UI.Test
 {
@@ -8,7 +7,7 @@ namespace GameMaker.UI.Test
     {
         public static async UniTask ShowViewAsync()
         {
-            await UIManager.Instance.ViewManager.ShowAsync("View02");
+            await UIManager.Instance.ViewManager.ShowAsync("View02",ViewShowType.After);
         }
     }
 }
