@@ -37,10 +37,16 @@ namespace GameMaker.Core.Runtime
                     }
 #else
                     _instance = Resources.Load<T>(typeof(T).Name);
+                    _instance.OnLoad();
 #endif
                 }
                 return _instance;
             }
+        }
+
+        protected virtual void OnLoad()
+        {
+            
         }
     }
 }

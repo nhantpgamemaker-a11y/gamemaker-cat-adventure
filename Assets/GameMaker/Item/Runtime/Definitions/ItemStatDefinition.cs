@@ -9,5 +9,15 @@ namespace GameMaker.Item.Runtime
         [UnityEngine.SerializeField]
         private float _defaultValue;
         public float DefaultValue { get => _defaultValue; set => _defaultValue = value; }
+
+        public ItemStatDefinition(string id, string name, string title, float defaultValue): base(id, name, title)
+        {
+            _defaultValue = defaultValue;
+        }
+
+        public override object Clone()
+        {
+            return new ItemStatDefinition(id, name, title, _defaultValue);
+        }
     }
 }

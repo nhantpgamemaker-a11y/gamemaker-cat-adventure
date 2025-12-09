@@ -10,24 +10,23 @@ namespace GameMaker.Item.Runtime
         [SerializeField]
         private BaseDefinitionManager<ItemStatDefinition> _itemStatManager = new();
 
-        [UnityEngine.SerializeField]
-        private List<ItemDetailDefinition> _itemDetailDefinitions = new();
-        public IReadOnlyList<ItemDetailDefinition> ItemDetailDefinitions { get => _itemDetailDefinitions; }
+        public ItemDefinition(string id, string name, string title,BaseDefinitionManager<ItemStatDefinition> itemStatManager): base(id, name, title)
+        {
+            _itemStatManager = itemStatManager;
+        }
         public void AddItemStat(ItemStatDefinition itemStatDefinition)
         {
             _itemStatManager.AddDefinition(itemStatDefinition);
-            foreach(var itemDefinition in ItemDetailDefinitions)
-            {
-                itemDefinition.AddItemStatDefinitionRef(new ItemStatDefinitionRef(itemStatDefinition.GetID(),itemStatDefinition.DefaultValue));
-            }
         }
+
+        public override object Clone()
+        {
+            return new ItemDefinition(id, name, title, _itemStatManager.Clone() as BaseDefinitionManager<ItemStatDefinition>);
+        }
+
         public void RemoveItemStat(ItemStatDefinition itemStatDefinition)
         {
             _itemStatManager.RemoveDefinition(itemStatDefinition);
-            foreach(var itemDefinition in ItemDetailDefinitions)
-            {
-                itemDefinition.RemoveItemStatDefinitionRef(new ItemStatDefinitionRef(itemStatDefinition.GetID(),0));
-            }
         }
     }
 }

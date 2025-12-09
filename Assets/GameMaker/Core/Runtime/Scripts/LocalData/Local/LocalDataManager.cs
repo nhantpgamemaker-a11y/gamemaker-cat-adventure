@@ -80,7 +80,7 @@ namespace GameMaker.Core.Runtime
         {
             var path = Application.persistentDataPath;
             string[] files = Directory.GetFiles(path, "*.json");
-            var allType = GetAllDerivedNonAbstractTypes(typeof(BaseLocalData));
+            var allType = TypeUtils.GetAllDerivedNonAbstractTypes(typeof(BaseLocalData));
             var loadTaskList = new List<UniTask<BaseLocalData>>();
             foreach (var type in allType)
             {
@@ -121,15 +121,6 @@ namespace GameMaker.Core.Runtime
             data.OnCreate();
             return data;
         }
-        private Type[] GetAllDerivedNonAbstractTypes(Type baseType)
-        {
-            return AppDomain.CurrentDomain
-                .GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(t => baseType.IsAssignableFrom(t)
-                            && t != baseType
-                            && !t.IsAbstract)
-                .ToArray();
-        }
+        
     }
 }

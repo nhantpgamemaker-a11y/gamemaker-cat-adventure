@@ -6,12 +6,21 @@ using UnityEngine;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
-    public class BaseDefinitionManager<M> where M: IDefinition
+    public class BaseDefinitionManager<M>:ICloneable where M: IDefinition, ICloneable
     {
         [UnityEngine.SerializeReference]
         protected List<M> definitions = new List<M>();
         [NonSerialized]
         private Dictionary<string, M> _definitionCache;
+        
+        public BaseDefinitionManager()
+        {
+            
+        }
+        public BaseDefinitionManager(List<M> definitions)
+        {
+            this.definitions = definitions;
+        }
         private void BuildCache()
         {
             _definitionCache = new Dictionary<string, M>();
@@ -70,6 +79,11 @@ namespace GameMaker.Core.Runtime
             if (id == null) return default;
             _definitionCache.TryGetValue(id, out var def);
             return def;
+        }
+
+        public object Clone()
+        {
+            return new BaseDefinitionManager<M>(definitions.Select(d=> (M)d.Clone()).ToList());
         }
     }
 }

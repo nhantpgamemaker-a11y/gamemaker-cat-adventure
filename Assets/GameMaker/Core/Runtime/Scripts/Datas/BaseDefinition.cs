@@ -5,7 +5,11 @@ using UnityEngine;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
-    public class BaseDefinition : IDefinition,ITitle,IIcon,IDescription, ICloneable, IEquatable<BaseDefinition>
+    public abstract class BaseDefinition : IDefinition,
+                                    ITitle,
+                                    IIcon,
+                                    IDescription,
+                                    ICloneable, IEquatable<BaseDefinition>
     {
         [SerializeField]
         protected string id;
@@ -50,11 +54,7 @@ namespace GameMaker.Core.Runtime
         {
             this.name = name;
         }
-
-        public virtual object Clone()
-        {
-            return new BaseDefinition(id, name, title);
-        }
+        public abstract object Clone();
         
         public bool Equals(BaseDefinition other)
         {
