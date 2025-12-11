@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace GameMaker.Core.Runtime
 {
+    [System.Serializable]
     public abstract class BasePlayerData : IEquatable<BasePlayerData>,IReferenceDefinition, IObserverData,
                                             ICloneable,ISubject<BasePlayerData>
     {

@@ -7,6 +7,5 @@ namespace GameMaker.Item.Runtime
     [CreateAssetMenu(fileName ="ItemManager",menuName = "GameMaker/Items/ItemManager")]
     public class ItemManager : BaseScriptableObjectDataManager<ItemManager, ItemDefinition>
     {
-        
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using UnityEngine;
 
 
@@ -89,6 +90,16 @@ namespace GameMaker.Core.Runtime
         public void SetDescription(string description)
         {
             this.description = description;
+        }
+
+        void IDefinition.SetID(string id)
+        {
+            SetID(id);
+        }
+
+        void IDefinition.SetName(string name)
+        {
+            SetName(name);
         }
     }
 }

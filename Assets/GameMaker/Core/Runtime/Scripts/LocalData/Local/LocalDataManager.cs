@@ -16,10 +16,10 @@ namespace GameMaker.Core.Runtime
 
         public bool IsInit => _isInit;
 
-        public BaseLocalData Get<T>() where T : BaseLocalData
+        public T Get<T>() where T : BaseLocalData
         {
             var type = typeof(T);
-            return Get(type);
+            return  Get(type) as T;
         }
         public BaseLocalData Get(Type type)
         {

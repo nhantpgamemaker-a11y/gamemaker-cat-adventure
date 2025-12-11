@@ -16,11 +16,11 @@ public abstract class BaseScriptableObjectDataManager<T,M> :ScriptableObjectSing
     {
         return dataManager.GetDefinition(referenceId);
     }
-    public void AddDefinition(M definition)
+    protected void AddDefinition(M definition)
     {
         dataManager.AddDefinition(definition);
     }
-    public void RemoveDefinition(M definition)
+    protected void RemoveDefinition(M definition)
     {
         dataManager.RemoveDefinition(definition);
     }

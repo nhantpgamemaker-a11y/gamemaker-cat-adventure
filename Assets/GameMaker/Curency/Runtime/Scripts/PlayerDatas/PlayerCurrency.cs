@@ -1,9 +1,11 @@
 using System;
 using GameMaker.Core.Runtime;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace GameMaker.Currency.Runtime
 {
+    [System.Serializable]
     public class PlayerCurrency : BasePlayerData
     {
         private float _value;

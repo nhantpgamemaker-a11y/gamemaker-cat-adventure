@@ -11,36 +11,47 @@ namespace GameMaker.Item.Runtime
     public class ItemStatDefinitionRef: IDefinition,ICloneable, IEquatable<ItemStatDefinitionRef>
     {
         [SerializeField]
-        private string _referenceId;
+        private string _id;
+        [SerializeField]
+        private string _name;
         [SerializeField]
         private float _value;
 
-        public string ReferenceId { get => _referenceId; set => _referenceId = value; }
         public float Value { get => _value; set => _value = value; }
         public ItemStatDefinitionRef(string refId, float value)
         {
-            _referenceId = refId;
+            _id = refId;
             _value = value;
         }
 
         public string GetID()
         {
-            return _referenceId;
+            return _id;
         }
 
         public string GetName()
         {
-            return _referenceId;
+            return _name;
         }
 
         public bool Equals(ItemStatDefinitionRef other)
         {
-            return other.ReferenceId == _referenceId;
+            return other.GetID() == _id;
         }
 
         public object Clone()
         {
-            return new ItemStatDefinitionRef(_referenceId, _value);
+            return new ItemStatDefinitionRef(_id, _value);
+        }
+
+        public void SetID(string id)
+        {
+            _id = id;
+        }
+
+        public void SetName(string name)
+        {
+            _name = name;
         }
     }
 
@@ -71,6 +82,10 @@ namespace GameMaker.Item.Runtime
         public void RemoveItemStatDefinitionRef(ItemStatDefinitionRef itemStatDefinitionRef)
         {
             _itemStatDefinitionRefs.Remove(itemStatDefinitionRef);
+        }
+        public ItemDefinition GetItemDefinition()
+        {
+            return ItemManager.Instance.GetDefinition(_itemDefinitionId);
         }
     }
 }

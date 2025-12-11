@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using GameMaker.Core.Runtime;
 using UnityEngine;
 
@@ -8,9 +9,10 @@ namespace GameMaker.Property.Runtime
     [System.Serializable]
     public class PlayerPropertyManager : PlayerDataManager
     {
-        public PlayerPropertyManager(List<PlayerProperty> basePlayerDatas) : base(basePlayerDatas.Cast<BasePlayerData>().ToList())
+        private BaseDataSpaceProviderProperty _baseDataSpaceProviderProperty;
+        public PlayerPropertyManager(BaseDataSpaceProviderProperty baseDataSpaceProviderProperty,List<PlayerProperty> basePlayerDatas) : base(basePlayerDatas.Cast<BasePlayerData>().ToList())
         {
-
+            _baseDataSpaceProviderProperty = baseDataSpaceProviderProperty;
         }
         public PlayerProperty GetProperty(string referenceId)
         {
@@ -24,7 +26,17 @@ namespace GameMaker.Property.Runtime
         {
             RemoveObserver((IObserverWithScope<BasePlayerData, string>)observer, scopes);
         }
-        public void AddStat(string referenceId, float value, object extendData =null)
+        public async UniTask<bool> AddStatAsync(string referenceId, float value, IExtendData extendData)
+        {
+            bool status = await _baseDataSpaceProviderProperty.AddStatAsync(referenceId, value);
+            if (status)
+            {
+                AddStatRuntime(referenceId, value, extendData);
+            }
+            return status;
+            
+        }
+        public void AddStatRuntime(string referenceId, float value, IExtendData extendData)
         {
             var playerProperty = GetPlayerData(referenceId);
             var playerStat = playerProperty as PlayerStat;
@@ -32,7 +44,16 @@ namespace GameMaker.Property.Runtime
             RuntimeActionManager.Instance.NotifyAction(PropertyActionDefinition.ADD_STAT_ACTION_DEFINITION_ID,
             new StatActionData(referenceId, value, extendData));
         }
-        public void SetAttribute(string referenceId, string value, object extendData)
+        public async UniTask<bool> SetAttributeAsync(string referenceId, string value, IExtendData extendData)
+        {
+            bool status = await _baseDataSpaceProviderProperty.SetAttributeAsync(referenceId, value);
+            if (status)
+            {
+                SetAttributeRuntime(referenceId, value, extendData);
+            }
+            return status;
+        }
+        public void SetAttributeRuntime(string referenceId, string value, IExtendData extendData)
         {
             var playerProperty = GetPlayerData(referenceId);
             var playerAttribute = playerProperty as PlayerAttribute;
