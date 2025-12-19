@@ -10,6 +10,10 @@ namespace GameMaker.Item.Runtime
         [SerializeField]
         private BaseDefinitionManager<ItemStatDefinition> _itemStatManager = new();
 
+        public ItemDefinition() : base()
+        {
+            
+        }
         public ItemDefinition(string id, string name, string title,BaseDefinitionManager<ItemStatDefinition> itemStatManager): base(id, name, title)
         {
             _itemStatManager = itemStatManager;

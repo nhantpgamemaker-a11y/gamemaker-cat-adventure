@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1a802ecaf6775746bb2a929fb554ad8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Demo/Starter Assets/Runtime/ThirdPersonController/Prefabs/PlayerFollowCamera.prefab
+  uploadId: 809904

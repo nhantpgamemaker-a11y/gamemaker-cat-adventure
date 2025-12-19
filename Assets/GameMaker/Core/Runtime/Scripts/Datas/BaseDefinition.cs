@@ -24,9 +24,11 @@ namespace GameMaker.Core.Runtime
         [SerializeField]
         protected string description;
 
-        public BaseDefinition() : base()
+        protected BaseDefinition() : base()
         {
             id = Guid.NewGuid().ToString();
+            name = "";
+            title = "";
         }
 
         public BaseDefinition(string id, string name, string title)

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e4eb86b697a057545818e935d29c8521
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Prefabs/DebuggerToolManager.prefab
+  uploadId: 809904

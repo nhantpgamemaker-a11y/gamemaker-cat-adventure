@@ -12,17 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfbccb516b69f5438425ae5c65274bd, type: 3}
   m_Name: CurrencyDataManager
   m_EditorClassIdentifier: GameMaker.Currency.Runtime::GameMaker.Currency.Runtime.CurrencyDataManager
-  definitions:
-  - rid: 335725076977811528
+  dataManager:
+    definitions:
+    - rid: 335725163338793158
+    - rid: 335725163338793162
+    - rid: 335725276843475123
   references:
     version: 2
     RefIds:
-    - rid: 335725076977811528
+    - rid: 335725163338793158
       type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
       data:
-        id: bd7d44f2-5fd2-46f0-8325-213693856991
-        name: 
-        title: 
+        id: 2c48186a-12a0-4236-9b1c-8d2f5cf48581
+        name: Coin
+        title: Coin
+        icon: {fileID: 21300000, guid: 90912cadfce2c6d44b3ad3ace44154d1, type: 3}
+        description: 
+        _defaultValue: 0
+        _maxValue: 0
+        _isGain: 0
+        _perGainAmount: 0
+        _gainTime: 0
+        _maxGainValue: 0
+    - rid: 335725163338793162
+      type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
+      data:
+        id: 66ca6632-51a4-4a1f-854d-873356017e71
+        name: Gem
+        title: Gem
+        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
+        description: 
+        _defaultValue: 0
+        _maxValue: 0
+        _isGain: 0
+        _perGainAmount: 0
+        _gainTime: 0
+        _maxGainValue: 0
+    - rid: 335725276843475123
+      type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
+      data:
+        id: 288e03b0-403e-40f2-b263-1f3f352fa992
+        name: Cash
+        title: Cash
+        icon: {fileID: 21300000, guid: b9b227f0d06cda541af409cee57c7593, type: 3}
+        description: 
         _defaultValue: 0
         _maxValue: 0
         _isGain: 0

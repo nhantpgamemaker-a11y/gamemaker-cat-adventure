@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameMaker.Core.Runtime;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace GameMaker.Item.Runtime
     {
         public List<ItemDetailDefinition> GetItemDetailDefinitions(string itemDefinitionId)
         {
-            return GetDefinitions(x => x.ItemDefinitionId == itemDefinitionId);
+            return GetDefinitions().Where(x => x.ItemDefinitionId == itemDefinitionId).ToList();
         }
     }
 }

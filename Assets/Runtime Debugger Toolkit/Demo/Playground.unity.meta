@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e9017d5f96b9f09489b4b37e1d6eb914
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Demo/Playground.unity
+  uploadId: 809904

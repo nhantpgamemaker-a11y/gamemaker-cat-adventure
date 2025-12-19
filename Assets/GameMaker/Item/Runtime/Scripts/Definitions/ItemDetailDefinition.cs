@@ -64,6 +64,7 @@ namespace GameMaker.Item.Runtime
         private List<ItemStatDefinitionRef> _itemStatDefinitionRefs = new();
         public IReadOnlyList<ItemStatDefinitionRef> ItemStatDefinitionRefs { get => _itemStatDefinitionRefs; }
         public string ItemDefinitionId => _itemDefinitionId;
+        public ItemDetailDefinition():base(){}
         public ItemDetailDefinition(string id, string name, string title,string itemDefinitionId,List<ItemStatDefinitionRef> itemStatDefinitionRefs): base(id, name, title)
         {
             _itemDefinitionId = itemDefinitionId;
@@ -83,6 +84,7 @@ namespace GameMaker.Item.Runtime
         {
             _itemStatDefinitionRefs.Remove(itemStatDefinitionRef);
         }
+        
         public ItemDefinition GetItemDefinition()
         {
             return ItemManager.Instance.GetDefinition(_itemDefinitionId);

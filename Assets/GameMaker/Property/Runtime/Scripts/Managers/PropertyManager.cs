@@ -11,11 +11,11 @@ namespace GameMaker.Property.Runtime
     {
         public List<StatDefinition> GetStats()
         {
-            return GetDefinitions(x => x.GetType() == typeof(StatDefinition)).Cast<StatDefinition>().ToList();
+            return GetDefinitions().Where(x => x.GetType() == typeof(StatDefinition)).Cast<StatDefinition>().ToList();
         }
         public List<AttributeDefinition> GetAttributes()
         {
-            return GetDefinitions(x => x.GetType() == typeof(AttributeDefinition)).Cast<AttributeDefinition>().ToList();
+            return GetDefinitions().Where(x => x.GetType() == typeof(AttributeDefinition)).Cast<AttributeDefinition>().ToList();
         }
         public List<PropertyDefinition> GetProperties()
         {

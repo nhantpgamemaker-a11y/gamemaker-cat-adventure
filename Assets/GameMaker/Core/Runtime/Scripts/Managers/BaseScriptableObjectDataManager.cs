@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using GameMaker.Core.Runtime;
 using UnityEngine;
 
-public abstract class BaseScriptableObjectDataManager<T,M> :ScriptableObjectSingleton<T> where T : ScriptableObject where M: IDefinition, ICloneable
+[System.Serializable]
+public abstract class BaseScriptableObjectDataManager<T, M> : ScriptableObjectSingleton<T> where T : ScriptableObject where M : IDefinition, ICloneable
 {
     [SerializeField]
     protected BaseDefinitionManager<M> dataManager = new();
 
-    public List<M> GetDefinitions(Func<M, bool> predicate = null)
+    public List<M> GetDefinitions()
     {
-        return dataManager.GetDefinitions(predicate);
+        return dataManager.GetDefinitions();
     }
     public M GetDefinition(string referenceId)
     {

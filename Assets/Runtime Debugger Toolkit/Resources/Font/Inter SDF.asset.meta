@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 82e885044dfc1fc468c1706466f641d1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Resources/Font/Inter SDF.asset
+  uploadId: 809904

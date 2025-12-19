@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 863d32a730ef96146b67e8ce457bb119
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Prefabs/logTxt.prefab
+  uploadId: 809904

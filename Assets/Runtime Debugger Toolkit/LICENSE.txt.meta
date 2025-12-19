@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c5b89531b385b884fbea25ba9f0fa720
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/LICENSE.txt
+  uploadId: 809904

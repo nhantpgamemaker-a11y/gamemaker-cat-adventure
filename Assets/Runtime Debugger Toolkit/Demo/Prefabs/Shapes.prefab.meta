@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2e4962f329786db4f8f82184a3fbccad
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Demo/Prefabs/Shapes.prefab
+  uploadId: 809904

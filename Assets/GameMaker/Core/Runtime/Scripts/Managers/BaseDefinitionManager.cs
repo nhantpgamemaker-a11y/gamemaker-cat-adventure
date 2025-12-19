@@ -12,7 +12,7 @@ namespace GameMaker.Core.Runtime
         protected List<M> definitions = new List<M>();
         [NonSerialized]
         private Dictionary<string, M> _definitionCache;
-        
+
         public BaseDefinitionManager()
         {
             
@@ -66,11 +66,9 @@ namespace GameMaker.Core.Runtime
             definitions.Remove(definition);
             BuildCache();
         }
-        public List<M> GetDefinitions(Func<M, bool> predicate = null)
+        public List<M> GetDefinitions()
         {
-            if (predicate != null)
-                return definitions.Where(predicate).ToList();
-            return definitions.ToList();
+            return definitions;
         }
         public M GetDefinition(string id)
         {

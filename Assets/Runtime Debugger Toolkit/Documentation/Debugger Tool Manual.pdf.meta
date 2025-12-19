@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8c96ff551f6d5d14896199c3d502014b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Documentation/Debugger Tool Manual.pdf
+  uploadId: 809904

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8e22d13aea4aa2a43a7ab828901df69d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Resources/Font/InterDisplay-Bold SDF.asset
+  uploadId: 809904

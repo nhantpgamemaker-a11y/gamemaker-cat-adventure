@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5ef36fea2b6a3c747bdbe20760ca7314
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 325182
+  packageName: Runtime Debugger Toolkit
+  packageVersion: 1.0.0
+  assetPath: Assets/Runtime Debugger Toolkit/Prefabs/GraduationAxis.prefab
+  uploadId: 809904

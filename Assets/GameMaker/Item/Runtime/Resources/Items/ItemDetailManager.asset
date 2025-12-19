@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: ItemDetailManager
   m_EditorClassIdentifier: GameMaker.Item.Runtime::GameMaker.Item.Runtime.ItemDetailManager
   dataManager:
-    definitions: []
+    definitions:
+    - rid: 335725324694192554
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 335725324694192554
+      type: {class: ItemDetailDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
+      data:
+        id: 645cd1b6-4b65-411c-a478-6218eab2cce0
+        name: Item
+        title: 
+        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
+        description: 
+        _itemDefinitionId: 
+        _itemStatDefinitionRefs: []
