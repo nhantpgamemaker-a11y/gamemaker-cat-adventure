@@ -16,15 +16,15 @@ MonoBehaviour:
   ultimateAnimationPreviewSettings:
     isEnable: 1
     disablePlayModeColorTint: 1
-    isLightsEnable: 1
+    isLightsEnable: 0
     ambientColor: {r: 1, g: 1, b: 1, a: 1}
     cameraSettings:
       defaultZoom: 1
       defaultCameraDirection: {x: 180, y: -16.5}
       cameraFieldOfView: 30
-      clearFlags: 2
+      clearFlags: 1
       skyboxMaterial: {fileID: 0}
-      backgroundColor: {r: 0.14901961, g: 0.69803923, b: 1, a: 1}
+      backgroundColor: {r: 1, g: 1, b: 1, a: 0}
     additionalLights:
     - enabled: 1
       intensity: 0.5
