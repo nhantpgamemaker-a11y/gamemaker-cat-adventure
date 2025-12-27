@@ -1,0 +1,10 @@
+namespace Game.GamePlay
+{
+    [System.Serializable]
+    public class LayerData
+    {
+        [UnityEngine.SerializeField]
+        private UnityEngine.LayerMask _groundLayer;
+        public UnityEngine.LayerMask GroundLayer => _groundLayer;
+    }
+}

@@ -16,11 +16,12 @@ namespace GameMaker.Core.Runtime
             currentState?.OnEnterState(baseStateData);
         }
 
-        public void OnInit(List<IState<T>> states)
+        public virtual void OnInit(List<IState<T>> states)
         {
             stateLookup = new();
             foreach(var state in states)
             {
+                state.SetStateMachine(this);
                 stateLookup[state.GetStateType()] = state;
             }
         }

@@ -7,5 +7,6 @@ namespace GameMaker.Core.Runtime
         public T GetStateType();
         public void OnEnterState(BaseStateData baseStateData = null);
         public void OnExitState();
+        public void SetStateMachine(IStateMachine<T> stateMachine);
     }
 }

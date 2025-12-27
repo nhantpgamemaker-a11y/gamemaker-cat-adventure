@@ -2,7 +2,8 @@
     "name": "Game.GamePlay",
     "rootNamespace": "Game.GamePlay",
     "references": [
-        "GUID:908562e3f0b9fbd4dbcbcfc65c9363b0"
+        "GUID:908562e3f0b9fbd4dbcbcfc65c9363b0",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
