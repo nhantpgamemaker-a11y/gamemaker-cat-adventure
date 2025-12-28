@@ -1,6 +1,8 @@
 version: 2
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+- Assets/Games/GamePlay/Sprites/Monsters/Root/RootLeftAttack.tpsheet
+- Assets/Games/GamePlay/Sprites/Monsters/Root/RootRightAttack.tpsheet
 - Assets/Games/GamePlay/Sprites/Players/Attack_1.tpsheet
 - Assets/Games/GamePlay/Sprites/Players/Attack_2.tpsheet
 - Assets/Games/GamePlay/Sprites/Players/Idling.tpsheet
@@ -8,6 +10,8 @@ tpsheetFileNames:
 - Assets/Games/GamePlay/Sprites/Players/Running.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+- Assets/Games/GamePlay/Sprites/Monsters/Root/RootLeftAttack.png
+- Assets/Games/GamePlay/Sprites/Monsters/Root/RootRightAttack.png
 - Assets/Games/GamePlay/Sprites/Players/Attack_1.png
 - Assets/Games/GamePlay/Sprites/Players/Attack_2.png
 - Assets/Games/GamePlay/Sprites/Players/Idling.png
@@ -15,6 +19,8 @@ textureFileNames:
 - Assets/Games/GamePlay/Sprites/Players/Running.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
+- 
 - 
 - 
 - 

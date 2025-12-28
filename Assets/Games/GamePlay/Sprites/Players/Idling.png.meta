@@ -131,7 +131,7 @@ TextureImporter:
         width: 333
         height: 754
       alignment: 9
-      pivot: {x: 0.46246246, y: 0.0331565}
+      pivot: {x: 0.46246248, y: 0.014058355}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,7 +153,7 @@ TextureImporter:
         width: 333
         height: 754
       alignment: 9
-      pivot: {x: 0.45645645, y: 0.035809018}
+      pivot: {x: 0.46246248, y: 0.014058355}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
         width: 333
         height: 754
       alignment: 9
-      pivot: {x: 0.45645645, y: 0.02917772}
+      pivot: {x: 0.46246248, y: 0.015384615}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -197,7 +197,7 @@ TextureImporter:
         width: 334
         height: 757
       alignment: 9
-      pivot: {x: 0.46407187, y: 0.030383091}
+      pivot: {x: 0.46407187, y: 0.014002642}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,7 +219,7 @@ TextureImporter:
         width: 334
         height: 739
       alignment: 9
-      pivot: {x: 0.45808384, y: 0.031123139}
+      pivot: {x: 0.46407187, y: 0.014343708}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -241,7 +241,7 @@ TextureImporter:
         width: 349
         height: 736
       alignment: 9
-      pivot: {x: 0.4756447, y: 0.02173913}
+      pivot: {x: 0.4641834, y: 0.014402173}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,7 +263,7 @@ TextureImporter:
         width: 349
         height: 736
       alignment: 9
-      pivot: {x: 0.47277936, y: 0.03396739}
+      pivot: {x: 0.4641834, y: 0.014402173}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,7 +285,7 @@ TextureImporter:
         width: 349
         height: 755
       alignment: 9
-      pivot: {x: 0.48424068, y: 0.026490066}
+      pivot: {x: 0.4641834, y: 0.014039735}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

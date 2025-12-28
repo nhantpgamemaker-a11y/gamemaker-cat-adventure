@@ -27,8 +27,9 @@ namespace Game.GamePlay
         public virtual void OnUpdate()
         {
             var direction = playerStateMachine.PlayerReusableData.GetControlDirection();
-            if(direction.x==-1 || direction.x==1 && _lastDirection.x != direction.x)
+            if(_lastDirection.x != direction.x && direction.x!=0)
             {
+                direction.x = direction.x<0 ? -1 : 1;
                 playerStateMachine.SetFloatAnimation(
                     playerStateMachine.PlayerData.AnimationData.DirectionAnimationHash,
                     direction.x);

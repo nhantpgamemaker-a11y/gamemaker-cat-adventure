@@ -26,13 +26,13 @@ namespace Game.GamePlay
                 return;
             }
         }
-        protected override void RegisterInputAction()
-        {
-            playerStateMachine.PlayerInputAction.Player.Jump.performed += OnJumpPerformed;
-        }
-        protected override void UnRegisterInputAction()
-        {
-            playerStateMachine.PlayerInputAction.Player.Jump.performed -= OnJumpPerformed;
-        }
+        // protected override void RegisterInputAction()
+        // {
+        //     playerStateMachine.PlayerInputAction.Player.Jump.performed += OnJumpPerformed;
+        // }
+        // protected override void UnRegisterInputAction()
+        // {
+        //     playerStateMachine.PlayerInputAction.Player.Jump.performed -= OnJumpPerformed;
+        // }
     }
 }

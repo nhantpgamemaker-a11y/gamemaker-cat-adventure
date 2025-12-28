@@ -10,13 +10,15 @@ namespace Game.GamePlay
     {
         Idling,
         Running,
-        Attacking,
         Purificating,
         Buffing,
         Jumping,
         Falling,
 
-        Landing
+        Landing,
+        Attacking_1,
+        Attacking_2,
+        Attacking_3 
     }
     [System.Serializable]
     public class PlayerStateMachine : BaseStateMachine<PlayerStateType>

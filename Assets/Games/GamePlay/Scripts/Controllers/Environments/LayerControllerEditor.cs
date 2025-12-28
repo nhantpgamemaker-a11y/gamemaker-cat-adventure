@@ -9,7 +9,11 @@ namespace GamePlay
         [SerializeField] private SortingGroup _sortingGroup;
         public void SetSortingOrder(int order)
         {
-            _sortingGroup.sortingOrder = -order;
+            _sortingGroup.sortingOrder = order;
+        }
+        public int GetSortingOrder()
+        {
+            return _sortingGroup.sortingOrder;
         }
         public float GetZIndex()
         {

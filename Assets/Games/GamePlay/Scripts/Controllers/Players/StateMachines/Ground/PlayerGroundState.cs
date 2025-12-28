@@ -37,11 +37,19 @@ namespace Game.GamePlay
         {
             playerStateMachine.PlayerInputAction.Player.Move.started += OnMoveStarted;
             playerStateMachine.PlayerInputAction.Player.Jump.performed += OnJumpPerformed;
+            playerStateMachine.PlayerInputAction.Player.Attack.started += OnAttackStated;
         }
+
+        private void OnAttackStated(InputAction.CallbackContext context)
+        {
+            playerStateMachine.ChangeState(PlayerStateType.Attacking_1);
+        }
+
         protected virtual void UnRegisterInputAction()
         {
             playerStateMachine.PlayerInputAction.Player.Move.started -= OnMoveStarted;
             playerStateMachine.PlayerInputAction.Player.Jump.performed -= OnJumpPerformed;
+            playerStateMachine.PlayerInputAction.Player.Attack.started -= OnAttackStated;
         }
 
         protected void OnJumpPerformed(InputAction.CallbackContext context)

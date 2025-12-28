@@ -20,6 +20,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a6c4bff549dbe045a38ec89638cca4a
+    m_Address: GamePlayView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d916ed9826391f2468ceaeb0b923e38f
+    m_Address: Assets/Games/GamePlay/Materials/Wind_MAT.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa650123654787242a6bbd6f13d2522b
     m_Address: View02
     m_ReadOnly: 0
