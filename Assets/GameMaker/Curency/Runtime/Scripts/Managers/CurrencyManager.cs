@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameMaker.Currency.Runtime
 {
     [System.Serializable]
-    [ScriptableObjectSingletonPathAttribute("Assets/Resources/Currencies")]
+    [ScriptableObjectSingletonPathAttribute("Assets/Resources")]
     [CreateAssetMenu(fileName ="CurrencyManager",menuName = "GameMaker/Currency")]
     public class CurrencyManager : BaseScriptableObjectDataManager<CurrencyManager, CurrencyDefinition>
     {

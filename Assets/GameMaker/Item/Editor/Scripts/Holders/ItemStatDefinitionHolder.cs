@@ -35,7 +35,7 @@ namespace GameMaker.Item.Editor
 
         public string GetNameFoldout()
         {
-            return $"{serializedProperty.FindPropertyRelative("name").stringValue} : {_defaultValueFloatField.value}";
+            return $"{serializedProperty.FindPropertyRelative("_name").stringValue} : {_defaultValueFloatField.value}";
         }
     }
 }

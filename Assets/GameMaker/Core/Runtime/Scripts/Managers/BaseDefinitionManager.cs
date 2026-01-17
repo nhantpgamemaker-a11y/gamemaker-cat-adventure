@@ -9,23 +9,23 @@ namespace GameMaker.Core.Runtime
     public class BaseDefinitionManager<M>:ICloneable where M: IDefinition, ICloneable
     {
         [UnityEngine.SerializeReference]
-        protected List<M> definitions = new List<M>();
+        private List<M> _definitions = new List<M>();
         [NonSerialized]
         private Dictionary<string, M> _definitionCache;
-
+        public List<M> Definitions => _definitions;
         public BaseDefinitionManager()
         {
             
         }
         public BaseDefinitionManager(List<M> definitions)
         {
-            this.definitions = definitions;
+            this._definitions = definitions;
         }
         private void BuildCache()
         {
             _definitionCache = new Dictionary<string, M>();
 
-            foreach (var def in definitions)
+            foreach (var def in _definitions)
             {
                 if (def == null) continue;
 
@@ -53,7 +53,7 @@ namespace GameMaker.Core.Runtime
         }
         public virtual void AddDefinition(M definition)
         {
-            definitions.Add(definition);
+            _definitions.Add(definition);
             BuildCache();
         }
         public virtual void AddDefinitions(List<M> definitions)
@@ -63,12 +63,12 @@ namespace GameMaker.Core.Runtime
         }
         public virtual void RemoveDefinition(M definition)
         {
-            definitions.Remove(definition);
+            _definitions.Remove(definition);
             BuildCache();
         }
         public List<M> GetDefinitions()
         {
-            return definitions;
+            return _definitions;
         }
         public M GetDefinition(string id)
         {
@@ -80,7 +80,7 @@ namespace GameMaker.Core.Runtime
         }
         public object Clone()
         {
-            return new BaseDefinitionManager<M>(definitions.Select(d=> (M)d.Clone()).ToList());
+            return new BaseDefinitionManager<M>(_definitions.Select(d=> (M)d.Clone()).ToList());
         }
     }
 }

@@ -20,6 +20,25 @@
       },
       "hash": "b651c5866fe0e3fba065ce2e56dfdfcd59d3d109"
     },
+    "com.coffee.ui-effect": {
+      "version": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src#5.7.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "d6ee505e7c06b1fb3edf8c9ce383a518f206a294"
+    },
+    "com.coffee.ui-particle": {
+      "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "hash": "04c1ca72cde82318e11eb1281dc4c3d314a2e68c"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
@@ -283,6 +302,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.uiextensions": {
+      "version": "https://github.com/Unity-UI-Extensions/com.unity.uiextensions.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "35b9985bf238cde2bad9c8e107c686ba3194471c"
     },
     "com.unity.visualscripting": {
       "version": "1.9.9",

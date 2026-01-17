@@ -9,22 +9,22 @@ namespace GameMaker.Item.Runtime
     {
         public readonly static string ADD_ITEM_ACTION_DEFINITION_ID = "ITEM_ADD";
         public readonly static string REMOVE_ITEM_ACTION_DEFINITION_ID = "ITEM_REMOVE";
-        public ItemActionDefinition(string id, string name, string title) : base(id, name, title)
+        public ItemActionDefinition(string id, string name, string title,string description, Sprite icon) : base(id, name, title,description, icon)
         {
             
         }
 
         public override object Clone()
         {
-            return new ItemActionDefinition(id, name, title);
+            return new ItemActionDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon());
         }
 
         public override List<BaseActionDefinition> GetCoreActionDefinition()
         {
             return new List<BaseActionDefinition>()
             {
-                new ItemActionDefinition(ADD_ITEM_ACTION_DEFINITION_ID, "ADD_ITEM_ACTION", "ADD_ITEM_ACTION"),
-                new ItemActionDefinition(REMOVE_ITEM_ACTION_DEFINITION_ID, "REMOVE_ITEM_ACTION", "REMOVE_ITEM_ACTION")
+                new ItemActionDefinition(ADD_ITEM_ACTION_DEFINITION_ID, "ADD_ITEM_ACTION", "ADD_ITEM_ACTION","", null),
+                new ItemActionDefinition(REMOVE_ITEM_ACTION_DEFINITION_ID, "REMOVE_ITEM_ACTION", "REMOVE_ITEM_ACTION","", null)
             };
         }
 

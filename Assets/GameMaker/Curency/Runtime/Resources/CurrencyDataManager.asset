@@ -13,49 +13,52 @@ MonoBehaviour:
   m_Name: CurrencyDataManager
   m_EditorClassIdentifier: GameMaker.Currency.Runtime::GameMaker.Currency.Runtime.CurrencyDataManager
   dataManager:
-    definitions:
-    - rid: 335725163338793158
-    - rid: 335725163338793162
-    - rid: 335725276843475123
+    _definitions:
+    - rid: 4388470143681036465
+    - rid: 4388470144226033832
+    - rid: 4388470156526354661
   references:
     version: 2
     RefIds:
-    - rid: 335725163338793158
+    - rid: 4388470143681036465
       type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
       data:
-        id: 2c48186a-12a0-4236-9b1c-8d2f5cf48581
-        name: Coin
-        title: Coin
-        icon: {fileID: 21300000, guid: 90912cadfce2c6d44b3ad3ace44154d1, type: 3}
-        description: 
+        _id: Coin
+        _name: Coin
+        _title: Coin
+        _icon: {fileID: 21300000, guid: 94e903bf218a14ee9b91bef6850dc47d, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
         _isGain: 0
         _perGainAmount: 0
         _gainTime: 0
         _maxGainValue: 0
-    - rid: 335725163338793162
+    - rid: 4388470144226033832
       type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
       data:
-        id: 66ca6632-51a4-4a1f-854d-873356017e71
-        name: Gem
-        title: Gem
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
+        _id: Gem
+        _name: Gem
+        _title: Gem
+        _icon: {fileID: 21300000, guid: e4cb060482ec24272aa2b00ae1fb45a2, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
         _isGain: 0
         _perGainAmount: 0
         _gainTime: 0
         _maxGainValue: 0
-    - rid: 335725276843475123
+    - rid: 4388470156526354661
       type: {class: CurrencyDefinition, ns: GameMaker.Currency.Runtime, asm: GameMaker.Currency.Runtime}
       data:
-        id: 288e03b0-403e-40f2-b263-1f3f352fa992
-        name: Cash
-        title: Cash
-        icon: {fileID: 21300000, guid: b9b227f0d06cda541af409cee57c7593, type: 3}
-        description: 
+        _id: Cash
+        _name: Cash
+        _title: Cash
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
         _isGain: 0

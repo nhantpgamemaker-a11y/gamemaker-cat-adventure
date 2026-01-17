@@ -1,9 +1,0 @@
-fileFormatVersion: 2
-guid: d03caeba1bdca2045aee8d979aea6adf
-AssetOrigin:
-  serializedVersion: 1
-  productId: 69257
-  packageName: Runtime Transform Gizmos (Standard)
-  packageVersion: 1.0.4
-  assetPath: Assets/Runtime Transform Gizmos (Standard)/Scripts/Math/Quad.cs
-  uploadId: 806318

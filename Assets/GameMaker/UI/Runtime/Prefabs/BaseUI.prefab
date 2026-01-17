@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e48720d08edd64a923f4ff622ed216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameMaker.UI.Runtime::GameMaker.UI.Runtime.UIAnimation
-  _showAnimation: {fileID: 8348909922269330065}
-  _hideAnimation: {fileID: 2744128548349299448}
+  showAnimation: {fileID: 8348909922269330065}
+  hideAnimation: {fileID: 2744128548349299448}
 --- !u!1 &4302126218181252346
 GameObject:
   m_ObjectHideFlags: 0

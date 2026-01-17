@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameMaker.Item.Runtime
 {
-     [ScriptableObjectSingletonPathAttribute("Assets/Resources/Items")]
+     [ScriptableObjectSingletonPathAttribute("Assets/Resources")]
     [CreateAssetMenu(fileName ="ItemManager",menuName = "GameMaker/Items/ItemManager")]
     public class ItemManager : BaseScriptableObjectDataManager<ItemManager, ItemDefinition>
     {

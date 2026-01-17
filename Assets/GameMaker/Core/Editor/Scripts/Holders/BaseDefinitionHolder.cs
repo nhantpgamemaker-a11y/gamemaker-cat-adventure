@@ -14,6 +14,7 @@ namespace GameMaker.Core.Editor
         protected TextField nameTextField;
         protected TextField titleTextField;
         protected TextField descriptionTextField;
+        protected Foldout definitionFoldout;
         protected SerializedProperty serializedProperty;
 
 
@@ -26,24 +27,36 @@ namespace GameMaker.Core.Editor
             nameTextField = root.Q<TextField>("NameTextField");
             titleTextField = root.Q<TextField>("TitleTextField");
             descriptionTextField = root.Q<TextField>("DescriptionTextField");
+            definitionFoldout = root.Q<Foldout>("DefinitionFoldout");
+            idTextField.isReadOnly = false;
         }
 
         public override void Bind(SerializedProperty elementProperty)
         {
             serializedProperty = elementProperty;
-            idTextField.BindProperty(serializedProperty.FindPropertyRelative("id"));
-            nameTextField.BindProperty(serializedProperty.FindPropertyRelative("name"));
-            titleTextField.BindProperty(serializedProperty.FindPropertyRelative("title"));
-            iconField.BindProperty(serializedProperty.FindPropertyRelative("icon"));
-            descriptionTextField.BindProperty(serializedProperty.FindPropertyRelative("description"));
+            idTextField.BindProperty(serializedProperty.FindPropertyRelative("_id"));
+            nameTextField.BindProperty(serializedProperty.FindPropertyRelative("_name"));
+            titleTextField.BindProperty(serializedProperty.FindPropertyRelative("_title"));
+            iconField.BindProperty(serializedProperty.FindPropertyRelative("_icon"));
+            descriptionTextField.BindProperty(serializedProperty.FindPropertyRelative("_description"));
+            definitionFoldout.text = $"{serializedProperty.FindPropertyRelative("_id").stringValue}_{serializedProperty.FindPropertyRelative("_name").stringValue}";
             copyButton.clicked += OnClickCopy;
 
-            iconPreviewImage.sprite = serializedProperty.FindPropertyRelative("icon")?.objectReferenceValue as Sprite;
+            iconPreviewImage.sprite = serializedProperty.FindPropertyRelative("_icon")?.objectReferenceValue as Sprite;
             iconField.RegisterValueChangedCallback(value =>
             {
                 iconPreviewImage.sprite = value.newValue as Sprite;
             });
-            iconPreviewImage.sprite = serializedProperty.FindPropertyRelative("icon")?.objectReferenceValue as Sprite;
+            iconPreviewImage.sprite = serializedProperty.FindPropertyRelative("_icon")?.objectReferenceValue as Sprite;
+
+            idTextField.RegisterValueChangedCallback(value =>
+            {
+                definitionFoldout.text = $"{serializedProperty.FindPropertyRelative("_id").stringValue}_{serializedProperty.FindPropertyRelative("_name").stringValue}";
+            });
+            nameTextField.RegisterValueChangedCallback(value =>
+            {
+                definitionFoldout.text = $"{serializedProperty.FindPropertyRelative("_id").stringValue}_{serializedProperty.FindPropertyRelative("_name").stringValue}";
+            });
 
             Root.MarkDirtyRepaint();
         }
@@ -51,7 +64,7 @@ namespace GameMaker.Core.Editor
         private void OnClickCopy()
         {
             EditorGUIUtility.systemCopyBuffer =
-            serializedProperty.FindPropertyRelative("id")?.stringValue;
+            serializedProperty.FindPropertyRelative("_id")?.stringValue;
         }
     }
 }

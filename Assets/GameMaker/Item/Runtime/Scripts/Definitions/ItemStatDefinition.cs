@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameMaker.Core.Runtime;
+using UnityEngine;
 
 namespace GameMaker.Item.Runtime
 {
@@ -13,14 +14,14 @@ namespace GameMaker.Item.Runtime
         {
             
         }
-        public ItemStatDefinition(string id, string name, string title, float defaultValue): base(id, name, title)
+        public ItemStatDefinition(string id, string name, string title,string description, Sprite icon, float defaultValue): base(id, name, title,description, icon)
         {
             _defaultValue = defaultValue;
         }
 
         public override object Clone()
         {
-            return new ItemStatDefinition(id, name, title, _defaultValue);
+            return new ItemStatDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(), _defaultValue);
         }
     }
 }

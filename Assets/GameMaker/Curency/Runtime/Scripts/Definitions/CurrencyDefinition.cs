@@ -24,13 +24,13 @@ namespace GameMaker.Currency.Runtime
         {
             
         }
-        public CurrencyDefinition(string id, string name, string title, float defaultValue) : base(id, name, title)
+        public CurrencyDefinition(string id, string name, string title,string description, Sprite icon, float defaultValue) : base(id, name, title,description, icon)
         {
             DefaultValue = defaultValue;
         }
         public override object Clone()
         {
-            return new CurrencyDefinition(id, name, title, DefaultValue);
+            return new CurrencyDefinition(GetID(), GetName(), GetTitle(),GetDescription(), GetIcon(), DefaultValue);
         }
     }
 }

@@ -28,12 +28,12 @@ namespace GameMaker.Item.Editor
         public override void Bind(SerializedProperty elementProperty)
         {
             base.Bind(elementProperty);
-            _itemDetailFoldout.name = serializedProperty.FindPropertyRelative("name").stringValue;
+            _itemDetailFoldout.name = serializedProperty.FindPropertyRelative("_name").stringValue;
             _nameField.RegisterValueChangedCallback(value =>
             {
                 _itemDetailFoldout.text = value.newValue;
             });
-            _itemDetailFoldout.text = serializedProperty.FindPropertyRelative("name").stringValue;
+            _itemDetailFoldout.text = serializedProperty.FindPropertyRelative("_name").stringValue;
             _itemStatDefinitionRefs = serializedProperty.FindPropertyRelative("_itemStatDefinitionRefs");
             var itemReferenceDefinitionId = serializedProperty.FindPropertyRelative("_itemDefinitionId").stringValue;
             var itemDefinition = ItemManager.Instance.GetDefinition(itemReferenceDefinitionId);

@@ -10,98 +10,77 @@ namespace GameMaker.Core.Runtime
                                     ITitle,
                                     IIcon,
                                     IDescription,
+                                    IMetaData,
                                     ICloneable, IEquatable<BaseDefinition>
     {
         [SerializeField]
-        protected string id;
+        private string _id;
         [SerializeField]
-        protected string name;
+        private string _name;
         [SerializeField]
-        protected string title;
+        private string _title;
 
-        [SerializeField] protected Sprite icon;
+        [SerializeField] 
+        private Sprite _icon;
 
         [SerializeField]
-        protected string description;
+        private string _description;
+
+        [SerializeField]
+        private BaseMetaData _metaData;
 
         protected BaseDefinition() : base()
         {
-            id = Guid.NewGuid().ToString();
-            name = "";
-            title = "";
+            _id = Guid.NewGuid().ToString();
+            _name = "";
+            _title = "";
         }
 
-        public BaseDefinition(string id, string name, string title)
+        public BaseDefinition(string id, string name, string title, string description, Sprite icon)
         {
-            this.id = id;
-            this.name = name;
-            this.title = title;
+            this._id = id;
+            this._name = name;
+            this._title = title;
+            _description = description;
+            _icon = icon;
         }
         
         public string GetID()
         {
-            return id;
+            return _id;
         }
 
         public string GetName()
         {
-            return name;
+            return _name;
         }
 
-        internal void SetID(string id)
-        {
-            this.id = id;
-        }
-
-        internal void SetName(string name)
-        {
-            this.name = name;
-        }
         public abstract object Clone();
         
         public bool Equals(BaseDefinition other)
         {
-            return other.GetID() == id;
+            return other.GetID() == _id;
         }
 
         public string GetTitle()
         {
-            return title;
-        }
-
-        public void SetTitle(string title)
-        {
-            this.title = title;
+            return _title;
         }
 
         public Sprite GetIcon()
         {
-            return icon;
+            return _icon;
         }
 
-        public void SetIcon(Sprite sprite)
-        {
-            this.icon = sprite;
-        }
 
         public string GetDescription()
         {
-            return description;
+            return _description;
         }
 
-        public void SetDescription(string description)
+        public BaseMetaData GetMetaData()
         {
-            this.description = description;
-        }
-
-        void IDefinition.SetID(string id)
-        {
-            SetID(id);
-        }
-
-        void IDefinition.SetName(string name)
-        {
-            SetName(name);
+            return _metaData;
         }
     }
 }

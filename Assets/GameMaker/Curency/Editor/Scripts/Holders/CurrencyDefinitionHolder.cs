@@ -27,12 +27,12 @@ namespace GameMaker.Currency.Editor
                 _gainContainer.SetEnabled(value.newValue);
             });
             _gainContainer.SetEnabled(_gainToggle.value);
-            _currencyFoldout.name = serializedProperty.FindPropertyRelative("name").stringValue;
+            _currencyFoldout.name = serializedProperty.FindPropertyRelative("_name").stringValue;
             _nameField.RegisterValueChangedCallback(value =>
             {
                 _currencyFoldout.text = value.newValue;
             });
-            _currencyFoldout.text = serializedProperty.FindPropertyRelative("name").stringValue;
+            _currencyFoldout.text = serializedProperty.FindPropertyRelative("_name").stringValue;
         }
     }
 }

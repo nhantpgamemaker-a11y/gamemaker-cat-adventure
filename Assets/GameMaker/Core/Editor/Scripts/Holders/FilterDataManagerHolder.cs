@@ -40,7 +40,7 @@ namespace GameMaker.Core.Editor
 
         public override void Bind(SerializedProperty elementProperty)
         {
-            this.definitionProperty = elementProperty.FindPropertyRelative("definitions");
+            this.definitionProperty = elementProperty.FindPropertyRelative("_definitions");
             
             base.Bind(elementProperty);
             foreach(var filter in filters)

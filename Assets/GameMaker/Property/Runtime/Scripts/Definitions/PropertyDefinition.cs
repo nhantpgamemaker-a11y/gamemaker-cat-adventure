@@ -10,7 +10,7 @@ namespace GameMaker.Property.Runtime
         {
             
         }
-        public PropertyDefinition(string id, string name, string title) : base(id, name, title)
+        public PropertyDefinition(string id, string name, string title,string description, Sprite icon):base(id, name, title,description, icon)
         {
 
         }

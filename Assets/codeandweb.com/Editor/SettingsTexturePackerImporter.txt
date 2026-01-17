@@ -1,23 +1,8 @@
 version: 2
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
-- Assets/Games/GamePlay/Sprites/Players/Attack_1.tpsheet
-- Assets/Games/GamePlay/Sprites/Players/Attack_2.tpsheet
-- Assets/Games/GamePlay/Sprites/Players/Idling.tpsheet
-- Assets/Games/GamePlay/Sprites/Players/Jumping.tpsheet
-- Assets/Games/GamePlay/Sprites/Players/Running.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
-- Assets/Games/GamePlay/Sprites/Players/Attack_1.png
-- Assets/Games/GamePlay/Sprites/Players/Attack_2.png
-- Assets/Games/GamePlay/Sprites/Players/Idling.png
-- Assets/Games/GamePlay/Sprites/Players/Jumping.png
-- Assets/Games/GamePlay/Sprites/Players/Running.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
-- 
-- 
-- 
-- 
-- 
 enableDebugOutput: 0

@@ -32,7 +32,7 @@ namespace GameMaker.Core.Editor
         {
             base.Bind(elementProperty);
             serializedProperty = elementProperty;
-            definitionProperty = elementProperty.FindPropertyRelative("definitions");
+            definitionProperty = elementProperty.FindPropertyRelative("_definitions");
             Root.RegisterCallback<AttachToPanelEvent>(_ =>
             {
                 Undo.undoRedoPerformed += OnUndoRedo;

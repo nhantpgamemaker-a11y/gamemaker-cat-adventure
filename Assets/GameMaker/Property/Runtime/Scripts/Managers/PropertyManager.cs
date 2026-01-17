@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameMaker.Property.Runtime
 {
-    [ScriptableObjectSingletonPathAttribute("Assets/Resources/Properties")]
+    [ScriptableObjectSingletonPathAttribute("Assets/Resources")]
     [CreateAssetMenu(fileName ="PropertyManager",menuName = "GameMaker/Property")]
     public class PropertyManager : BaseScriptableObjectDataManager<PropertyManager, PropertyDefinition>
     {

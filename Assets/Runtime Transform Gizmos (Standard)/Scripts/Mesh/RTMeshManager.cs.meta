@@ -1,9 +1,0 @@
-fileFormatVersion: 2
-guid: e2123258428248a409d4b476badabb7b
-AssetOrigin:
-  serializedVersion: 1
-  productId: 69257
-  packageName: Runtime Transform Gizmos (Standard)
-  packageVersion: 1.0.4
-  assetPath: Assets/Runtime Transform Gizmos (Standard)/Scripts/Mesh/RTMeshManager.cs
-  uploadId: 806318

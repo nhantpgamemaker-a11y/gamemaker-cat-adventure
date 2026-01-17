@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameMaker.Item.Runtime
 {
-    [ScriptableObjectSingletonPathAttribute("Assets/Resources/Items")]
+    [ScriptableObjectSingletonPathAttribute("Assets/Resources")]
     [CreateAssetMenu(fileName ="ItemDetailManager",menuName = "GameMaker/Items/ItemDetailManager")]
     public class ItemDetailManager : BaseScriptableObjectDataManager<ItemDetailManager, ItemDetailDefinition>
     {

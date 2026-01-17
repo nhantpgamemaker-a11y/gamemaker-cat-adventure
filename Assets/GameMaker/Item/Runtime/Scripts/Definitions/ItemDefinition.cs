@@ -18,7 +18,7 @@ namespace GameMaker.Item.Runtime
         {
             
         }
-        public ItemDefinition(string id, string name, string title,BaseDefinitionManager<ItemStatDefinition> itemStatManager): base(id, name, title)
+        public ItemDefinition(string id, string name, string title,string description, Sprite icon,BaseDefinitionManager<ItemStatDefinition> itemStatManager): base(id, name, title,description, icon)
         {
             _itemStatManager = itemStatManager;
         }
@@ -29,7 +29,7 @@ namespace GameMaker.Item.Runtime
 
         public override object Clone()
         {
-            return new ItemDefinition(id, name, title, _itemStatManager.Clone() as BaseDefinitionManager<ItemStatDefinition>);
+            return new ItemDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(), _itemStatManager.Clone() as BaseDefinitionManager<ItemStatDefinition>);
         }
 
         public void RemoveItemStat(ItemStatDefinition itemStatDefinition)

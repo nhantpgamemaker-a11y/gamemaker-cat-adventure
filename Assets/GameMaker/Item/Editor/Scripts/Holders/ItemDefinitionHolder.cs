@@ -27,7 +27,7 @@ namespace GameMaker.Item.Editor
             {
                 _itemFoldout.text = value.newValue;
             });
-            _itemFoldout.text = serializedProperty.FindPropertyRelative("name").stringValue;
+            _itemFoldout.text = serializedProperty.FindPropertyRelative("_name").stringValue;
 
             _itemStatManagerHolder.Bind(serializedProperty.FindPropertyRelative("_itemStatManager"));
         }

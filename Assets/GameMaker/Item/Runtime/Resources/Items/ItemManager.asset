@@ -13,130 +13,41 @@ MonoBehaviour:
   m_Name: ItemManager
   m_EditorClassIdentifier: GameMaker.Item.Runtime::GameMaker.Item.Runtime.ItemManager
   dataManager:
-    definitions:
-    - rid: 335725279219810375
-    - rid: 335725279219810508
-    - rid: 335725279219810505
+    _definitions:
+    - rid: 4388470156526354655
   references:
     version: 2
     RefIds:
-    - rid: 335725279219810375
+    - rid: 4388470156526354655
       type: {class: ItemDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
       data:
-        id: 6b2c6641-d04c-4d64-a7bc-77e4e3c6f13b
-        name: Weapon
-        title: Weapon
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
+        _id: Weapon
+        _name: Weapon
+        _title: Weapon
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
         _itemStatManager:
-          definitions:
-          - rid: 335725279219810476
-          - rid: 335725279219810477
-          - rid: 335725279219810478
-          - rid: 335725279219810501
-          - rid: 335725279219810502
-          - rid: 335725279219810503
-          - rid: 335725279219810504
-    - rid: 335725279219810476
+          _definitions:
+          - rid: 4388470156526354656
+          - rid: 4388470156526354657
+    - rid: 4388470156526354656
       type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
       data:
-        id: 2b8d284a-a369-4342-bbcf-a95bcb71b43d
-        name: HP
-        title: HP
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810477
+        _id: HP
+        _name: HP
+        _title: HP
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _defaultValue: 10
+    - rid: 4388470156526354657
       type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
       data:
-        id: 5e7b03ec-dc7d-4bc5-a3a6-0e2acca25dda
-        name: MP
-        title: MP
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810478
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 2ddbfede-5ad2-47e1-ae1c-61123ef979c0
-        name: ATK
-        title: ATK
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810501
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: fbc368e8-e876-42c7-96d9-e5c2faefcd3b
-        name: MATK
-        title: MATK
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810502
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 10947335-f02e-42f5-ae39-590786c4aa93
-        name: DEF
-        title: DEF
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810503
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 7c46f4ae-4c46-470a-a14b-8a05bf0b5b9b
-        name: MDEF
-        title: MDEF
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810504
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 060e7a20-e314-4027-b1ac-5eba80ef5e93
-        name: Speed
-        title: Speed
-        icon: {fileID: 21300000, guid: d2885473202b2cb4c812119fe103b349, type: 3}
-        description: 
-        _defaultValue: 0
-    - rid: 335725279219810505
-      type: {class: ItemDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 206ba95b-f5db-4a5a-9638-6f632cd60815
-        name: Grab
-        title: Grab
-        icon: {fileID: 0}
-        description: 
-        _itemStatManager:
-          definitions: []
-    - rid: 335725279219810508
-      type: {class: ItemDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 2c57be43-4a19-421f-ad5f-1f8880820e3b
-        name: Poision
-        title: Poision
-        icon: {fileID: 0}
-        description: 
-        _itemStatManager:
-          definitions:
-          - rid: 335725335868342643
-          - rid: 335725335868342644
-    - rid: 335725335868342643
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: e4fa89bf-791d-4822-ba9e-8abe7d4206a7
-        name: 
-        title: 
-        icon: {fileID: 0}
-        description: 
-        _defaultValue: 0
-    - rid: 335725335868342644
-      type: {class: ItemStatDefinition, ns: GameMaker.Item.Runtime, asm: GameMaker.Item.Runtime}
-      data:
-        id: 82d681ce-fb87-405e-a229-9dd4d611877a
-        name: 
-        title: 
-        icon: {fileID: 0}
-        description: 
-        _defaultValue: 0
+        _id: MP
+        _name: MP
+        _title: MP
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _defaultValue: 10

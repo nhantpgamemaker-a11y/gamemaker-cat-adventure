@@ -1,9 +1,0 @@
-fileFormatVersion: 2
-guid: 7add9c67baf64794596b047a19117d79
-AssetOrigin:
-  serializedVersion: 1
-  productId: 69257
-  packageName: Runtime Transform Gizmos (Standard)
-  packageVersion: 1.0.4
-  assetPath: Assets/Runtime Transform Gizmos (Standard)/Scripts/Graphs/BinaryAABBTree.cs
-  uploadId: 806318

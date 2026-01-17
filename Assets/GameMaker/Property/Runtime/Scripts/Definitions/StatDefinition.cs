@@ -12,13 +12,13 @@ namespace GameMaker.Property.Runtime
         {
             
         }
-        public StatDefinition(string id, string name, string title, float defaultValue) : base(id, name, title)
+        public StatDefinition(string id, string name, string title,string description, Sprite icon, float defaultValue) : base(id, name, title,description, icon)
         {
             DefaultValue = defaultValue;
         }
         public override object Clone()
         {
-            return new StatDefinition(id, name, title, DefaultValue);
+            return new StatDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(), DefaultValue);
         }
     }
 }

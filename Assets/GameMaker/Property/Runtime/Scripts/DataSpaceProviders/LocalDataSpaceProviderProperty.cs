@@ -14,7 +14,7 @@ namespace GameMaker.Property.Runtime
 
         public async override UniTask InitAsync()
         {
-            _localPropertySaveData = LocalDataManager.Instance.Get<LocalPropertySaveData>();
+            //_localPropertySaveData = LocalDataManager.Instance.Get<LocalPropertySaveData>();
         }
 
         private LocalPropertySaveData _localPropertySaveData;

@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 
 namespace GameMaker.Core.Runtime
 {
-    public class LocalDataManager : Singleton<LocalDataManager>
+    public class LocalDataManager 
     {
         private bool _isInit = false;
         private List<BaseLocalData> _localDataList = new();
@@ -19,8 +19,9 @@ namespace GameMaker.Core.Runtime
         public T Get<T>() where T : BaseLocalData
         {
             var type = typeof(T);
-            return  Get(type) as T;
+            return Get(type) as T;
         }
+        
         public BaseLocalData Get(Type type)
         {
             if (!_isInit) throw new Exception("LocalData is not really initialize"); 
@@ -55,13 +56,14 @@ namespace GameMaker.Core.Runtime
         public async UniTask SaveAll()
         {
             List<UniTask> saveTasks = new();
-            foreach(var data in _localDataList)
+            foreach (var data in _localDataList)
             {
                 var saveTask = SaveAsync(data.GetType());
                 saveTasks.Add(saveTask);
             }
             await UniTask.WhenAll(saveTasks);
         }
+        
         private async UniTask SaveInternalAsync(BaseLocalData baseLocalData)
         {
             var path = Application.persistentDataPath;
@@ -70,12 +72,12 @@ namespace GameMaker.Core.Runtime
             {
                 Formatting = Formatting.Indented,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.Auto
             };
             string dataString = JsonConvert.SerializeObject(baseLocalData, jsonSerializerSettings);
             await UniTask.RunOnThreadPool(async () => await File.WriteAllTextAsync(path, dataString).AsUniTask());
         }
-        
+
         private async UniTask LoadInternalAsync()
         {
             var path = Application.persistentDataPath;
@@ -108,12 +110,14 @@ namespace GameMaker.Core.Runtime
             }
             _localDataList.AddRange(baseLocalDataList);
         }
+
         private async UniTask<BaseLocalData> LoadDataFromLocalAsync(string path, Type type)
         {
             string dataString = await File.ReadAllTextAsync(path).AsUniTask();
             var data = JsonConvert.DeserializeObject(dataString, type);
             return (BaseLocalData)data;
         }
+        
         private async UniTask<BaseLocalData> CreateDataAsync(Type type)
         {
             var data = (BaseLocalData)Activator.CreateInstance(type);
@@ -121,6 +125,5 @@ namespace GameMaker.Core.Runtime
             data.OnCreate();
             return data;
         }
-        
     }
 }

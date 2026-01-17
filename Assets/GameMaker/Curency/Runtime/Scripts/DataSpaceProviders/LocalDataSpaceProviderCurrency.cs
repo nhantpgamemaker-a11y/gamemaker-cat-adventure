@@ -10,7 +10,7 @@ namespace GameMaker.Currency.Runtime
         
         public override async UniTask InitAsync()
         {
-            _localCurrencySaveData = LocalDataManager.Instance.Get<LocalCurrencySaveData>();
+            //_localCurrencySaveData = LocalDataManager.Instance.Get<LocalCurrencySaveData>();
         }
         
         public override async UniTask<bool> AddCurrencyAsync(string currencyDefinitionId, float value)
