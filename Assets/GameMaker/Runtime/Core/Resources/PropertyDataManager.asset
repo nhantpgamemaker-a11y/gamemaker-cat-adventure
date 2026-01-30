@@ -14,17 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameMaker.Property.Runtime::GameMaker.Property.Runtime.PropertyDataManager
   dataManager:
     _definitions:
-    - rid: 4388470255832268893
+    - rid: 4388470460435660813
+    - rid: 4388470460435660814
   references:
     version: 2
     RefIds:
-    - rid: 4388470255832268893
+    - rid: 4388470460435660813
       type: {class: StatDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
         _id: Level
         _name: Level
-        _title: 
+        _title: Level
         _icon: {fileID: 0}
         _description: 
         _metaData: {fileID: 0}
-        _defaultValue: 0
+        _defaultValue: 1
+    - rid: 4388470460435660814
+      type: {class: AttributeDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: DefaultName
+        _name: DefaultName
+        _title: DefaultName
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _defaultValue: User Name

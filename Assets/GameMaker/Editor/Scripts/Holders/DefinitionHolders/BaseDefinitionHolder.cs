@@ -15,15 +15,17 @@ namespace GameMaker.Core.Editor
 
         protected BaseDefinitionHolder(VisualElement root):base(root)
         {
-            iconPreviewImage = root.Q<Image>("IconPreviewImage");
-            iconField = root.Q<ObjectField>("IconField");
-            titleTextField = root.Q<TextField>("TitleTextField");
-            descriptionTextField = root.Q<TextField>("DescriptionTextField");
-            definitionFoldout = root.Q<Foldout>("DefinitionFoldout");
+            
         }
 
         public override void Bind(SerializedProperty elementProperty)
         {
+            iconPreviewImage = Root.Q<Image>("IconPreviewImage");
+            iconField = Root.Q<ObjectField>("IconField");
+            titleTextField = Root.Q<TextField>("TitleTextField");
+            descriptionTextField = Root.Q<TextField>("DescriptionTextField");
+            definitionFoldout = Root.Q<Foldout>("DefinitionFoldout");
+            
             base.Bind(elementProperty);
             titleTextField.BindProperty(serializedProperty.FindPropertyRelative("_title"));
             iconField.BindProperty(serializedProperty.FindPropertyRelative("_icon"));

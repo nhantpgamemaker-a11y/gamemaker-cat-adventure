@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: ConfigManager
   m_EditorClassIdentifier: GameMaker.Core.Runtime::GameMaker.Core.Runtime.ConfigManager
   dataManager:
-    _definitions: []
+    _definitions:
+    - rid: 4388470458572341336
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4388470458572341336
+      type: {class: ConfigDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: ContinueLevel
+        _name: ContinueLevel
+        _value: 15

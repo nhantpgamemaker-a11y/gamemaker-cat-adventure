@@ -31,52 +31,51 @@ namespace GameMaker.Core.Editor
             var propertyDefinitionHolder = new PropertyDefinitionHolder(element);
             propertyDefinitionHolder.Bind(itemPropertySerializedProperty);
         }
-    }
-    public class PropertyDefinitionHolder : VisualElementHolder
-    {
-        ItemPropertyDefinitionHolderFactory _itemPropertyDefinitionHolderFactory;
-        public PropertyDefinitionHolder(VisualElement root) : base(root)
+        public class PropertyDefinitionHolder : VisualElementHolder
         {
-            _itemPropertyDefinitionHolderFactory = new(root);
-        }
-        public override void Bind(SerializedProperty elementProperty)
-        {
-            Root.Clear();
-            var type = elementProperty.managedReferenceValue?.GetType();
-            var holderType = _itemPropertyDefinitionHolderFactory.GetHolderType(type);
-            var holder = Activator.CreateInstance(holderType, Root) as ItemPropertyDefinitionHolder;
-            holder.Bind(elementProperty);
-        }
-    }
-
-    public class ItemPropertyDefinitionHolderFactory
-    {
-        /// <summary>
-        /// type_1 is ItemPropertyDefinitionType
-        /// type_2 is ItemPropertyDefinitionHolderType
-        /// </summary>
-        private Dictionary<Type, Type> _cache;
-        public ItemPropertyDefinitionHolderFactory(VisualElement visualElement)
-        {
-            _cache = new();
-            var itemPropertyDefinitionHolderTypes =
-            TypeUtils.GetAllLeafDerivedTypes(typeof(ItemPropertyDefinitionHolder))
-            .Where(x =>
+            ItemPropertyDefinitionHolderFactory _itemPropertyDefinitionHolderFactory;
+            public PropertyDefinitionHolder(VisualElement root) : base(root)
             {
-                return x.GetCustomAttribute<ItemPropertyDefinitionHolderAttribute>() != null;
-            });
-
-            foreach (var itemPropertyDefinitionHolderType in itemPropertyDefinitionHolderTypes)
+                _itemPropertyDefinitionHolderFactory = new();
+            }
+            public override void Bind(SerializedProperty elementProperty)
             {
-                var type = itemPropertyDefinitionHolderType
-                            .GetCustomAttribute<ItemPropertyDefinitionHolderAttribute>().Type;
-                _cache[type] = itemPropertyDefinitionHolderType;
+                Root.Clear();
+                var type = elementProperty.managedReferenceValue?.GetType();
+                var holderType = _itemPropertyDefinitionHolderFactory.GetHolderType(type);
+                var holder = Activator.CreateInstance(holderType, Root) as ItemPropertyDefinitionHolder;
+                holder.Bind(elementProperty);
             }
         }
-        
-        public Type GetHolderType(Type type)
+        public class ItemPropertyDefinitionHolderFactory
         {
-            return _cache[type];
+            /// <summary>
+            /// type_1 is ItemPropertyDefinitionType
+            /// type_2 is ItemPropertyDefinitionHolderType
+            /// </summary>
+            private Dictionary<Type, Type> _cache;
+            public ItemPropertyDefinitionHolderFactory()
+            {
+                _cache = new();
+                var itemPropertyDefinitionHolderTypes =
+                TypeUtils.GetAllLeafDerivedTypes(typeof(ItemPropertyDefinitionHolder))
+                .Where(x =>
+                {
+                    return x.GetCustomAttribute<TypeHolderAttribute>() != null;
+                });
+
+                foreach (var itemPropertyDefinitionHolderType in itemPropertyDefinitionHolderTypes)
+                {
+                    var type = itemPropertyDefinitionHolderType
+                                .GetCustomAttribute<TypeHolderAttribute>().Type;
+                    _cache[type] = itemPropertyDefinitionHolderType;
+                }
+            }
+            
+            public Type GetHolderType(Type type)
+            {
+                return _cache[type];
+            }
         }
     }
 }

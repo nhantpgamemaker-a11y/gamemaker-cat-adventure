@@ -17,11 +17,6 @@ namespace GameMaker.Core.Editor
         public FilterDataManagerHolder(VisualElement root, List<BaseFilterHolder> filters) : base(root)
         {
             this.filters = filters;
-            foreach (var filter in this.filters)
-            {
-                _filterContainerVisualElement.Add(filter.Root);
-                filter.BaseFilter.OnValueChanged += OnValueChanged;
-            }
         }
         ~FilterDataManagerHolder()
         {
@@ -42,6 +37,12 @@ namespace GameMaker.Core.Editor
         public override void Bind(SerializedProperty elementProperty)
         {
             _filterContainerVisualElement = Root.Q<VisualElement>("FilterContainer");
+            
+            foreach (var filter in this.filters)
+            {
+                _filterContainerVisualElement.Add(filter.Root);
+                filter.BaseFilter.OnValueChanged += OnValueChanged;
+            }
             this.definitionProperty = elementProperty.FindPropertyRelative("_definitions");
 
             base.Bind(elementProperty);

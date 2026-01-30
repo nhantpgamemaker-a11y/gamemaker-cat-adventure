@@ -1,4 +1,3 @@
-using GameMaker.Core.Editor;
 using GameMaker.Core.Runtime;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -7,12 +6,14 @@ using UnityEngine.UIElements;
 
 namespace GameMaker.Core.Editor
 {
-    [TypeHolder(typeof(ItemStatDefinition))]
-    public class ItemStatDefinitionHolder : ItemPropertyDefinitionHolder
+    [TypeHolder(typeof(StatDefinition))]
+    public class StatDefinitionHolder : PropertyDefinitionHolder
     {
         private FloatField _defaultValueFloatField;
-        public ItemStatDefinitionHolder(VisualElement root) : base(root)
+
+        public StatDefinitionHolder(VisualElement root) : base(root)
         {
+
         }
         public override void Bind(SerializedProperty elementProperty)
         {
@@ -27,7 +28,7 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("ItemStatDefinitionElement");
+            return Resources.Load<VisualTreeAsset>("StatDefinitionElement");
         }
         public override string GetNameFoldout()
         {

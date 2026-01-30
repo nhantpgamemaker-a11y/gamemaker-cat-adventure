@@ -1,41 +1,44 @@
+using System;
 using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameMaker.Core.Editor
 {
-    public abstract class ItemPropertyDefinitionHolder : DefinitionHolder
+    public abstract class PropertyDefinitionHolder : BaseDefinitionHolder
     {
-        private Foldout _itemPropertyFoldout;
+        private Foldout _propertyFoldout;
         private TextField _nameField;
         protected TemplateContainer templateContainer;
-        public ItemPropertyDefinitionHolder(VisualElement root) : base(root)
+        public PropertyDefinitionHolder(VisualElement root) : base(root)
         {
             var asset = GetVisualTreeAsset();
             templateContainer = asset.CloneTree();
             root.Add(templateContainer);
-            
         }
-        public abstract VisualTreeAsset GetVisualTreeAsset();
-
         public override void Bind(SerializedProperty elementProperty)
         {
-            _nameField = Root.Q<TextField>("NameTextField");
-            _itemPropertyFoldout = Root.Q<Foldout>("ItemPropertyFoldout");
             
+            _nameField = Root.Q<TextField>("NameTextField");
+            _propertyFoldout = Root.Q<Foldout>("PropertyFoldout");
             base.Bind(elementProperty);
             _nameField.RegisterValueChangedCallback(value =>
             {
                 UpdatePropertyFoldout();
             });
-            UpdatePropertyFoldout(); 
+            UpdatePropertyFoldout();
+            
         }
+        public abstract VisualTreeAsset GetVisualTreeAsset();
+
         public virtual string GetNameFoldout()
         {
             return $"{serializedProperty.FindPropertyRelative("_name").stringValue}";
         }
         public void UpdatePropertyFoldout()
         {
-            _itemPropertyFoldout.text = GetNameFoldout();
+            _propertyFoldout.text = GetNameFoldout();
         }
     }
 }

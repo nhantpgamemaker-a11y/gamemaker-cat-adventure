@@ -1,6 +1,5 @@
 using GameMaker.Core.Editor;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameMaker.Core.Editor

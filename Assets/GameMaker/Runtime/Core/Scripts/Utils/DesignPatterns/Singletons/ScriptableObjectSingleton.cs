@@ -40,10 +40,15 @@ namespace GameMaker.Core.Runtime
 #endif              
                     _instance.OnLoad();
                 }
+#if UNITY_EDITOR
+                if (!UnityEditor.EditorApplication.isPlaying)
+                {
+                    _instance.OnLoad();
+                }
+#endif
                 return _instance;
             }
         }
-
         protected virtual void OnLoad()
         {
             

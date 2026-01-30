@@ -15,6 +15,7 @@ MonoBehaviour:
   dataManager:
     _definitions:
     - rid: 4388470189476020954
+    - rid: 4388470458572341330
   references:
     version: 2
     RefIds:
@@ -35,6 +36,7 @@ MonoBehaviour:
           - rid: 4388470457424937192
           - rid: 4388470457424937193
           - rid: 4388470457424937194
+          - rid: 4388470458572341412
     - rid: 4388470432851296385
       type: {class: ItemStatDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
@@ -70,4 +72,28 @@ MonoBehaviour:
       data:
         _id: MDEF
         _name: MDEF
+        _defaultValue: 0
+    - rid: 4388470458572341330
+      type: {class: ItemDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: Bundle
+        _name: Bundle
+        _title: Bundle
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _itemPropertyManager:
+          _definitions:
+          - rid: 4388470458572341331
+    - rid: 4388470458572341331
+      type: {class: ItemAttributeDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: BundleDefinitionID
+        _name: BundleDefinitionID
+        _defaultValue: 
+    - rid: 4388470458572341412
+      type: {class: ItemStatDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: Speed
+        _name: Speed
         _defaultValue: 0

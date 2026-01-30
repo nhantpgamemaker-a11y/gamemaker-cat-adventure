@@ -18,14 +18,20 @@ namespace GameMaker.Core.Runtime
                 var baseDefinition = Activator.CreateInstance(actionDefinitionType) as BaseActionDefinition;
                 defaultActionDefinitions.AddRange(baseDefinition.GetCoreActionDefinition());
             }
-            
-            foreach(var defaultActionDefinition in defaultActionDefinitions)
+
+            foreach (var defaultActionDefinition in defaultActionDefinitions)
             {
-                if(GetDefinition(defaultActionDefinition.GetID()) == null)
+                if (GetDefinition(defaultActionDefinition.GetID()) == null)
                 {
                     AddDefinition(defaultActionDefinition);
                 }
             }
+        }
+        [ContextMenu("On Load")]
+        private void OnLoadEditor()
+        {
+            OnLoad();
+            UnityEditor.EditorUtility.SetDirty(this);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace GameMaker.Item.Editor
+namespace GameMaker.Core.Editor
 {
     public class VisualElementHolder : BaseHolder
     {

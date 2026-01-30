@@ -5,10 +5,15 @@ using UnityEngine;
 
 namespace GameMaker.Core.Runtime
 {
+    [System.Serializable]
     public class ItemActionDefinition : BaseActionDefinition
     {
         public readonly static string ADD_ITEM_ACTION_DEFINITION_ID = "ITEM_ADD";
         public readonly static string REMOVE_ITEM_ACTION_DEFINITION_ID = "ITEM_REMOVE";
+        public ItemActionDefinition() : base()
+        {
+            
+        }
         public ItemActionDefinition(string id, string name, string title,string description, Sprite icon, BaseMetaData metaData) : base(id, name, title,description, icon,metaData)
         {
             

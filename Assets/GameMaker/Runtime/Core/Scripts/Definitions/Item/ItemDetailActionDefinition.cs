@@ -10,6 +10,7 @@ namespace GameMaker.Core.Runtime
     {
         public readonly static string ADD_ITEM_DETAIL_ACTION_DEFINITION_ID = "ITEM_DETAIL_ADD";
         public readonly static string REMOVE_ITEM_DETAIL_ACTION_DEFINITION_ID = "ITEM_DETAIL_REMOVE";
+        public ItemDetailActionDefinition():base(){}
 
         public ItemDetailActionDefinition(string id, string name, string title,string description, Sprite icon, BaseMetaData metaData) : base(id, name, title,description, icon,metaData)
         {

@@ -6,9 +6,14 @@ using UnityEngine;
 
 namespace GameMaker.Core.Runtime
 {
+    [System.Serializable]
     public class CurrencyActionDefinition : BaseActionDefinition
     {
         public readonly static string ADD_CURRENCY_ACTION_DEFINITION_ID = "CURRENCY_ADD";
+        public CurrencyActionDefinition() : base()
+        {
+            
+        }
         public CurrencyActionDefinition(string id, string name, string title,string description, Sprite icon, BaseMetaData metaData):base(id, name, title,description, icon, metaData)
         {
         }

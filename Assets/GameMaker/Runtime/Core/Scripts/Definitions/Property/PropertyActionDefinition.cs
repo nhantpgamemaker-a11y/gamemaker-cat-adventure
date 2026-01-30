@@ -13,6 +13,7 @@ namespace GameMaker.Core.Runtime
         public readonly static string ADD_STAT_ACTION_DEFINITION_ID = "STAT_ADD";
         public readonly static string SET_ATTRIBUTE_ACTION_DEFINITION_ID = "ATTRIBUTE_SET";
         public readonly static string SET_STAT_ACTION_DEFINITION_ID = "STAT_SET";
+        public PropertyActionDefinition(): base(){}
         public PropertyActionDefinition(string id, string name, string title,string description, Sprite icon,BaseMetaData metaData):base(id, name, title,description, icon,metaData)
         {
             
