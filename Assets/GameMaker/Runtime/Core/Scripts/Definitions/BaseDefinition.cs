@@ -1,5 +1,3 @@
-using System;
-using Newtonsoft.Json;
 using UnityEngine;
 
 
@@ -39,18 +37,18 @@ namespace GameMaker.Core.Runtime
         }
         
 
-        public string GetTitle()
+        public virtual string GetTitle()
         {
             return _title;
         }
 
-        public Sprite GetIcon()
+        public virtual Sprite GetIcon()
         {
             return _icon;
         }
 
 
-        public string GetDescription()
+        public virtual string GetDescription()
         {
             return _description;
         }

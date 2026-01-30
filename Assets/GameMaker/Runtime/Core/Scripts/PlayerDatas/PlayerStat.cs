@@ -37,5 +37,10 @@ namespace GameMaker.Core.Runtime
             _value = (basePlayerData as PlayerStat).Value;
             NotifyObserver(this);
         }
+
+        public override string GetStringValue()
+        {
+            return _value.ToString();
+        }
     }
 }

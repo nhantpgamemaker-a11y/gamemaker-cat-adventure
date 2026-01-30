@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -21,22 +22,22 @@ namespace GameMaker.Core.Runtime
 
         public async UniTask UpdateItemDetailAsync(string playerItemDetailReferenceId,
 
-        ItemStatDefinitionRefModel[] itemStatDefinitionRefModels,bool isSave = true)
+        ItemPropertyDefinitionRef[] itemPropertyDefinitionRefModels,bool isSave = true)
         {
             var playerDetailItem = _playerDetailItems.FirstOrDefault(x => x.GetID() == playerItemDetailReferenceId);
-            foreach (var stat in itemStatDefinitionRefModels)
+            foreach (var stat in itemPropertyDefinitionRefModels)
             {
-                playerDetailItem.UpdateItemStatDefinitionRefModel(stat);
+                playerDetailItem.UpdateItemPropertyDefinitionRefModel(stat);
             }
             if (isSave) await SaveAsync();
         }
 
-        public async UniTask AddPlayerItemDetailAsync(PlayerDetailItem playerDetailItem,bool isSave = true)
+        public async UniTask AddPlayerItemDetailAsync(PlayerDetailItem playerDetailItem, bool isSave = true)
         {
             _playerDetailItems.Add(new ItemDetailModel(
                 playerDetailItem.GetID(),
                 playerDetailItem.GetName(),
-                playerDetailItem.ItemStatDefinitionRefs.Select(x => new ItemStatDefinitionRefModel(x.GetID(), x.GetName(), x.Value)).ToList()
+                playerDetailItem.ItemStatDefinitionRefs.Select(x => x.ToItemPropertyDefinitionRefModel()).ToList()
             ));
             if (isSave) await SaveAsync();
         }
@@ -50,40 +51,41 @@ namespace GameMaker.Core.Runtime
     [System.Serializable]
     public class ItemDetailModel : PlayerDataModel
     {
-        [SerializeField]
+        [UnityEngine.SerializeReference]
         [JsonProperty("ItemStatDefinitionRefs")]
-        private List<ItemStatDefinitionRefModel> _itemStatDefinitionRefs = new();
-        public ItemDetailModel(string id, string name, List<ItemStatDefinitionRefModel> itemStatDefinitionRefs) : base(id, name)
+        private List<ItemPropertyDefinitionRefModel> _itemPropertyDefinitionRefs = new();
+        public ItemDetailModel(string id, string name, List<ItemPropertyDefinitionRefModel> itemStatDefinitionRefs) : base(id, name)
         {
-            _itemStatDefinitionRefs = itemStatDefinitionRefs;
+            _itemPropertyDefinitionRefs = itemStatDefinitionRefs;
         }
 
         public PlayerDetailItem ToPlayerItemDetail()
         {
             var itemDefinition = ItemDetailManager.Instance.GetDefinition(id);
-            return new PlayerDetailItem(id, name, _itemStatDefinitionRefs.Select(x => x.ToItemStatDefinitionRef()).Cast<ItemStatDefinitionRef>().ToList(), itemDefinition);
+            return new PlayerDetailItem(id, name, _itemPropertyDefinitionRefs.Select(x => x.ToItemPropertyDefinitionRef()).ToList(), itemDefinition);
         }
-        public ItemStatDefinitionRefModel GetItemStatDefinitionRefModel(string referenceId)
+        public ItemPropertyDefinitionRefModel GetItemPropertyDefinitionRefModel(string referenceId)
         {
-            return _itemStatDefinitionRefs.FirstOrDefault(x => x.GetID() == referenceId);
+            return _itemPropertyDefinitionRefs.FirstOrDefault(x => x.GetID() == referenceId);
         }
-        public void UpdateItemStatDefinitionRefModel(ItemStatDefinitionRefModel itemStatDefinitionRefModel)
+        public void UpdateItemPropertyDefinitionRefModel(ItemPropertyDefinitionRef itemPropertyDefinitionRefModel)
         {
-            var statRef = GetItemStatDefinitionRefModel(itemStatDefinitionRefModel.GetID());
-            if(statRef == null)
+            var statRef = GetItemPropertyDefinitionRefModel(itemPropertyDefinitionRefModel.GetID());
+            if (statRef == null)
             {
-                _itemStatDefinitionRefs.Add(statRef);
+                _itemPropertyDefinitionRefs.Add(statRef);
             }
             else
             {
-                statRef.Value = itemStatDefinitionRefModel.Value;
-                statRef.SetName(itemStatDefinitionRefModel.GetName().ToString());
+                statRef.UpdateValue(itemPropertyDefinitionRefModel);
+                statRef.SetName(itemPropertyDefinitionRefModel.GetName().ToString());
             }
         }
     }
 
     [System.Serializable]
-    public class ItemStatDefinitionRefModel: IDefinition
+
+    public  abstract class ItemPropertyDefinitionRefModel: IDefinition
     {
         [SerializeField]
         [JsonProperty("Id")]
@@ -93,20 +95,10 @@ namespace GameMaker.Core.Runtime
         [JsonProperty("Name")]
         private string _name;
 
-        [SerializeField]
-        [JsonProperty("Value")]
-        private float _value;
-    
-        public float Value { get => _value; set => _value = value; }
-        public ItemStatDefinitionRefModel(string refId, string name, float value)
+        public ItemPropertyDefinitionRefModel(string id, string name)
         {
-            _id = refId;
-            _value = value;
+            _id = id;
             _name = name;
-        }
-        public ItemStatDefinitionRef ToItemStatDefinitionRef()
-        {
-            return new ItemStatDefinitionRef(_id,_name, _value);
         }
 
         public string GetID()
@@ -127,6 +119,57 @@ namespace GameMaker.Core.Runtime
         public void SetName(string name)
         {
             _name = name;
+        }
+        
+        public abstract ItemPropertyDefinitionRef ToItemPropertyDefinitionRef();
+
+        public abstract void UpdateValue(ItemPropertyDefinitionRef itemPropertyDefinitionRefModel);
+    }
+
+    [System.Serializable]
+    public class ItemStatDefinitionRefModel : ItemPropertyDefinitionRefModel
+    {
+        [SerializeField]
+        [JsonProperty("Value")]
+        private float _value;
+
+        public float Value { get => _value; set => _value = value; }
+        public ItemStatDefinitionRefModel(string refId, string name, float value) : base(refId, name)
+        {
+            _value = value;
+        }
+
+        public override ItemPropertyDefinitionRef ToItemPropertyDefinitionRef()
+        {
+            return new ItemStatDefinitionRef(GetID(), GetName(), _value);
+        }
+
+        public override void UpdateValue(ItemPropertyDefinitionRef itemPropertyDefinitionRefModel)
+        {
+            _value = (itemPropertyDefinitionRefModel as ItemStatDefinitionRef).Value;
+        }
+    }
+    [System.Serializable]
+    public class ItemAttributeDefinitionRefModel: ItemPropertyDefinitionRefModel
+    {
+        [SerializeField]
+        [JsonProperty("Value")]
+        private string _value;
+    
+        public string Value { get => _value; set => _value = value; }
+        public ItemAttributeDefinitionRefModel(string refId, string name, string value):base(refId, name)
+        {
+            _value = value;
+        }
+
+        public override ItemPropertyDefinitionRef ToItemPropertyDefinitionRef()
+        {
+            return new ItemAttributeDefinitionRef(GetID(),GetName(), _value);
+        }
+
+        public override void UpdateValue(ItemPropertyDefinitionRef itemPropertyDefinitionRefModel)
+        {
+            _value = (itemPropertyDefinitionRefModel as ItemAttributeDefinitionRef).Value;
         }
     }
 }

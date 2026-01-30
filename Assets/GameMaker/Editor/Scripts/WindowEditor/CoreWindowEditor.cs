@@ -1,63 +1,40 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using GameMaker.Core.Runtime;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace GameMaker.Core.Editor
 {
     public class CoreWindowEditor : EditorWindow
     {
-        private int _selectedTabIndex = 0;
-        private List<ITabContentEditor> _baseTabContentEditors;
-        private List<GUIContent> _gUIContents;
         [MenuItem("GameMaker/Setting")]
         public static CoreWindowEditor ShowExample()
         {
             CoreWindowEditor wnd = GetWindow<CoreWindowEditor>();
             wnd.titleContent = new GUIContent("GameMaker Setting");
-            wnd.Init();
             wnd.Show();
             return wnd;
         }
-        public void Init()
+        public void CreateGUI()
         {
-            var baseTabContentEditorTypes = TypeUtils.GetAllDerivedNonAbstractTypes(typeof(ITabContentEditor));
-            _baseTabContentEditors = new();
-            _gUIContents = new();
-            foreach (var baseTabContentEditorType in baseTabContentEditorTypes)
+            var tabContentHolders = TypeUtils.GetAllLeafDerivedTypes(typeof(BaseTabContentHolder))
+            .Where(x => x.GetCustomAttribute<CoreTabContextAttribute>() != null)
+            .Select(x => Activator.CreateInstance(x, rootVisualElement) as BaseTabContentHolder)
+            .OrderBy(x => x.GetIndex())
+            .ToList();
+
+            var csharpCustomStyledTabView = new TabView();
+            foreach(var tabHolder in tabContentHolders)
             {
-                var baseTabContentEditor = Activator.CreateInstance(baseTabContentEditorType) as ITabContentEditor;
-                _baseTabContentEditors.Add(baseTabContentEditor);
-                _gUIContents.Add(new GUIContent(baseTabContentEditor.GetTitle(), baseTabContentEditor.GetTooltip()));
+                var tab = new Tab(tabHolder.GetTitle());
+                tab.Add(tabHolder.GetTabView());
+                csharpCustomStyledTabView.Add(tab);
             }
-            
-            
+            rootVisualElement.Add(csharpCustomStyledTabView);
         }
-        #region  GUI Drawing
-        void OnGUI()
-        {
-            
-            EditorGUILayout.BeginVertical();
-            {
-                EditorGUILayout.BeginHorizontal();
-                {
-                    int index = GUILayout.Toolbar(_selectedTabIndex, _gUIContents.ToArray());
-                    if (index != _selectedTabIndex)
-                    {
-                        _baseTabContentEditors[index].OnSelected();
-                        _baseTabContentEditors[_selectedTabIndex].OnDeselected();
-                        _selectedTabIndex = index;
-                    }
-                }
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.Space(10);
-                _baseTabContentEditors[_selectedTabIndex].OnGUIDrawer();
-            }
-            EditorGUILayout.EndVertical();
-           
-        }
-        #endregion
     }
 }

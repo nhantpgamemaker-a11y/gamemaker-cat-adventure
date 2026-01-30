@@ -11,5 +11,6 @@ namespace GameMaker.Core.Runtime
         protected PlayerProperty(IDefinition definition) : base(definition)
         {
         }
+        public abstract string GetStringValue();
     }
 }

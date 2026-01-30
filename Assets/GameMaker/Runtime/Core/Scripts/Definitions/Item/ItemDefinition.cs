@@ -1,40 +1,41 @@
 using System.Collections.Generic;
 using GameMaker.Core.Runtime;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
     public class ItemDefinition : BaseDefinition
     {
-        [SerializeField]
-        private BaseDefinitionManager<ItemStatDefinition> _itemStatManager = new();
+        [UnityEngine.SerializeField]
+        private BaseDefinitionManager<ItemPropertyDefinition> _itemPropertyManager = new();
 
-        public List<ItemStatDefinition> GetItemStatDefinitions()
+        public List<ItemPropertyDefinition> GetItemPropertyDefinitions()
         {
-            return _itemStatManager.GetDefinitions();
+            return _itemPropertyManager.GetDefinitions();
         }
         public ItemDefinition() : base()
         {
             
         }
-        public ItemDefinition(string id, string name, string title,string description, Sprite icon,BaseMetaData metaData,BaseDefinitionManager<ItemStatDefinition> itemStatManager): base(id, name, title,description, icon,metaData)
+        public ItemDefinition(string id, string name, string title,string description, Sprite icon,BaseMetaData metaData,BaseDefinitionManager<ItemPropertyDefinition> itemPropertyManager): base(id, name, title,description, icon,metaData)
         {
-            _itemStatManager = itemStatManager;
+            _itemPropertyManager = itemPropertyManager;
         }
         public void AddItemStat(ItemStatDefinition itemStatDefinition)
         {
-            _itemStatManager.AddDefinition(itemStatDefinition);
+            _itemPropertyManager.AddDefinition(itemStatDefinition);
         }
 
         public override object Clone()
         {
-            return new ItemDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(),GetMetaData(), _itemStatManager.Clone() as BaseDefinitionManager<ItemStatDefinition>);
+            return new ItemDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(),GetMetaData(), _itemPropertyManager.Clone() as BaseDefinitionManager<ItemPropertyDefinition>);
         }
 
         public void RemoveItemStat(ItemStatDefinition itemStatDefinition)
         {
-            _itemStatManager.RemoveDefinition(itemStatDefinition);
+            _itemPropertyManager.RemoveDefinition(itemStatDefinition);
         }
     }
 }

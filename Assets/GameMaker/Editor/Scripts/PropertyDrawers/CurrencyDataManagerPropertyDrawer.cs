@@ -29,7 +29,7 @@ namespace GameMaker.Core.Editor
             return "Currency";
         }
 
-        protected override DefinitionHolder CreateHolder()
+        protected override BaseHolder CreateHolder()
         {
             var asset = Resources.Load<VisualTreeAsset>(
             "CurrencyDefinitionElement");

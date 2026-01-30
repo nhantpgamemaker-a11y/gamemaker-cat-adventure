@@ -28,7 +28,7 @@ namespace GameMaker.Core.Editor
             return "Item";
         }
 
-        protected override DefinitionHolder CreateHolder()
+        protected override BaseHolder CreateHolder()
         {
             var asset = Resources.Load<VisualTreeAsset>(
             "ItemDefinitionElement");

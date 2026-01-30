@@ -64,16 +64,16 @@ namespace GameMaker.Core.Runtime
             foreach(var item in itemRewards)
             {
                 var itemDetailDefinition = item.GetItemDetailDefinition();
-                var statRefs = itemDetailDefinition.ItemStatDefinitionRefs.ToList();
+                var statRefs = itemDetailDefinition.ItemPropertyDefinitionRefs.ToList();
                 var prefix = itemDetailDefinition.GetPrefixID();
                 for(int i=0;i< item.Amount; i++)
                 {
                     var newId = $"{prefix}_{Guid.NewGuid()}";
-                    var statDefinitionRef = item.CreateItemTemplate.GetItemStatDefinitionRefs(statRefs);
-                    var playerItemDetail = new PlayerDetailItem(newId, newId, statDefinitionRef, itemDetailDefinition);
+                    var propertyDefinitionRef = item.CreateItemTemplate.GetItemPropertyDefinitionRefs(statRefs);
+                    var playerItemDetail = new PlayerDetailItem(newId, newId, propertyDefinitionRef, itemDetailDefinition);
                     _ = _localItemSaveData.AddPlayerItemDetailAsync(playerItemDetail);
 
-                    receiverProducts.Add(new ItemReceiverProduct(newId, newId,statDefinitionRef.Select(x=>x.Clone() as ItemStatDefinitionRef).ToList(),itemDetailDefinition.ItemDefinitionId));
+                    receiverProducts.Add(new ItemReceiverProduct(newId, newId,propertyDefinitionRef.Select(x=>x.Clone() as ItemPropertyDefinitionRef).ToList(),itemDetailDefinition.ItemDefinitionId));
                 }
             }
 

@@ -8,6 +8,10 @@ namespace GameMaker.Core.Editor
     public abstract class BaseHolder
     {
         public VisualElement Root { get; }
+        public BaseHolder()
+        {
+            
+        }
         public BaseHolder(VisualElement root)
         {
             Root = root;

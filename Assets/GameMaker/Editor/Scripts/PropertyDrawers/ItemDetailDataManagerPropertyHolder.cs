@@ -27,12 +27,21 @@ namespace GameMaker.Core.Editor
             var nameFilterHolder = new StringFilterHolder(stringAsset.CloneTree(),nameFilter);
             var titleFilter = new StringFilter("Title", "_title");
             var titleFilterHolder = new StringFilterHolder(stringAsset.CloneTree(), titleFilter);
-            var itemFiler = new StringFilter("Item", "_itemDefinitionId");
-            var itemFilerHolder = new StringFilterHolder(stringAsset.CloneTree(),itemFiler);
+
+
+            var dropDownAsset = Resources.Load<VisualTreeAsset>("DropdownFilterElement");
+            var itemRefFilter = new DropdownFilter("Item", "_itemDefinitionId");
+
+            var data = new List<DropdownFilterHolder.DropdownData>();
+            foreach(var item in ItemManager.Instance.GetDefinitions())
+            {
+                data.Add(new DropdownFilterHolder.DropdownData(item.GetID(), item.GetName()));
+            }
+            var itemRefFilterHolder = new DropdownFilterHolder(dropDownAsset.CloneTree(), itemRefFilter,data);
             filters.Add(idFilterHolder);
             filters.Add(nameFilterHolder);
             filters.Add(titleFilterHolder);
-            filters.Add(itemFilerHolder);
+            filters.Add(itemRefFilterHolder);
 
             return new ItemDetailDataManagerHolder(templateContainer, filters);
         }
@@ -48,7 +57,7 @@ namespace GameMaker.Core.Editor
             return "Item Detail";
         }
 
-        protected override DefinitionHolder CreateHolder()
+        protected override BaseHolder CreateHolder()
         {
             var asset = Resources.Load<VisualTreeAsset>(
             "ItemDetailDefinitionElement");

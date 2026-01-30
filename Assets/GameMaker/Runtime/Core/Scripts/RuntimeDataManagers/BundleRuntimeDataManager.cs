@@ -49,7 +49,7 @@ namespace GameMaker.Core.Runtime
             foreach(var item in itemReceiverProducts)
             {
                 var itemDefinition = ItemManager.Instance.GetDefinition(item.ItemDefinitionId);
-                _playerItemDetailManager.AddPlayerItem(new PlayerDetailItem(item.ID, item.Name, item.ItemStatDefinitionRefs,itemDefinition),extendData);
+                _playerItemDetailManager.AddPlayerItem(new PlayerDetailItem(item.ID, item.Name, item.ItemPropertyDefinitionRefs,itemDefinition),extendData);
             }
             return true;
         }

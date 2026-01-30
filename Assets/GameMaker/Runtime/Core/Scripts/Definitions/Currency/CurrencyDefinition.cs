@@ -30,7 +30,8 @@ namespace GameMaker.Core.Runtime
         }
         public override object Clone()
         {
-            return new CurrencyDefinition(GetID(), GetName(), GetTitle(),GetDescription(), GetIcon(), GetMetaData(),DefaultValue);
+            return new CurrencyDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(), GetMetaData(), DefaultValue);
         }
+
     }
 }

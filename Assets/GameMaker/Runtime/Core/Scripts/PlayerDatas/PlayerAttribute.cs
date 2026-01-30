@@ -31,5 +31,10 @@ namespace GameMaker.Core.Runtime
              _value = (basePlayerData as PlayerAttribute).Value;
             NotifyObserver(this);
         }
+
+        public override string GetStringValue()
+        {
+            return _value;
+        }
     }
 }

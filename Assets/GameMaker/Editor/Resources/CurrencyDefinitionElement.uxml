@@ -3,6 +3,7 @@
     <ui:Foldout text="Foldout" binding-path="" name="CurrencyFoldout">
         <ui:Instance template="BaseDefinitionElement" name="TemplateContainer" style="background-color: rgba(0, 0, 0, 0);">
             <AttributeOverrides element-name="IDTextField" readonly="true"/>
+            <AttributeOverrides element-name="DefinitionFoldout" value="false"/>
         </ui:Instance>
         <ui:GroupBox text="" name="ExtendElement" enabled="true" style="align-items: stretch; align-self: stretch; -unity-font-style: bold; border-top-width: 1px; border-left-width: 1px; border-bottom-width: 1px; border-right-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding-right: 3px; margin-bottom: 5px; background-color: rgb(58, 58, 58); display: flex;">
             <ui:FloatField label="Default Value" value="0" name="DefaultValueField" binding-path="defaultValue"/>

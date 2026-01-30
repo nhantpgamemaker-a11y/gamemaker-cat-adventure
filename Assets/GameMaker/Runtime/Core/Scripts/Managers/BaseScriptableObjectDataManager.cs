@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
-    public abstract class BaseScriptableObjectDataManager<T, M> : ScriptableObjectSingleton<T> where T : ScriptableObject where M : IDefinition, ICloneable
+    public abstract class BaseScriptableObjectDataManager<T, M> : ScriptableObjectSingleton<T> where T : ScriptableObjectSingleton<T> where M : IDefinition, ICloneable
     {
         [SerializeField]
         protected BaseDefinitionManager<M> dataManager = new();

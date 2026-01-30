@@ -10,15 +10,15 @@ namespace GameMaker.Core.Runtime
     public class ItemReceiverProduct : BaseReceiverProduct
     {
         private string _name;
-        private List<ItemStatDefinitionRef> _itemStatDefinitionRefs = new();
+        private List<ItemPropertyDefinitionRef> _itemPropertyDefinitionRefs = new();
         private string _itemDefinitionId;
         public string Name { get => _name; }
-        public List<ItemStatDefinitionRef> ItemStatDefinitionRefs { get => _itemStatDefinitionRefs; }
+        public List<ItemPropertyDefinitionRef> ItemPropertyDefinitionRefs { get => _itemPropertyDefinitionRefs; }
         public string ItemDefinitionId { get => _itemDefinitionId; }
-        public ItemReceiverProduct(string id, string name,List<ItemStatDefinitionRef> itemStatDefinitionRefs,string itemDefinitionId) : base(id)
+        public ItemReceiverProduct(string id, string name,List<ItemPropertyDefinitionRef> itemStatDefinitionRefs,string itemDefinitionId) : base(id)
         {
             _name = name;
-            _itemStatDefinitionRefs = itemStatDefinitionRefs;
+            _itemPropertyDefinitionRefs = itemStatDefinitionRefs;
             _itemDefinitionId = itemDefinitionId;
         }
     }

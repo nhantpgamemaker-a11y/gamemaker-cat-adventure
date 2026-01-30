@@ -12,6 +12,14 @@ namespace GameMaker.Core.Editor
             var window = CreateInstance<ButtonActionWindowEditor>();
             window.titleContent = new GUIContent("Action");
             window.InitUI(title, actionDatas);
+            Rect main = EditorGUIUtility.GetMainWindowPosition();
+            Vector2 size = new Vector2(400, 200);
+
+            float x = main.x + (main.width - size.x) * 0.5f;
+            float y = main.y + (main.height - size.y) * 0.5f;
+
+            window.position = new Rect(x, y, size.x, size.y);
+
             window.ShowModalUtility();
             return window;
         }

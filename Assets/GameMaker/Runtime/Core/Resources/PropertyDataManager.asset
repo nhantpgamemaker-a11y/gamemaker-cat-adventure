@@ -21,8 +21,8 @@ MonoBehaviour:
     - rid: 4388470255832268893
       type: {class: StatDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
-        _id: 
-        _name: 
+        _id: Level
+        _name: Level
         _title: 
         _icon: {fileID: 0}
         _description: 

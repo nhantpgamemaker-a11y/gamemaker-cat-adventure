@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace GameMaker.Core.Runtime
 {
-    public abstract class ScriptableObjectSingleton<T>: ScriptableObject where T : ScriptableObject
+    public abstract class ScriptableObjectSingleton<T>: ScriptableObject where T : ScriptableObjectSingleton<T>
     {
         private static T _instance;
         public static T Instance
@@ -37,8 +37,8 @@ namespace GameMaker.Core.Runtime
                     }
 #else
                     _instance = Resources.Load<T>(typeof(T).Name);
+#endif              
                     _instance.OnLoad();
-#endif
                 }
                 return _instance;
             }

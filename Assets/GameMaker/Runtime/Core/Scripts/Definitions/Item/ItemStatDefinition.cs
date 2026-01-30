@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
-    public class ItemStatDefinition : Definition
+    public class ItemStatDefinition : ItemPropertyDefinition
     {
         [UnityEngine.SerializeField]
         private float _defaultValue;
@@ -22,6 +22,11 @@ namespace GameMaker.Core.Runtime
         public override object Clone()
         {
             return new ItemStatDefinition(GetID(), GetName(), _defaultValue);
+        }
+
+        public override ItemPropertyDefinitionRef GetPropertyDefinitionRef()
+        {
+            return new ItemStatDefinitionRef(GetID(), GetName(), _defaultValue);
         }
     }
 }

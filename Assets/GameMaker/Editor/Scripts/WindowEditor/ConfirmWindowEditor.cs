@@ -16,6 +16,15 @@ namespace GameMaker.Core.Editor
             window._onCancel = OnCancelAction;
             window.titleContent = new GUIContent("Confirm");
             window.InitUI(title, description);
+            Rect main = EditorGUIUtility.GetMainWindowPosition();
+
+            Vector2 size = new Vector2(400, 150);
+
+            float x = main.x + (main.width - size.x) * 0.5f;
+            float y = main.y + (main.height - size.y) * 0.5f;
+
+            window.position = new Rect(x, y, size.x, size.y);
+
             window.ShowModalUtility();
         }
         private void InitUI(string title, string description)

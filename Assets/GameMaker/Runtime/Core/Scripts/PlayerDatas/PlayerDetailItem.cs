@@ -10,24 +10,24 @@ namespace GameMaker.Core.Runtime
     {
         private string _id;
         private string _name;
-        private List<ItemStatDefinitionRef> _itemStatDefinitionRefs = new();
-        public PlayerDetailItem(string id, string name,List<ItemStatDefinitionRef> itemStatDefinitionRefs , IDefinition definition) : base(definition)
+        private List<ItemPropertyDefinitionRef> _itemPropertyDefinitionRefs = new();
+        public PlayerDetailItem(string id, string name,List<ItemPropertyDefinitionRef> itemPropertyDefinitionRefs , IDefinition definition) : base(definition)
         {
             _id = id;
             _name = name;
-            _itemStatDefinitionRefs = itemStatDefinitionRefs;
+            _itemPropertyDefinitionRefs = itemPropertyDefinitionRefs;
         }
 
-        public List<ItemStatDefinitionRef> ItemStatDefinitionRefs { get => _itemStatDefinitionRefs; }
+        public List<ItemPropertyDefinitionRef> ItemStatDefinitionRefs { get => _itemPropertyDefinitionRefs; }
 
         public override object Clone()
         {
-            return new PlayerDetailItem(_id, _name,_itemStatDefinitionRefs,definition);
+            return new PlayerDetailItem(_id, _name,_itemPropertyDefinitionRefs,definition);
         }
 
         public override void CopyFrom(BasePlayerData basePlayerData)
         {
-            _itemStatDefinitionRefs = (basePlayerData as PlayerDetailItem).ItemStatDefinitionRefs;
+            _itemPropertyDefinitionRefs = (basePlayerData as PlayerDetailItem).ItemStatDefinitionRefs;
             NotifyObserver(this);
         }
 
@@ -43,15 +43,15 @@ namespace GameMaker.Core.Runtime
 
         public void Update(PlayerDetailItem playerDetailItem)
         {
-            _itemStatDefinitionRefs = playerDetailItem._itemStatDefinitionRefs;
+            _itemPropertyDefinitionRefs = playerDetailItem._itemPropertyDefinitionRefs;
             NotifyObserver(this);
         }
         public void Update(params ItemStatDefinitionRef[] itemStatDefinitionRefs)
         {
             foreach (var param in itemStatDefinitionRefs)
             {
-                _itemStatDefinitionRefs.Remove(param);
-                _itemStatDefinitionRefs.Add(param);
+                _itemPropertyDefinitionRefs.Remove(param);
+                _itemPropertyDefinitionRefs.Add(param);
             }
             NotifyObserver(this);
         }
