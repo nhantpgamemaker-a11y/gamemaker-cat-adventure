@@ -31,6 +31,7 @@ namespace GameMaker.Core.Runtime
         public virtual void RemoveDefinition(M definition)
         {
             _definitions.Remove(definition);
+            _definitionCache.Remove(definition.GetID());
         }
         public List<M> GetDefinitions()
         {

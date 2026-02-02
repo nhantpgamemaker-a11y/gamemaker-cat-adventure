@@ -14,7 +14,7 @@ namespace GameMaker.Core.Editor
         private ItemDetailDataManagerHolder _itemDataManagerHolder;
         public ItemDetailTabContentHolder(VisualElement root) : base(root)
         {
-            var asset = Resources.Load<VisualTreeAsset>("FilterDataManagerElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("FilterDataManagerElement");
             _templateContainer = asset.CloneTree();
             _templateContainer.style.height = StyleKeyword.Auto;
             _templateContainer.style.flexGrow = 1;
@@ -22,7 +22,7 @@ namespace GameMaker.Core.Editor
             var serializedObject = new UnityEditor.SerializedObject(ItemDetailManager.Instance);
             List<BaseFilterHolder> filters = new();
 
-            var stringAsset = Resources.Load<VisualTreeAsset>("StringFilterElement");
+            var stringAsset = UIToolkitLoaderUtils.LoadUXML("StringFilterElement");
             var idFilter = new StringFilter("Id", "_id");
             var idFilterHolder = new StringFilterHolder(stringAsset.CloneTree(),idFilter);
             var nameFilter = new StringFilter("Name", "_name");
@@ -31,7 +31,7 @@ namespace GameMaker.Core.Editor
             var titleFilterHolder = new StringFilterHolder(stringAsset.CloneTree(), titleFilter);
 
 
-            var dropDownAsset = Resources.Load<VisualTreeAsset>("DropdownFilterElement");
+            var dropDownAsset = UIToolkitLoaderUtils.LoadUXML("DropdownFilterElement");
             var itemRefFilter = new DropdownFilter("Item", "_itemDefinitionId");
 
             var data = new List<DropdownFilterHolder.DropdownData>();

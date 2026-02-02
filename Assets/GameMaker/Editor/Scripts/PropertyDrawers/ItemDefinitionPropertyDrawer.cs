@@ -13,7 +13,7 @@ namespace GameMaker.Core.Editor
         ItemDefinitionHolder _itemDefinitionHolder;
         protected override BaseDefinitionHolder GetBaseDefinitionHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("ItemDefinitionElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("ItemDefinitionElement");
             TemplateContainer templateContainer = asset.CloneTree();
             _itemDefinitionHolder = new ItemDefinitionHolder(templateContainer);
             return _itemDefinitionHolder;

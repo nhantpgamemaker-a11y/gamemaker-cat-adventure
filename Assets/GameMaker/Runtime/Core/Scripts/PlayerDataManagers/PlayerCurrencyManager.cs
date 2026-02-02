@@ -22,11 +22,10 @@ namespace GameMaker.Core.Runtime
         {
             return basePlayerDatas.Cast<PlayerCurrency>().ToList();
         }
-        public void AddPlayerCurrency(string id, float value, IExtendData extendData)
+        public void AddPlayerCurrency(string id, float value)
         {
             var playerCurrency = GetPlayerCurrency(id);
             playerCurrency.AddValue(value);
-            RuntimeActionManager.Instance.NotifyAction(CurrencyActionData.ADD_CURRENCY_ACTION_DEFINITION, new CurrencyActionData(id, value, extendData));
         }
     }
 }

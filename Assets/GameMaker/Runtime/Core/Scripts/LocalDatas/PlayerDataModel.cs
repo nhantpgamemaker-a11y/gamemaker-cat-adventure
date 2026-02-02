@@ -17,6 +17,17 @@ namespace GameMaker.Core.Runtime
             this.name = name;
         }
 
+        public bool Equals(IDefinition other)
+        {
+            if (other == null)
+                return false;
+
+            if (GetType() != other.GetType())
+                return false;
+
+            return GetID() == other.GetID();
+        }
+
         public string GetID()
         {
             return id;

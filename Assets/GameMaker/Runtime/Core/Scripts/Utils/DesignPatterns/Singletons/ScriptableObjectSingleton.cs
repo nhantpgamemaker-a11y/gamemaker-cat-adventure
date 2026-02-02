@@ -6,7 +6,6 @@ namespace GameMaker.Core.Runtime
     public abstract class ScriptableObjectSingleton<T>: ScriptableObject where T : ScriptableObjectSingleton<T>
     {
         private static T _instance;
-        private bool _loaded;
         public static T Instance
         {
             get
@@ -39,9 +38,8 @@ namespace GameMaker.Core.Runtime
 #endif
                 }
 
-            if (_instance != null && !_instance._loaded)
+            if (_instance != null)
             {
-                _instance._loaded = true;
                 _instance.OnLoad();
             }
 

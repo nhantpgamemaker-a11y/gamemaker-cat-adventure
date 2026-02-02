@@ -11,10 +11,11 @@ namespace GameMaker.Core.Editor
     {
         protected override BaseDataManagerHolder<CurrencyDefinition> CreateBaseDataManagerHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("DataManagerElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("DataManagerElement");
             var templateContainer = asset.CloneTree();
             templateContainer.style.height = StyleKeyword.Auto;
             templateContainer.style.flexGrow = 1;
+            templateContainer.Add(new Button());
             return new CurrencyDataManagerHolder(templateContainer);
         }
     }
@@ -22,7 +23,6 @@ namespace GameMaker.Core.Editor
     {
         public CurrencyDataManagerHolder(VisualElement root) : base(root)
         {
-
         }
         protected override string GetTitle()
         {

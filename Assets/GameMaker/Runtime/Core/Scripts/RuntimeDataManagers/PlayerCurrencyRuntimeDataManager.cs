@@ -32,7 +32,8 @@ namespace GameMaker.Core.Runtime
             bool status = await _currencyDataSpaceProvider.AddCurrencyAsync(id, amount);
             if (status)
             {
-                _playerCurrencyManager.AddPlayerCurrency(id, amount, extendData);
+                _playerCurrencyManager.AddPlayerCurrency(id, amount);
+                RuntimeActionManager.Instance.NotifyAction(CurrencyActionData.ADD_CURRENCY_ACTION_DEFINITION, new CurrencyActionData(id, amount, extendData));
             }
             return status;
         }

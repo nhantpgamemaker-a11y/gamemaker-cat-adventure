@@ -5,6 +5,7 @@ namespace GameMaker.Core.Runtime
     public class RuntimeActionManager : AutomaticMonoSingleton<RuntimeActionManager>, ISubjectWithScope<BaseActionData, string>
     {
         protected Dictionary<string, List<IObserverWithScope<BaseActionData, string>>> _observerWithScopeDict = new();
+        
         public void AddObserver(IObserverWithScope<BaseActionData, string> observer, string[] scopes)
         {
             foreach(var scope in scopes)

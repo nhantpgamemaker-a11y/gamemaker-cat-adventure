@@ -10,7 +10,7 @@ namespace GameMaker.Core.Editor
     {
         protected override BaseDataManagerHolder<ItemDefinition> CreateBaseDataManagerHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("DataManagerElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("DataManagerElement");
             var templateContainer = asset.CloneTree();
             templateContainer.style.height = StyleKeyword.Auto;
             templateContainer.style.flexGrow = 1;

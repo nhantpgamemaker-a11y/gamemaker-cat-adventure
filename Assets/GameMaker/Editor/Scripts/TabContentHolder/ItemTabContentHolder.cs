@@ -13,7 +13,7 @@ namespace GameMaker.Core.Editor
         private ItemDataManagerHolder _itemDataManagerHolder;
         public ItemTabContentHolder(VisualElement root) : base(root)
         {
-            var asset = Resources.Load<VisualTreeAsset>("DataManagerElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("DataManagerElement");
             _templateContainer = asset.CloneTree();
             _templateContainer.style.height = StyleKeyword.Auto;
             _templateContainer.style.flexGrow = 1;

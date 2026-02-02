@@ -13,14 +13,14 @@ namespace GameMaker.Core.Editor
     {
         protected override BaseDataManagerHolder<ItemDetailDefinition> CreateBaseDataManagerHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("FilterDataManagerElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("FilterDataManagerElement");
             var templateContainer = asset.CloneTree();
             templateContainer.style.height = StyleKeyword.Auto;
             templateContainer.style.flexGrow = 1;
 
             List<BaseFilterHolder> filters = new();
 
-            var stringAsset = Resources.Load<VisualTreeAsset>("StringFilterElement");
+            var stringAsset = UIToolkitLoaderUtils.LoadUXML("StringFilterElement");
             var idFilter = new StringFilter("Id", "_id");
             var idFilterHolder = new StringFilterHolder(stringAsset.CloneTree(),idFilter);
             var nameFilter = new StringFilter("Name", "_name");
@@ -29,7 +29,7 @@ namespace GameMaker.Core.Editor
             var titleFilterHolder = new StringFilterHolder(stringAsset.CloneTree(), titleFilter);
 
 
-            var dropDownAsset = Resources.Load<VisualTreeAsset>("DropdownFilterElement");
+            var dropDownAsset = UIToolkitLoaderUtils.LoadUXML("DropdownFilterElement");
             var itemRefFilter = new DropdownFilter("Item", "_itemDefinitionId");
 
             var data = new List<DropdownFilterHolder.DropdownData>();
@@ -59,7 +59,7 @@ namespace GameMaker.Core.Editor
 
         protected override BaseHolder CreateHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>(
+            var asset = UIToolkitLoaderUtils.LoadUXML(
             "ItemDetailDefinitionElement");
             var templateContainer = asset.CloneTree();
             templateContainer.style.height = StyleKeyword.Auto;

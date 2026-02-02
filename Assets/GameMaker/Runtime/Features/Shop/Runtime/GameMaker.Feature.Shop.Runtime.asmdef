@@ -1,0 +1,16 @@
+{
+    "name": "GameMaker.Feature.Shop.Runtime",
+    "rootNamespace": "GameMaker.Feature.Shop.Runtime",
+    "references": [
+        "GUID:908562e3f0b9fbd4dbcbcfc65c9363b0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
-    public abstract class Definition : IDefinition, ICloneable, IEquatable<BaseDefinition>
+    public abstract class Definition : IDefinition, ICloneable
     {
         [SerializeField]
         private string _id = "";
@@ -33,10 +33,16 @@ namespace GameMaker.Core.Runtime
             _name = value;
         }
         public abstract object Clone();
-        
-        public bool Equals(BaseDefinition other)
+
+        public bool Equals(IDefinition other)
         {
-            return other.GetID() == GetID();
+            if (other == null)
+                return false;
+
+            if (GetType() != other.GetType())
+                return false;
+
+            return GetID() == other.GetID();
         }
     }
 }

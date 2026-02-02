@@ -13,7 +13,6 @@ namespace GameMaker.Core.Editor
         private ItemPropertyDataManagerHolder _itemPropertyManagerHolder;
         public ItemDefinitionHolder(VisualElement root) : base(root)
         {
-            var asset = Resources.Load<VisualTreeAsset>("DataManagerElement");
             _itemFoldout = root.Q<Foldout>("ItemFoldout");
             _nameField = root.Q<TextField>("NameTextField");
             _dataManagementTemplateContainer = root.Q<TemplateContainer>("DataManagementTemplateContainer");

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameMaker.Core.Runtime;
 using UnityEngine;
@@ -37,5 +38,7 @@ namespace GameMaker.Core.Runtime
         {
             _itemPropertyManager.RemoveDefinition(itemStatDefinition);
         }
+
+        
     }
 }

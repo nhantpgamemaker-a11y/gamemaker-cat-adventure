@@ -31,7 +31,7 @@ namespace GameMaker.Core.Editor
         {
             rootVisualElement.Clear();
 
-            var asset = Resources.Load<VisualTreeAsset>("ConfirmElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("ConfirmElement");
             var root = asset.CloneTree();
             rootVisualElement.Add(root);
 

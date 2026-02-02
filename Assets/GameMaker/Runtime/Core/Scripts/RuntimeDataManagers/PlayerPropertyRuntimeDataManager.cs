@@ -43,7 +43,8 @@ namespace GameMaker.Core.Runtime
             bool status = await _propertyDataSpaceProvider.AddStatAsync(id, amount);
             if (status)
             {
-                _playerPropertyManager.AddStat(id, amount, extendData);
+                _playerPropertyManager.AddStat(id, amount);
+                RuntimeActionManager.Instance.NotifyAction(StatActionData.ADD_STAT_ACTION_DEFINITION, new StatActionData(id, amount, extendData));
             }
             return status;
         }
@@ -52,7 +53,8 @@ namespace GameMaker.Core.Runtime
             bool status = await _propertyDataSpaceProvider.SetAttributeAsync(id, value);
             if (status)
             {
-                _playerPropertyManager.SetAttribute(id, value, extendData);
+                _playerPropertyManager.SetAttribute(id, value);
+                RuntimeActionManager.Instance.NotifyAction(AttributeActionData.SET_ATTRIBUTE_ACTION_DEFINITION, new AttributeActionData(id, value, extendData));
             }
             return status;
         } 
@@ -61,7 +63,8 @@ namespace GameMaker.Core.Runtime
             bool status = await _propertyDataSpaceProvider.SetStatAsync(id, value);
             if (status)
             {
-                _playerPropertyManager.SetStat(id, value, extendData);
+                _playerPropertyManager.SetStat(id, value);
+                RuntimeActionManager.Instance.NotifyAction(StatActionData.SET_STAT_ACTION_DEFINITION, new StatActionData(id, value, extendData));
             }
             return status;
         }

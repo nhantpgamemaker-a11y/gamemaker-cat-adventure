@@ -73,7 +73,7 @@ namespace GameMaker.Core.Runtime
                     var playerItemDetail = new PlayerDetailItem(newId, newId, propertyDefinitionRef, itemDetailDefinition);
                     _ = _localItemSaveData.AddPlayerItemDetailAsync(playerItemDetail);
 
-                    receiverProducts.Add(new ItemReceiverProduct(newId, newId,propertyDefinitionRef.Select(x=>x.Clone() as ItemPropertyDefinitionRef).ToList(),itemDetailDefinition.ItemDefinitionId));
+                    receiverProducts.Add(new ItemReceiverProduct(newId, newId,propertyDefinitionRef.Select(x=>x.Clone() as ItemPropertyDefinitionRef).ToList(),itemDetailDefinition.GetID()));
                 }
             }
 

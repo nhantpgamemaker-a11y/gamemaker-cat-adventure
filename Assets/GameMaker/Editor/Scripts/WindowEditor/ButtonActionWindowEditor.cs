@@ -27,7 +27,7 @@ namespace GameMaker.Core.Editor
         {
             rootVisualElement.Clear();
 
-            var asset = Resources.Load<VisualTreeAsset>("BaseActionElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("BaseActionElement");
             var root = asset.CloneTree();
             rootVisualElement.Add(root);
             foreach(var actionData in actionDatas)

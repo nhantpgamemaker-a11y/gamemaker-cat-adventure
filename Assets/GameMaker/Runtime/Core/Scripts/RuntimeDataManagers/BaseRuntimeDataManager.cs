@@ -9,7 +9,7 @@ namespace GameMaker.Core.Runtime
     {
         public BaseRuntimeDataManager()
         {
-            
+             
         }
         public virtual async UniTask<bool> InitializeAsync(IDataSpaceProvider[] dataSpaceProviders,PlayerDataManager[] playerDataManagers)
         {

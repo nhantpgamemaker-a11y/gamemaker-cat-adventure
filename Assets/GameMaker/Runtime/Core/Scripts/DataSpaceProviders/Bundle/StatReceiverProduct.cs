@@ -11,15 +11,16 @@ namespace GameMaker.Core.Runtime
     {
         private string _name;
         private List<ItemPropertyDefinitionRef> _itemPropertyDefinitionRefs = new();
-        private string _itemDefinitionId;
         public string Name { get => _name; }
         public List<ItemPropertyDefinitionRef> ItemPropertyDefinitionRefs { get => _itemPropertyDefinitionRefs; }
-        public string ItemDefinitionId { get => _itemDefinitionId; }
-        public ItemReceiverProduct(string id, string name,List<ItemPropertyDefinitionRef> itemStatDefinitionRefs,string itemDefinitionId) : base(id)
+        public ItemReceiverProduct(string id, string name, List<ItemPropertyDefinitionRef> itemStatDefinitionRefs, string itemDetailDefinitionID) : base(itemDetailDefinitionID)
         {
             _name = name;
             _itemPropertyDefinitionRefs = itemStatDefinitionRefs;
-            _itemDefinitionId = itemDefinitionId;
+        }
+        public ItemDetailDefinition GetItemDetailDefinition()
+        {
+            return ItemDetailManager.Instance.GetDefinition(ID);
         }
     }
 }

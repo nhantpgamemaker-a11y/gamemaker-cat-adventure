@@ -12,7 +12,7 @@ namespace GameMaker.Core.Editor
     {
         protected override BaseDefinitionHolder GetBaseDefinitionHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("CurrencyDefinitionElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("CurrencyDefinitionElement");
             TemplateContainer templateContainer = asset.CloneTree();
             return new CurrencyDefinitionHolder(templateContainer);
         }

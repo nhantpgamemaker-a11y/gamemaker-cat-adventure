@@ -64,7 +64,7 @@ namespace GameMaker.Core.Editor
 
         protected virtual BaseActionItemHolder CreateActionItemVisualElementHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>("BaseActionItemElement");
+            var asset = UIToolkitLoaderUtils.LoadUXML("BaseActionItemElement");
             var root = asset.CloneTree();
             var holder = new BaseActionItemHolder(root);
             root.userData = holder;

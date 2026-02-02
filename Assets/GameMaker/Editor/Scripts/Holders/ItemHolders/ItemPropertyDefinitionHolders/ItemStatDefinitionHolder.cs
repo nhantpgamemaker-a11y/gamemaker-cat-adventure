@@ -27,7 +27,7 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("ItemStatDefinitionElement");
+            return UIToolkitLoaderUtils.LoadUXML("ItemStatDefinitionElement");
         }
         public override string GetNameFoldout()
         {

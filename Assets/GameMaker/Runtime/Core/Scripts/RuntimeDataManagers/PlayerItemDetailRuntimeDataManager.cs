@@ -36,7 +36,13 @@ namespace GameMaker.Core.Runtime
             bool status = await _itemDataSpaceProvider.AddPlayerItemDetailAsync(playerDetailItem);
             if (status)
             {
-                _playerItemDetailManager.AddPlayerItem(playerDetailItem, extendData);
+                _playerItemDetailManager.AddPlayerItem(playerDetailItem);
+                var itemDetailDefinition = playerDetailItem.GetDefinition() as ItemDetailDefinition;
+                var itemDefinition = itemDetailDefinition.GetItemDefinition();
+
+                RuntimeActionManager.Instance.NotifyAction(ItemActionData.ADD_ITEM_ACTION_DEFINITION, new ItemActionData(itemDefinition.GetID(),1,extendData));
+                RuntimeActionManager.Instance.NotifyAction(ItemDetailActionData.ADD_ITEM_DETAIL_ACTION_DEFINITION, new ItemDetailActionData(itemDetailDefinition.GetID(),1,extendData));
+    
             }
             return status;
         }
@@ -55,6 +61,10 @@ namespace GameMaker.Core.Runtime
             if (status)
             {
                 _playerItemDetailManager.RemovePlayerItem(playerDetailItem, extendData);
+
+                var itemDetailDefinition = playerDetailItem.GetDefinition() as ItemDetailDefinition;
+                RuntimeActionManager.Instance.NotifyAction(ItemActionData.REMOVE_ITEM_ACTION_DEFINITION, new ItemActionData(itemDetailDefinition.ItemDefinitionId,1,extendData));
+                RuntimeActionManager.Instance.NotifyAction(ItemDetailActionData.REMOVE_ITEM_DETAIL_ACTION_DEFINITION, new ItemDetailActionData(itemDetailDefinition.GetID(),1,extendData));
             }
             return status;
         }

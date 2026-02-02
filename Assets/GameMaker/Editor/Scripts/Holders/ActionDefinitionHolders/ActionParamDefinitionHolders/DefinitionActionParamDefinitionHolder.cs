@@ -19,7 +19,7 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("BaseActionParamDefinitionElement");
+            return UIToolkitLoaderUtils.LoadUXML("BaseActionParamDefinitionElement");
         }
     }
 
@@ -38,11 +38,11 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("BaseActionParamDefinitionElement");
+            return UIToolkitLoaderUtils.LoadUXML("BaseActionParamDefinitionElement");
         }
     }
 
-    [TypeHolder(typeof(BaseDefinitionActionParamDefinition<ItemDefinition>))]
+    [TypeHolder(typeof(ItemActionParamDefinition))]
     public class ItemDefinitionActionParamDefinitionHolder : BaseActionParamDefinitionHolder
     {
         public ItemDefinitionActionParamDefinitionHolder(VisualElement root) : base(root)
@@ -57,11 +57,11 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("BaseActionParamDefinitionElement");
+            return UIToolkitLoaderUtils.LoadUXML("BaseActionParamDefinitionElement");
         }
     }
 
-    [TypeHolder(typeof(BaseDefinitionActionParamDefinition<ItemDetailDefinition>))]
+    [TypeHolder(typeof(ItemDetailActionParamDefinition))]
     public class ItemDetailDefinitionActionParamDefinitionHolder : BaseActionParamDefinitionHolder
     {
         public ItemDetailDefinitionActionParamDefinitionHolder(VisualElement root) : base(root)
@@ -76,7 +76,7 @@ namespace GameMaker.Core.Editor
 
         public override VisualTreeAsset GetVisualTreeAsset()
         {
-            return Resources.Load<VisualTreeAsset>("BaseActionParamDefinitionElement");
+            return UIToolkitLoaderUtils.LoadUXML("BaseActionParamDefinitionElement");
         }
     }
 }

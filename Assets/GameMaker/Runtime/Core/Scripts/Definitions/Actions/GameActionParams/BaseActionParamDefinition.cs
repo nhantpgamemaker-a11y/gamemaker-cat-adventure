@@ -34,5 +34,16 @@ namespace GameMaker.Core.Runtime
         {
             return _name;
         }
+
+        public bool Equals(IDefinition other)
+        {
+            if (other == null)
+                return false;
+
+            if (GetType() != other.GetType())
+                return false;
+
+            return GetID() == other.GetID();
+        }
     } 
 }
