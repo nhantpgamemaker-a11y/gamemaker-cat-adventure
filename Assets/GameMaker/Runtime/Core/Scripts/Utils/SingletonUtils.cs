@@ -25,9 +25,9 @@ namespace GameMaker.Core.Runtime
             return instanceProp.GetValue(null) as ScriptableObject;
         }
 
-        public static T Get<T>() where T : ScriptableObjectSingleton<T>
+        public static T Get<T>() where T : InheritanceScriptableObjectSingleton<T>
         {
-            return ScriptableObjectSingleton<T>.Instance;
+            return InheritanceScriptableObjectSingleton<T>.Instance;
         }
     }
 }

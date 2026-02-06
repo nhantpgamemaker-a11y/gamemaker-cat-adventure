@@ -1,19 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GameMaker.Core.Runtime
 {
     public static class TypeUtils
     {
-        public static Type[] GetAllDerivedNonAbstractTypes(Type baseType)
+        public static IReadOnlyList<Type> GetAllDerivedNonAbstractTypes(Type baseType)
         {
-            return AppDomain.CurrentDomain
-                .GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(t => baseType.IsAssignableFrom(t)
-                            && t != baseType
-                            && !t.IsAbstract)
-                .ToArray();
+            return TypeCache.Instance.GetAllDerivedNonAbstractTypes(baseType);
         }
          /// <summary>
         /// 
@@ -25,21 +20,9 @@ namespace GameMaker.Core.Runtime
         /// <param name="baseType"></param>
         /// Not include param type
         /// <returns></returns>
-        public static Type[] GetAllConcreteDerivedTypes(Type baseType)
+        public static IReadOnlyList<Type> GetAllConcreteDerivedTypes(Type baseType)
         {
-            var allTypes = AppDomain.CurrentDomain
-                .GetAssemblies()
-                .SelectMany(a =>
-                {
-                    try { return a.GetTypes(); }
-                    catch { return Array.Empty<Type>(); }
-                })
-                .Where(t => baseType.IsAssignableFrom(t)
-                            && t != baseType
-                            && !t.IsAbstract)
-                .ToArray();
-
-            return allTypes;
+            return TypeCache.Instance.GetAllConcreteDerivedTypes(baseType);
         }
         /// <summary>
         /// 
@@ -51,18 +34,9 @@ namespace GameMaker.Core.Runtime
         /// <param name="baseType"></param>
         /// Include param type if not abstract
         /// <returns></returns>
-        public static Type[] GetAllConcreteAssignableTypes(Type baseType)
+        public static IReadOnlyList<Type> GetAllConcreteAssignableTypes(Type baseType)
         {
-            return AppDomain.CurrentDomain
-                .GetAssemblies()
-                .SelectMany(a =>
-                {
-                    try { return a.GetTypes(); }
-                    catch { return Array.Empty<Type>(); }
-                })
-                .Where(t => baseType.IsAssignableFrom(t)
-                            && !t.IsAbstract)
-                .ToArray();
+            return TypeCache.Instance.GetAllConcreteAssignableTypes(baseType);
         }
     }
 }

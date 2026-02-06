@@ -10,9 +10,10 @@ namespace GameMaker.Core.Runtime
         {
             
         }
-        public PropertyDefinition(string id, string name, string title,string description, Sprite icon, BaseMetaData metaData):base(id, name, title,description, icon,metaData)
+        public PropertyDefinition(string id, string name, string title, string description, Sprite icon, BaseMetaData metaData) : base(id, name, title, description, icon, metaData)
         {
 
         }
+        public abstract string GetStringValue();
     }
 }

@@ -22,5 +22,5 @@ MonoBehaviour:
       type: {class: ConfigDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
         _id: ContinueLevel
-        _name: ContinueLevel
+        _name: Continue Level
         _value: 15

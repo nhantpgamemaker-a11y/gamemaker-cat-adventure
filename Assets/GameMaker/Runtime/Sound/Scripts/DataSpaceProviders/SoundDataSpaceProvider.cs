@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GameMaker.Core.Runtime;
 
@@ -6,37 +7,24 @@ namespace GameMaker.Sound.Runtime
     [DataSpace(nameof(DataSpaceAttribute.INIT_ANY))]
     public class SoundDataSpaceProvider : IDataSpaceProvider
     {
-        private SoundLocalSaveData _soundLocalSaveData;
+        private LocalSoundSaveData _localSoundData;
         public async UniTask<bool> InitAsync(BaseDataSpaceSetting baseDataSpaceSetting)
         {
-            _soundLocalSaveData = baseDataSpaceSetting.LocalDataManager.Get<SoundLocalSaveData>();
+            _localSoundData = baseDataSpaceSetting.LocalDataManager.Get<LocalSoundSaveData>();
             return true;
         }
-        public async UniTask<bool> SetSFXVolumeAsync(float volume)
-        {
-            await _soundLocalSaveData.SetSFXVolumeAsync(volume);
-            return true;
-        }
-        public async UniTask<bool> SetMusicVolumeAsync(float volume)
-        {   
-            await _soundLocalSaveData.SetMusicVolumeAsync(volume);
-            return true;
-        }
-
-        public async UniTask<(bool status, float volume)> GetSFXVolumeAsync()
-        {
-            var volume = _soundLocalSaveData.GetSFXVolume();
-            return (true, volume);
-        }
-        public UniTask<(bool status, float volume)> GetMusicVolumeAsync()
-        {
-            var volume = _soundLocalSaveData.GetMusicVolume();
-            return UniTask.FromResult((true, volume));
-        }
-
         public void Dispose()
         {
-            
+            _localSoundData = null;
+        }
+
+        public List<PlayerSoundVolume> GetPlayerSoundVolumes()
+        {
+            return _localSoundData.GetPlayerSoundVolumes();
+        }
+        public void SetVolume(string id, float volume)
+        {
+            _localSoundData.SetVolume(id, volume);
         }
     }
 }

@@ -3,8 +3,9 @@ using System.Linq;
 using UnityEngine;
 
 namespace GameMaker.Core.Runtime
-{   
+{
     [System.Serializable]
+    [TypeCache]
     public abstract class PlayerDataManager: ISubjectWithScope<BasePlayerData,string>, IObserver<BasePlayerData>
     {
         [UnityEngine.SerializeReference]
@@ -67,7 +68,7 @@ namespace GameMaker.Core.Runtime
 
         protected BasePlayerData GetPlayerData(string referenceId)
         {
-            return basePlayerDatas.FirstOrDefault(x => x.GetDefinition().GetID() == referenceId);
+            return basePlayerDatas.FirstOrDefault(x => x.GetID() == referenceId);
         }
 
         public void OnNotify(ISubject<BasePlayerData> subject, BasePlayerData data)

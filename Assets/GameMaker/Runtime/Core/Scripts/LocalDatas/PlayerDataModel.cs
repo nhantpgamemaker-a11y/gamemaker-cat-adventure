@@ -10,7 +10,7 @@ namespace GameMaker.Core.Runtime
         protected string id;
         [JsonProperty("Name")]
         protected string name;
-
+        public PlayerDataModel(){}
         public PlayerDataModel(string id, string name)
         {
             this.id = id;

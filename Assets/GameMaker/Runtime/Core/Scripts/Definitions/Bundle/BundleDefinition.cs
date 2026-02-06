@@ -8,17 +8,34 @@ namespace GameMaker.Core.Runtime
     [System.Serializable]
     public class BundleDefinition : BaseDefinition
     {
-        [UnityEngine.SerializeReference]
-        private List<BaseRewardDefinition> _rewards = new();
+        [UnityEngine.SerializeField]
+        private BaseDefinitionManager<BaseRewardDefinition> _rewardManager;
 
-        public List<BaseRewardDefinition> Rewards => _rewards;
-        public BundleDefinition(string id, string name, string title, string description, Sprite icon,BaseMetaData metaData,List<BaseRewardDefinition> rewards): base(id, name, title, description, icon,metaData)
+        public List<BaseRewardDefinition> Rewards => _rewardManager.GetDefinitions();
+        public BundleDefinition() : base()
         {
-            _rewards = rewards;
+            _rewardManager = new();
+        }
+        public BundleDefinition(string id,
+            string name,
+            string title,
+            string description,
+            Sprite icon,
+            BaseMetaData metaData,
+            BaseDefinitionManager<BaseRewardDefinition> rewardManager): 
+            base(id, name, title, description, icon,metaData)
+        {
+            _rewardManager = rewardManager;
         }
         public override object Clone()
         {
-            return new BundleDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(),GetMetaData(), _rewards.Select(x => x.Clone() as BaseRewardDefinition).ToList());
+            return new BundleDefinition(GetID(),
+                                         GetName(),
+                                         GetTitle(),
+                                         GetDescription(),
+                                         GetIcon(),
+                                         GetMetaData(),
+                                         _rewardManager.Clone() as BaseDefinitionManager<BaseRewardDefinition>);
         }
     }
 }

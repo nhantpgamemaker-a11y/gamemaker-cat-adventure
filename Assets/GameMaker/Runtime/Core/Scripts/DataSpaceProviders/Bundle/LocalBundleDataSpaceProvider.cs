@@ -89,7 +89,7 @@ namespace GameMaker.Core.Runtime
 
         }
     }
-
+    [TypeCache]
     public abstract class BaseLocalConsumeReward
     {
         protected LocalDataManager localDataManager;
@@ -129,29 +129,16 @@ namespace GameMaker.Core.Runtime
             switch (stat.UpdateType)
             {
                 case UpdateType.Add:
-                    _ = localPropertySaveData.AddPlayerStatAsync(stat.GetID(), stat.Amount, false);
+                    _ = localPropertySaveData.AddPlayerPropertyAsync(stat.GetID(), stat.Amount.ToString(), false);
                     return new StatReceiverProduct(stat.GetID(), stat.Amount, ConsumeType.Add);
                 case UpdateType.Override:
-                    _ = localPropertySaveData.SetPlayerStatAsync(stat.GetID(), stat.Amount, false);
+                    _ = localPropertySaveData.SetPlayerPropertyAsync(stat.GetID(), stat.Amount.ToString(), false);
                     return new StatReceiverProduct(stat.GetID(), stat.Amount, ConsumeType.Set);
                 case UpdateType.OverrideIfGreater:
                     var playerStat = localPropertySaveData.GetPlayerProperty(stat.GetID()) as PlayerStat;
                     if (playerStat.Value < stat.Amount)
-                        _ = localPropertySaveData.SetPlayerStatAsync(stat.GetID(), stat.Amount, false);
+                        _ = localPropertySaveData.SetPlayerPropertyAsync(stat.GetID(), stat.Amount.ToString(), false);
                     return new StatReceiverProduct(stat.GetID(), stat.Amount, ConsumeType.Set);
-                case UpdateType.AddSecondToTimeNow:
-                    var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                    playerStat = localPropertySaveData.GetPlayerProperty(stat.GetID()) as PlayerStat;
-                    if (playerStat.Value > now)
-                    {
-                        _ = localPropertySaveData.AddPlayerStatAsync(stat.GetID(), stat.Amount);
-                        return new StatReceiverProduct(stat.GetID(), playerStat.Value + stat.Amount, ConsumeType.Set);
-                    }
-                    else
-                    {
-                        _ = localPropertySaveData.SetPlayerStatAsync(stat.GetID(), now + stat.Amount);
-                        return new StatReceiverProduct(stat.GetID(), now + stat.Amount, ConsumeType.Set);
-                    }
             }
             return null;
         }

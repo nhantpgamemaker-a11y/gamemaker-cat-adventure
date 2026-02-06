@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using GameMaker.Core.Runtime;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace GameMaker.Sound.Runtime
 {
@@ -8,6 +11,13 @@ namespace GameMaker.Sound.Runtime
     [CreateAssetMenu(fileName ="SoundManager",menuName = "GameMaker/Sound/SoundManager")]
     public class SoundManager : BaseScriptableObjectDataManager<SoundManager, SoundDefinition>
     {
+        [UnityEngine.SerializeField]
+        private AudioMixer _audioMixed;
+        public AudioMixer AudioMixer => _audioMixed;
 
+        public List<string> GetMixerGroupNames()
+        {
+            return _audioMixed.FindMatchingGroups("").Select(x=>x.name).ToList();
+        }
     }
 }

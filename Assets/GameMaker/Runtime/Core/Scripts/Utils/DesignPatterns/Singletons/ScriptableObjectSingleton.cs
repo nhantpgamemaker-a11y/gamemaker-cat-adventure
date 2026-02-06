@@ -14,17 +14,7 @@ namespace GameMaker.Core.Runtime
             {
                 if (_instance == null)
                 {
-                    var types = TypeUtils.GetAllConcreteAssignableTypes(typeof(T));
-
-                    var bestType = types
-                        .Select(t => new
-                        {
-                            Type = t,
-                            Priority = t.GetCustomAttribute<PriorityAttribute>()?.Value ?? int.MinValue
-                        })
-                        .OrderByDescending(x => x.Priority)
-                        .FirstOrDefault()?.Type
-                        ?? typeof(T);
+                    var bestType = typeof(T);
 #if UNITY_EDITOR
                     Logger.Log($"[Resolver] Selected type: {bestType.FullName}");
 #endif
@@ -91,21 +81,21 @@ namespace GameMaker.Core.Runtime
             return instance;
         }
 
-private static void EnsureFolderExists(string fullPath)
-{
-    var parts = fullPath.Split('/');
-    string current = parts[0];
-
-    for (int i = 1; i < parts.Length; i++)
-    {
-        string next = $"{current}/{parts[i]}";
-        if (!UnityEditor.AssetDatabase.IsValidFolder(next))
+        private static void EnsureFolderExists(string fullPath)
         {
-            UnityEditor.AssetDatabase.CreateFolder(current, parts[i]);
+            var parts = fullPath.Split('/');
+            string current = parts[0];
+
+            for (int i = 1; i < parts.Length; i++)
+            {
+                string next = $"{current}/{parts[i]}";
+                if (!UnityEditor.AssetDatabase.IsValidFolder(next))
+                {
+                    UnityEditor.AssetDatabase.CreateFolder(current, parts[i]);
+                }
+                current = next;
+            }
         }
-        current = next;
-    }
-}
 #endif
 
         protected virtual void OnLoad()

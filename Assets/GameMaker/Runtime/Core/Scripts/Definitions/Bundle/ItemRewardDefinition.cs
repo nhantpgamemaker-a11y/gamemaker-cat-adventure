@@ -14,8 +14,8 @@ namespace GameMaker.Core.Runtime
 
         public float Amount => _amount;
         public BaseCreateItemTemplate CreateItemTemplate => _createItemTemplate;
-
-        public ItemRewardDefinition(string id,string name, string title, string definition, Sprite icon,BaseMetaData metaData, float amount, BaseCreateItemTemplate createItemTemplate): base(id, name, title, definition, icon,metaData )
+        public ItemRewardDefinition():base(){}
+        public ItemRewardDefinition(string id,string name, string title, string definition, Sprite icon,BaseMetaData metaData,string referenceId, float amount, BaseCreateItemTemplate createItemTemplate): base(id, name, title, definition, icon,metaData ,referenceId)
         {
             _amount = amount;
             _createItemTemplate = createItemTemplate;
@@ -23,12 +23,12 @@ namespace GameMaker.Core.Runtime
 
         public override object Clone()
         {
-            return new ItemRewardDefinition(GetID(),GetName(),GetTitle(), GetDescription(), GetIcon(), GetMetaData(), _amount,_createItemTemplate);
+            return new ItemRewardDefinition(GetID(),GetName(),GetTitle(), GetDescription(), GetIcon(), GetMetaData(), GetReferenceID(),_amount,_createItemTemplate);
         }
 
         public override IDefinition GetDefinition()
         {
-            return ItemDetailManager.Instance.GetDefinition(GetID());
+            return ItemDetailManager.Instance.GetDefinition(GetReferenceID());
         }
         public ItemDetailDefinition GetItemDetailDefinition()
         {

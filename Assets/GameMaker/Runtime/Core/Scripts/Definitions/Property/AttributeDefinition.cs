@@ -20,5 +20,10 @@ namespace GameMaker.Core.Runtime
         {
             return new AttributeDefinition(GetID(), GetName(), GetTitle(), GetDescription(), GetIcon(),GetMetaData(), DefaultValue);
         }
+
+        public override string GetStringValue()
+        {
+            return _defaultValue;
+        }
     }
 }

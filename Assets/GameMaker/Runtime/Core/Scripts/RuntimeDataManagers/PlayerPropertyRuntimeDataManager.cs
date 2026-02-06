@@ -35,35 +35,25 @@ namespace GameMaker.Core.Runtime
         {
             return _playerPropertyManager.GetProperty(id) as PlayerAttribute;
         }
-        public async UniTask<bool> AddPlayerStatAsync(string id, long amount, IExtendData extendData)
+        public async UniTask<bool> AddPlayerPropertyAsync(string id, string amount, IExtendData extendData)
         {
-            bool status = await _propertyDataSpaceProvider.AddStatAsync(id, amount);
+            bool status = await _propertyDataSpaceProvider.AddAsync(id, amount.ToString());
             if (status)
             {
-                _playerPropertyManager.AddStat(id, amount);
-                RuntimeActionManager.Instance.NotifyAction(StatActionData.ADD_STAT_ACTION_DEFINITION, new StatActionData(id, amount, extendData));
+                _playerPropertyManager.Add(id, amount.ToString());
+                RuntimeActionManager.Instance.NotifyAction(PropertyActionData.ADD_PROPERTY_ACTION_DEFINITION, new PropertyActionData(id, amount, extendData));
             }
             return status;
         }
-        public async UniTask<bool> SetAttributeAsync(string id, string value, IExtendData extendData)
+        public async UniTask<bool> SetPlayerPropertyAsync(string id, string value, IExtendData extendData)
         {
-            bool status = await _propertyDataSpaceProvider.SetAttributeAsync(id, value);
+            bool status = await _propertyDataSpaceProvider.SetAsync(id, value);
             if (status)
             {
-                _playerPropertyManager.SetAttribute(id, value);
-                RuntimeActionManager.Instance.NotifyAction(AttributeActionData.SET_ATTRIBUTE_ACTION_DEFINITION, new AttributeActionData(id, value, extendData));
+                _playerPropertyManager.Set(id, value);
+                RuntimeActionManager.Instance.NotifyAction(PropertyActionData.SET_PROPERTY_ACTION_DEFINITION, new PropertyActionData(id, value, extendData));
             }
             return status;
         } 
-        public async UniTask<bool> SetStatAsync(string id, long value, IExtendData extendData)
-        {
-            bool status = await _propertyDataSpaceProvider.SetStatAsync(id, value);
-            if (status)
-            {
-                _playerPropertyManager.SetStat(id, value);
-                RuntimeActionManager.Instance.NotifyAction(StatActionData.SET_STAT_ACTION_DEFINITION, new StatActionData(id, value, extendData));
-            }
-            return status;
-        }
     }
 }

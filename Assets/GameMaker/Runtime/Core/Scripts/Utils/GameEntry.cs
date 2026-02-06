@@ -6,6 +6,17 @@ namespace GameMaker.Core.Runtime
     {
         [SerializeField]
         private DataBootstrapper _gameModuleBootstrapper;
+        [SerializeField]
+        private CurrencyID _currencyID;
+        [SerializeField]
+        private PropertyID _propertyID;
+        [SerializeField]
+        private BundleID _bundleID;
+        [SerializeField]
+        private ConfigID _configID;
+        
+        [SerializeField]
+        private ActionID _actionID;
         async void Awake()
         {
             bool status = await _gameModuleBootstrapper.BuildAsync();

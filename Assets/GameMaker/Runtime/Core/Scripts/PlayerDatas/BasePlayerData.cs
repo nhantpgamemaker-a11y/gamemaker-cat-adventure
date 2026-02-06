@@ -9,11 +9,14 @@ namespace GameMaker.Core.Runtime
     public abstract class BasePlayerData : IEquatable<BasePlayerData>,IReferenceDefinition, IObserverData,
                                             ICloneable,ISubject<BasePlayerData>
     {
+        [UnityEngine.SerializeField]
+        private string _id;
         [UnityEngine.SerializeReference]
         protected IDefinition definition;
         private List<Core.Runtime.IObserver<BasePlayerData>> _observers;
-        public BasePlayerData(IDefinition definition) : base()
+        public BasePlayerData(string id,IDefinition definition) : base()
         {
+            _id = id;
             this.definition = definition;
             _observers = new();
         }
@@ -36,9 +39,9 @@ namespace GameMaker.Core.Runtime
         public abstract object Clone();
         public abstract void CopyFrom(BasePlayerData basePlayerData);
 
-        public bool Equals(BasePlayerData other)
+        public virtual bool Equals(BasePlayerData other)
         {
-            return definition.GetID() == other.GetReferenceID();
+            return definition.GetID() == other.GetID();
         }
 
         public string GetReferenceID()
@@ -49,6 +52,10 @@ namespace GameMaker.Core.Runtime
         public IDefinition GetDefinition()
         {
             return definition;
+        }
+        public string GetID()
+        {
+            return _id;
         }
     }
 }

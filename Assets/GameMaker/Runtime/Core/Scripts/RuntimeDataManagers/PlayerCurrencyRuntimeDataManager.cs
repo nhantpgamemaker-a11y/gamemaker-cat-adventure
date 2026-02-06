@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
+    [RuntimeDataManagerAttribute(new Type[] { typeof(BaseCurrencyDataSpaceProvider) })]
     public class PlayerCurrencyRuntimeDataManager : BaseRuntimeDataManager
     {
         private string _id = "PlayerCurrencyRuntimeDataManager";

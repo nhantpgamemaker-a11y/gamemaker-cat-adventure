@@ -75,7 +75,8 @@ namespace GameMaker.Core.Runtime
                 TypeNameHandling = TypeNameHandling.Auto
             };
             string dataString = JsonConvert.SerializeObject(baseLocalData, jsonSerializerSettings);
-            await UniTask.RunOnThreadPool(async () => await File.WriteAllTextAsync(path, dataString).AsUniTask());
+            await UniTask.RunOnThreadPool(async () => await File.WriteAllTextAsync(path, dataString));
+            await UniTask.SwitchToMainThread();
         }
 
         private async UniTask LoadInternalAsync()
@@ -114,7 +115,13 @@ namespace GameMaker.Core.Runtime
         private async UniTask<BaseLocalData> LoadDataFromLocalAsync(string path, Type type)
         {
             string dataString = await File.ReadAllTextAsync(path).AsUniTask();
-            var data = JsonConvert.DeserializeObject(dataString, type);
+            var jsonSerializerSettings = new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            var data = JsonConvert.DeserializeObject(dataString, type,jsonSerializerSettings);
             return (BaseLocalData)data;
         }
         

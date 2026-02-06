@@ -8,9 +8,13 @@ namespace GameMaker.Core.Runtime
     [System.Serializable]
     public abstract class PlayerProperty : BasePlayerData
     {
-        protected PlayerProperty(IDefinition definition) : base(definition)
+        protected PlayerProperty(string id, IDefinition definition) : base(id, definition)
         {
         }
         public abstract string GetStringValue();
+        
+        public abstract void Add(string value);
+
+        public abstract void Set(string value);
     }
 }

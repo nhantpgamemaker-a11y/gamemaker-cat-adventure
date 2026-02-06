@@ -14,7 +14,7 @@ namespace GameMaker.Core.Runtime
         {
             var playerCurrencyManager = playerDataManager.FirstOrDefault(x => x.GetType() == typeof(PlayerCurrencyManager)) as PlayerCurrencyManager;
             playerCurrencyManager.AddPlayerCurrency(ID, Value);
-            RuntimeActionManager.Instance.NotifyAction(StatActionData.SET_STAT_ACTION_DEFINITION, new StatActionData(ID, Value, extendData));
+            RuntimeActionManager.Instance.NotifyAction(CurrencyActionData.ADD_CURRENCY_ACTION_DEFINITION, new CurrencyActionData(ID, Value, extendData));
         }
     }
 }

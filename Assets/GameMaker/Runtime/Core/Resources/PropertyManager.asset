@@ -25,7 +25,7 @@ MonoBehaviour:
         _id: Level
         _name: Level
         _title: Level
-        _icon: {fileID: 0}
+        _icon: {fileID: 21300000, guid: 83f0f24463eb55545b05c04675971a25, type: 3}
         _description: 
         _metaData: {fileID: 0}
         _defaultValue: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
         _id: DefaultName
         _name: DefaultName
         _title: DefaultName
-        _icon: {fileID: 0}
+        _icon: {fileID: 21300000, guid: a936db3fde30d6b4ab021151e664a4ec, type: 3}
         _description: 
         _metaData: {fileID: 0}
         _defaultValue: User Name

@@ -11,17 +11,12 @@ namespace GameMaker.Core.Runtime
     {
         private string _id = "BundleRuntimeDataManager";
         private BaseBundleDataSpaceProvider _bundleDataSpaceProvider;
-        private PlayerCurrencyManager _playerCurrencyManager;
-        private PlayerPropertyManager _playerPropertyManager;
-        private PlayerItemDetailManager _playerItemDetailManager;
         private PlayerDataManager[] _playerDataManager;
         public async override UniTask<bool> InitializeAsync(IDataSpaceProvider[] dataSpaceProviders, PlayerDataManager[] playerDataManagers)
         {
             _playerDataManager = playerDataManagers;
-            _playerCurrencyManager = playerDataManagers.FirstOrDefault(x => x.GetType() == typeof(PlayerCurrencyManager)) as PlayerCurrencyManager;
-            _playerPropertyManager = playerDataManagers.FirstOrDefault(x => x.GetType() == typeof(PlayerPropertyManager)) as PlayerPropertyManager;
-            _playerItemDetailManager = playerDataManagers.FirstOrDefault(x => x.GetType() == typeof(PlayerItemDetailManager)) as PlayerItemDetailManager;
             _bundleDataSpaceProvider = dataSpaceProviders.OfType<BaseBundleDataSpaceProvider>().FirstOrDefault();
+            BundleGateway.Initialize(this);
             return true;
         }
 

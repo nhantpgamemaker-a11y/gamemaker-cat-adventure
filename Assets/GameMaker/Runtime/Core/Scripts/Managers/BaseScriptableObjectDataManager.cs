@@ -8,9 +8,9 @@ namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
     public abstract class BaseScriptableObjectDataManager<T, M> : 
-    ScriptableObjectSingleton<T>, IDefinitionManager
+    InheritanceScriptableObjectSingleton<T>, IDefinitionManager
     
-    where T : ScriptableObjectSingleton<T> where M : IDefinition, ICloneable
+    where T : InheritanceScriptableObjectSingleton<T> where M : IDefinition, ICloneable
     {
         [SerializeField]
         protected BaseDefinitionManager<M> dataManager = new();

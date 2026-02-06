@@ -15,23 +15,15 @@ namespace GameMaker.Core.Runtime
         {
             RemoveObserver((IObserverWithScope<BasePlayerData, string>)observer, scopes);
         }
-        public void AddStat(string id, long value)
+        public void Add(string id, string value)
         {
-            var playerProperty = GetPlayerData(id);
-            var playerStat = playerProperty as PlayerStat;
-            playerStat.AddValue(value);
+            var playerProperty = GetPlayerData(id) as PlayerProperty;
+            playerProperty.Add(value);
         }
-        public void SetStat(string id, long value)
+        public void Set(string id, string value)
         {
-            var playerProperty = GetPlayerData(id);
-            var playerStat = playerProperty as PlayerStat;
-            playerStat.SetValue(value);
-        }
-        public void SetAttribute(string id, string value)
-        {
-            var playerProperty = GetPlayerData(id);
-            var playerAttribute = playerProperty as PlayerAttribute;
-            playerAttribute.SetValue(value);
+            var playerProperty = GetPlayerData(id) as PlayerProperty;
+            playerProperty.Set(value);
         }
     }
 }

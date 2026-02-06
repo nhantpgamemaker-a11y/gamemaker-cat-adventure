@@ -10,7 +10,18 @@ namespace GameMaker.Core.Runtime
         [UnityEngine.SerializeField]
         private float _amount;
         public float Amount => _amount;
-        public CurrencyRewardDefinition(string id,string name, string title, string definition, Sprite icon,BaseMetaData metaData, float amount): base(id, name, title, definition, icon,metaData )
+        public CurrencyRewardDefinition() : base()
+        {
+            
+        }
+        public CurrencyRewardDefinition(string id,
+        string name,
+        string title,
+        string definition,
+        Sprite icon,
+        BaseMetaData metaData,
+        string referenceId,
+        float amount) : base(id, name, title, definition, icon,metaData,referenceId )
         {
             _amount = amount;
         }
@@ -18,12 +29,12 @@ namespace GameMaker.Core.Runtime
 
         public override object Clone()
         {
-            return new CurrencyRewardDefinition(GetID(),GetName(),GetTitle(), GetDescription(), GetIcon(), GetMetaData(), _amount);
+            return new CurrencyRewardDefinition(GetID(),GetName(),GetTitle(), GetDescription(), GetIcon(), GetMetaData(),GetReferenceID(), _amount);
         }
 
         public override IDefinition GetDefinition()
         {
-            return CurrencyManager.Instance.GetDefinition(GetID());
+            return CurrencyManager.Instance.GetDefinition(GetReferenceID());
         }
     }
 }

@@ -14,12 +14,8 @@ namespace GameMaker.Core.Runtime
         public virtual void Dispose()
         {
         }
-        public abstract UniTask<bool> AddStatAsync(string id, long value);
-
-        public abstract UniTask<bool> SetAttributeAsync(string id, string value);
+        public abstract UniTask<bool> AddAsync(string id, string value);
+        public abstract UniTask<bool> SetAsync(string id, string value);
         public abstract UniTask<(bool, List<PlayerProperty>)> GetPlayerPropertiesAsync();
-        public abstract UniTask<bool> SetStatAsync(string id, long value);
-
-        
     }
 }

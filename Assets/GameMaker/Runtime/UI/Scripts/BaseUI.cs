@@ -18,34 +18,30 @@ namespace GameMaker.UI.Runtime
         {
             overlay.gameObject.SetActive(true);
             container.gameObject.SetActive(true);
-            await OnShowAsync();
+            OnShow();
             await _uiAnimation.ShowAsync();
-            await OnShownAsync();
+            OnShown();
         }
         internal virtual async UniTask HideAsync()
         {
-            await OnHideAsync();
+            OnHide();
             await _uiAnimation.HideAsync();
-            await OnHiddenAsync();
+            OnHidden();
             overlay.gameObject.SetActive(false);
             container.gameObject.SetActive(false);
             this.data = null;
         }
-        protected virtual async UniTask OnShowAsync()
+        protected virtual void OnShow()
         {
-            await UniTask.Yield(); 
         }
-        protected virtual async UniTask OnShownAsync()
+        protected virtual void OnShown()
         {
-            await UniTask.Yield(); 
         }
-        protected virtual async UniTask OnHideAsync()
+        protected virtual void OnHide()
         {
-            await UniTask.Yield(); 
         }
-        protected virtual async UniTask OnHiddenAsync()
+        protected virtual void OnHidden()
         {
-            await UniTask.Yield(); 
         }
     }
 }

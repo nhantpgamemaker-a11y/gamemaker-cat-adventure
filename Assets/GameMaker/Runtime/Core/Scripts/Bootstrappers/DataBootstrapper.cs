@@ -17,6 +17,7 @@ namespace GameMaker.Core.Runtime
         private List<BaseRuntimeDataManager> _runtimeDataManagers;
         public async UniTask<bool> BuildAsync()
         {
+            await TimeManager.Instance.InitializeAsync(CoreConfig.Instance.TimePolicyConfig.TimeMode);
             bool status = true;
             status = await _baseDataSpaceSetting.InitAsync();
             if (!status) return status;
@@ -42,11 +43,17 @@ namespace GameMaker.Core.Runtime
 
                 status = await runtimeDataManager.InitializeAsync(dataSpaceProviders, playerDataManager);
                 if (!status) return status;
-                
+
                 _runtimeDataManagers.Add(runtimeDataManager);
             }
 
             return status;
+        }
+
+        [ContextMenu("SAVE")]
+        private void Save()
+        {
+            _ = _baseDataSpaceSetting.LocalDataManager.SaveAll();
         }
     }
 }

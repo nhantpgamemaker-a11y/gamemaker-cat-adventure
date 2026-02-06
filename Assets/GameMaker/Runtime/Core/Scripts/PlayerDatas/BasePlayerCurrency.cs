@@ -5,14 +5,14 @@ namespace GameMaker.Core.Runtime
     {
         private float _value;
         public float Value { get => _value; set => _value = value; }
-        public BasePlayerCurrency(IDefinition definition, float value) : base(definition)
+        public BasePlayerCurrency(string id,IDefinition definition, float value) : base(id, definition)
         {
             _value = value;
         }
 
         public override object Clone()
         {
-            return new BasePlayerCurrency(definition, _value);
+            return new BasePlayerCurrency(GetID(),definition, _value);
         }
 
         public void AddValue(float amount)

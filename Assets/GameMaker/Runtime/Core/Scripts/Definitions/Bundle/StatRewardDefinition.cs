@@ -20,7 +20,16 @@ namespace GameMaker.Core.Runtime
         private UpdateType _updateType;
         public long Amount => _amount;
         public UpdateType UpdateType => _updateType;
-        public StatRewardDefinition(string id,string name, string title, string definition, Sprite icon,BaseMetaData metaData, long amount, UpdateType updateType): base(id, name, title, definition, icon,metaData )
+        public StatRewardDefinition():base(){}
+        public StatRewardDefinition(string id,
+        string name,
+        string title,
+        string definition,
+        Sprite icon,
+        BaseMetaData metaData,
+        string referenceId,
+        long amount,
+        UpdateType updateType) : base(id, name, title, definition, icon,metaData ,referenceId)
         {
             _amount = amount;
             _updateType = updateType;
@@ -28,12 +37,21 @@ namespace GameMaker.Core.Runtime
 
         public override object Clone()
         {
-            return new StatRewardDefinition(GetID(),GetName(),GetTitle(), GetDescription(), GetIcon(), GetMetaData(), _amount,_updateType);
+            return new StatRewardDefinition(
+                GetID(),
+             GetName(),
+            GetTitle(),
+             GetDescription(),
+              GetIcon(),
+               GetMetaData(),
+                GetReferenceID(),
+                 _amount,
+                  _updateType);
         }
 
         public override IDefinition GetDefinition()
         {
-            return PropertyManager.Instance.GetDefinition(GetID());
+            return PropertyManager.Instance.GetDefinition(GetReferenceID());
         }
     }
 }

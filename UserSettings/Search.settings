@@ -11,7 +11,7 @@ showStatusBar = false
 scopes = {
 	"picker_window_position_offset.00000000" = "446.6667;122.6667;890;550"
 	"picker_visibility_flags.00000000" = "0"
-	"picker_item_size.00000000" = "0"
+	"picker_item_size.00000000" = "96"
 	"picker_inspector.00000000" = "0"
 }
 providers = {
@@ -69,6 +69,10 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"type: BaseCreateItemTemplate"
+	"type: GameMaker.Core.Runtime"
+	"type: Update"
+	"type: Updat"
 	"type: MetaDa"
 	"type: BaseMetaData"
 	"type: ScriptableObj"
@@ -76,7 +80,6 @@ recentSearches = [
 	"type: Sc"
 	"type: GameMa"
 	"type: GameMaker.Core.Run"
-	"type: GameMaker.Core.Runtime"
 	"type: MetaD"
 	"count{...t=[AnimationClip, AudioClip,Script,Material,model,prefab,sceneasset,scriptableobject,texture2d] -is:nested}"
 	"distinct{select{a:assets, @type}}"

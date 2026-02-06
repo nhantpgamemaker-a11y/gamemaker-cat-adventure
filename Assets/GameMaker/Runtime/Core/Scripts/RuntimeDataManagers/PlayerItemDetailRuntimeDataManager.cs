@@ -21,6 +21,7 @@ namespace GameMaker.Core.Runtime
             var (status, playerDetailItems) = await _itemDataSpaceProvider.GetPlayerItemDetails();
             if (!status) return status;
             _playerItemDetailManager.Initialize(playerDetailItems.Cast<BasePlayerData>().ToList());
+            ItemGateway.Initialize(this);
             return true;
         }
         public List<PlayerDetailItem> GetPlayerDetailItems()

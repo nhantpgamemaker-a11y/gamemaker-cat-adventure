@@ -1,139 +1,150 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GameMaker.Core.Runtime;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Pool;
 
 namespace GameMaker.Sound.Runtime
 {
-    [RuntimeDataManager(new Type[] { typeof(SoundDataSpaceProvider) })]
-    [System.Serializable]    
-    public class SoundRuntimeManager : BaseRuntimeDataManager
+    public class SoundRuntimeManager : AutomaticMonoSingleton<SoundRuntimeManager>
     {
-        private string _id = "SoundRuntimeManager";
+        private Dictionary<string, AudioMixerGroup> _audioMixerGroupDict;
         private ObjectPool<AudioSource> _audioSourcePool;
-        private SoundDataSpaceProvider _soundDataSpaceProvider;
-
-        [UnityEngine.SerializeField]
-        private float _musicVolume = 1.0f;
-        [UnityEngine.SerializeField]
-        private float _sfxVolume = 1.0f;
-        private List<AudioSource> _audioSourcesInUse = new List<AudioSource>();
-
-        private AudioSource _bgmAudioSource;
-        private AudioClip _currentBGM;
-        public override async UniTask<bool> InitializeAsync(IDataSpaceProvider[] dataSpaceProviders, PlayerDataManager[] playerDataManagers)
+        private readonly Dictionary<string, AudioSource> _loopSources = new Dictionary<string, AudioSource>();
+        public override void OnLoad()
         {
-            _soundDataSpaceProvider = dataSpaceProviders.OfType<SoundDataSpaceProvider>().FirstOrDefault();
+            AudioMixerGroup[] groups = SoundManager.Instance.AudioMixer.FindMatchingGroups("");
+            _audioMixerGroupDict = groups.ToDictionary(x => x.name, x => x);
 
-            _audioSourcePool = new ObjectPool<AudioSource>(
+            _audioSourcePool = new(
                 createFunc: () =>
                 {
-                    GameObject audioSourceObject = new GameObject("PooledAudioSource");
-                    audioSourceObject.AddComponent<DontDestroyOnLoad>();
-                    AudioSource audioSource = audioSourceObject.AddComponent<AudioSource>();
-                    audioSource.playOnAwake = false;
-                    return audioSource;
+                    var gameObject = new GameObject("AudioSource", typeof(AudioSource));
+                    return gameObject.GetComponent<AudioSource>();
                 },
-                actionOnGet: (audioSource) =>
-                {
-                    audioSource.gameObject.SetActive(true);
-                },
-                actionOnRelease: (audioSource) =>
-                {
-                    audioSource.Stop();
-                    audioSource.gameObject.SetActive(false);
-                },
-                actionOnDestroy: (audioSource) =>
-                {
-                    GameObject.Destroy(audioSource.gameObject);
-                },
-                collectionCheck: false,
-                defaultCapacity: 10,
-                maxSize: 100
-            );
-            _bgmAudioSource = _audioSourcePool.Get();
-            _bgmAudioSource.gameObject.name = "BGM_AudioSource";
-            var (mStatus, _musicVolume) = await _soundDataSpaceProvider.GetMusicVolumeAsync();
-            var (_sStatus, _sfxVolume) = await _soundDataSpaceProvider.GetSFXVolumeAsync();
-
-            return mStatus && _sStatus;
+                actionOnGet: (audioSource) => { },
+                actionOnRelease: (AudioSource) => { },
+                actionOnDestroy: (audioSource)=>{});
         }
-        public void PlayOneShot(SoundDefinition soundDefinition, Vector3 position)
+        public void PlayOneShot(SoundDefinition soundDefinition)
         {
-            AudioSource audioSource = _audioSourcePool.Get();
-            _audioSourcesInUse.Add(audioSource);
+            _ = PlayOneShotInternalAsync(soundDefinition);
+        }
+        private async UniTask PlayOneShotInternalAsync(SoundDefinition soundDefinition)
+        {
+            var group = soundDefinition.MixerGroup;
+            var mixerGroup = _audioMixerGroupDict[group];
+            var audioSource = _audioSourcePool.Get();
+            audioSource.outputAudioMixerGroup = mixerGroup;
             audioSource.clip = soundDefinition.Clip;
-            audioSource.volume = soundDefinition.Volume* _sfxVolume;
-            audioSource.pitch = soundDefinition.Pitch;
-            audioSource.outputAudioMixerGroup = soundDefinition.MixerGroup;
-            audioSource.priority = soundDefinition.Priority;
-            audioSource.transform.position = position;
+            audioSource.volume = soundDefinition.VolumeScale;
             audioSource.loop = false;
-            audioSource.PlayOneShot(audioSource.clip);
-            _ = UniTask.Delay(TimeSpan.FromSeconds(soundDefinition.Clip.length)).ContinueWith(() =>
-            {
-                _audioSourcePool.Release(audioSource);
-                _audioSourcesInUse.Remove(audioSource);
-            });
+            audioSource.Play();
+            await UniTask.WaitUntil(
+                    () => !audioSource.isPlaying,
+                    cancellationToken: this.GetCancellationTokenOnDestroy()
+                );
+            _audioSourcePool.Release(audioSource);
         }
-        public void PlayBGM(SoundDefinition soundDefinition)
+        public void PlayLoop(SoundDefinition soundDefinition)
         {
-            if (_currentBGM == soundDefinition.Clip && _bgmAudioSource.isPlaying)
+            var id = soundDefinition.GetID();
+            if (_loopSources.ContainsKey(id))
                 return;
 
-            _currentBGM = soundDefinition.Clip;
-            _bgmAudioSource.clip = soundDefinition.Clip;
-            _bgmAudioSource.volume = soundDefinition.Volume * _musicVolume;
-            _bgmAudioSource.loop = true;
-            _bgmAudioSource.Play();
+            var group = soundDefinition.MixerGroup;
+            var mixerGroup = _audioMixerGroupDict[group];
+
+            var audioSource = _audioSourcePool.Get();
+
+            audioSource.clip = soundDefinition.Clip;
+            audioSource.loop = true;
+            audioSource.volume = soundDefinition.VolumeScale;
+            audioSource.outputAudioMixerGroup = mixerGroup;
+            audioSource.Play();
+
+            _loopSources.Add(id, audioSource);
         }
-        public void StopBGM()
+        public void PlayLoopFade(SoundDefinition soundDefinition,float fadeInTime = 0.3f)
         {
-            _bgmAudioSource.Stop();
-            _currentBGM = null;
+            var id = soundDefinition.GetID();
+            if (_loopSources.ContainsKey(id))
+                return;
+
+            var mixerGroup = _audioMixerGroupDict[soundDefinition.MixerGroup];
+            var audioSource = _audioSourcePool.Get();
+
+            audioSource.clip = soundDefinition.Clip;
+            audioSource.loop = true;
+            audioSource.volume = 0f;
+            audioSource.outputAudioMixerGroup = mixerGroup;
+            audioSource.Play();
+
+            _loopSources.Add(id, audioSource);
+
+            FadeIn(audioSource, soundDefinition.VolumeScale, fadeInTime).Forget();
         }
-        public void StopAllSounds()
+        public void StopLoop(SoundDefinition soundDefinition)
         {
-            foreach (var audioSource in _audioSourcesInUse.ToList())
+            var id = soundDefinition.GetID();
+
+            if (!_loopSources.TryGetValue(id, out var audioSource))
+                return;
+
+            audioSource.Stop();
+            _audioSourcePool.Release(audioSource);
+            _loopSources.Remove(id);
+        }
+        public async UniTask StopLoopFade(SoundDefinition soundDefinition, float fadeTime = 0.3f)
+        {
+            var id = soundDefinition.GetID();
+            if (!_loopSources.TryGetValue(id, out var audioSource))
+                return;
+
+            await FadeOut(audioSource, fadeTime);
+
+            audioSource.Stop();
+            _audioSourcePool.Release(audioSource);
+            _loopSources.Remove(id);
+        }
+        private async UniTask FadeOut(AudioSource source, float fadeTime)
+        {
+            if (source == null || !source.isPlaying)
+                return;
+
+            float startVolume = source.volume;
+            float t = 0f;
+
+            while (t < fadeTime)
             {
-                audioSource.Stop();
-                _audioSourcePool.Release(audioSource);
-                _audioSourcesInUse.Remove(audioSource);
+                if (source == null)
+                    return;
+
+                t += Time.unscaledDeltaTime;
+                source.volume = Mathf.Lerp(startVolume, 0f, t / fadeTime);
+                await UniTask.Yield(PlayerLoopTiming.Update);
             }
+            source.volume = 0f;
         }
-        public float GetGlobalSfxVolume()
+        private async UniTask FadeIn(AudioSource source, float targetVolume, float fadeTime)
         {
-            return _sfxVolume;
-        }
-        public float GetGlobalMusicVolume()
-        {
-            return _musicVolume;
-        }
-        public async UniTask SetGlobalSfxVolume(float volume)
-        {
-            float lastVolume = _sfxVolume;
-            bool status = await _soundDataSpaceProvider.SetSFXVolumeAsync(volume);
-            if (status)
+            if (source == null)
+                return;
+
+            float t = 0f;
+            source.volume = 0f;
+
+            while (t < fadeTime)
             {
-                _sfxVolume = volume;
-                foreach (var audioSource in _audioSourcesInUse)
-                {
-                    audioSource.volume = (audioSource.volume / lastVolume) * _sfxVolume;
-                }
+                t += Time.unscaledDeltaTime;
+                source.volume = Mathf.Lerp(0f, targetVolume, t / fadeTime);
+                await UniTask.Yield();
             }
+
+            source.volume = targetVolume;
         }
-        public async UniTask SetGlobalMusicVolume(float volume)
-        {
-             float lastVolume = _musicVolume;
-            bool status = await _soundDataSpaceProvider.SetMusicVolumeAsync(volume);
-            if (status)
-            {
-                _musicVolume = volume;
-                _bgmAudioSource.volume = (_bgmAudioSource.volume / lastVolume) * volume;
-            }
-        }
+    
     }
 }

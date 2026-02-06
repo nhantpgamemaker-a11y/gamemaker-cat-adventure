@@ -14,7 +14,7 @@ namespace GameMaker.Core.Runtime
         [UnityEngine.SerializeReference]
         private List<BasePlayerCurrencyModel> _playerCurrencies = new();
 
-        internal override void OnCreate()
+        protected internal override void OnCreate()
         {
             base.OnCreate();
             foreach(var currencyDefinition in CurrencyManager.Instance.GetDefinitions())
@@ -22,7 +22,7 @@ namespace GameMaker.Core.Runtime
                 _playerCurrencies.Add(new BasePlayerCurrencyModel(currencyDefinition.GetID(), currencyDefinition.GetName(), currencyDefinition.DefaultValue));
             }
         }
-        internal override void OnLoad()
+        protected internal override void OnLoad()
         {
             base.OnLoad();
             var currencyIds = _playerCurrencies.Select(x => x.GetID());
@@ -82,7 +82,7 @@ namespace GameMaker.Core.Runtime
         public BasePlayerCurrency ToPlayerCurrency()
         {
             var currencyDefinition =  CurrencyManager.Instance.GetDefinition(id);
-            return new BasePlayerCurrency(currencyDefinition,_value);
+            return new BasePlayerCurrency(currencyDefinition.GetID(),currencyDefinition,_value);
         }
     }
 }

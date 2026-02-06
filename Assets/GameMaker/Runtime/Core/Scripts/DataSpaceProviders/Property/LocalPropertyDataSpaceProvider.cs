@@ -16,14 +16,14 @@ namespace GameMaker.Core.Runtime
             return true;
         }
         
-        public async override UniTask<bool> AddStatAsync(string id, long value)
+        public async override UniTask<bool> AddAsync(string id, string value)
         {
-            await _localPropertySaveData.AddPlayerStatAsync(id, value);
+            await _localPropertySaveData.AddPlayerPropertyAsync(id, value.ToString());
             return true;
         }
-        public override async UniTask<bool> SetAttributeAsync(string id, string value)
+        public override async UniTask<bool> SetAsync(string id, string  value)
         {
-            await _localPropertySaveData.SetPlayerAttributeAsync(id, value);
+            await _localPropertySaveData.SetPlayerPropertyAsync(id, value);
             return true;
         }
 
@@ -31,12 +31,6 @@ namespace GameMaker.Core.Runtime
         {
             var playerProperties = _localPropertySaveData.GetPlayerProperties();
             return (true, playerProperties);
-        }
-
-        public override async UniTask<bool> SetStatAsync(string id, long value)
-        {
-            await _localPropertySaveData.SetPlayerStatAsync(id, value);
-            return true;
         }
     }
 }

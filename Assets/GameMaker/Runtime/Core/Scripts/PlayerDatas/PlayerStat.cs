@@ -8,28 +8,18 @@ namespace GameMaker.Core.Runtime
     [System.Serializable]
     public class PlayerStat : PlayerProperty
     {
-        private long _value;
+        private float _value;
         
-        public long Value { get => _value; set => _value = value; }
+        public float Value { get => _value; set => _value = value; }
 
-        public PlayerStat(IDefinition definition, long value):base(definition)
+        public PlayerStat(string id, IDefinition definition, float value):base(id, definition)
         {
             _value = value;
         }
 
         public override object Clone()
         {
-            return new PlayerStat(definition, _value);
-        }
-        public void AddValue(long value)
-        {
-            _value += value;
-            NotifyObserver(this);
-        }
-        public void SetValue(long value)
-        {
-            _value = value;
-            NotifyObserver(this);
+            return new PlayerStat(GetID(), definition, _value);
         }
 
         public override void CopyFrom(BasePlayerData basePlayerData)
@@ -41,6 +31,16 @@ namespace GameMaker.Core.Runtime
         public override string GetStringValue()
         {
             return _value.ToString();
+        }
+
+        public override void Add(string value)
+        {
+            _value += float.Parse(value);
+        }
+
+        public override void Set(string value)
+        {
+            _value = float.Parse(value);
         }
     }
 }

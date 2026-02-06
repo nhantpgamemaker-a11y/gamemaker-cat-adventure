@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 namespace GameMaker.Core.Runtime
 {
     [System.Serializable]
+    [TypeCache]
     public abstract class BaseLocalData
     {
         private LocalDataManager _localDataManger;
@@ -10,11 +11,11 @@ namespace GameMaker.Core.Runtime
         {
             _localDataManger = localDataManager;
         }
-        internal virtual void OnCreate()
+        protected internal virtual void OnCreate()
         {
 
         }
-        internal virtual void OnLoad()
+        protected internal virtual void OnLoad()
         {
 
         }

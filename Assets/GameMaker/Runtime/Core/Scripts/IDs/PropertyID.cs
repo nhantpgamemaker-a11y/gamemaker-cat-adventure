@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 
 namespace GameMaker.Core.Runtime
@@ -13,21 +15,21 @@ namespace GameMaker.Core.Runtime
         {
             return GetPlayerProperty() as PlayerStat;
         }
+        public PropertyDefinition GetPropertyDefinition()
+        {
+            return PropertyManager.Instance.GetDefinition(ID);
+        }
         public PlayerAttribute GetPlayerAttribute()
         {
             return GetPlayerProperty() as PlayerAttribute;
         }
-        public async UniTask<bool> AddStatAsync(long amount, IExtendData extendData)
+        public async UniTask<bool> AddPropertyAsync(string value, IExtendData extendData)
         {
-            return await PropertyGateway.Manager.AddPlayerStatAsync(this.ID, amount, extendData);
+            return await PropertyGateway.Manager.AddPlayerPropertyAsync(this.ID, value, extendData);
         }
-        public async UniTask<bool> SetAttributeAsync(string value, IExtendData extendData)
+        public async UniTask<bool> SetPropertyAsync(string value, IExtendData extendData)
         {
-            return await PropertyGateway.Manager.SetAttributeAsync(this.ID, value, extendData);
-        }
-        public async UniTask<bool> SetStatAsync(long value, IExtendData extendData)
-        {
-            return await PropertyGateway.Manager.SetStatAsync(this.ID, value, extendData);
+            return await PropertyGateway.Manager.SetPlayerPropertyAsync(this.ID, value, extendData);
         }
     }
 }

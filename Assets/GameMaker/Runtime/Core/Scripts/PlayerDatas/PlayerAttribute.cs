@@ -11,19 +11,14 @@ namespace GameMaker.Core.Runtime
         private string _value;
         public string Value { get => _value; set => _value = value; }
 
-        public PlayerAttribute(IDefinition definition, string value):base(definition)
+        public PlayerAttribute(string id, IDefinition definition, string value):base(id, definition)
         {
             _value = value;
         }
 
         public override object Clone()
         {
-            return new PlayerAttribute(definition, _value);
-        }
-        public void SetValue(string value)
-        {
-            _value = value;
-            NotifyObserver(this);
+            return new PlayerAttribute(GetID(),definition, _value);
         }
 
         public override void CopyFrom(BasePlayerData basePlayerData)
@@ -35,6 +30,16 @@ namespace GameMaker.Core.Runtime
         public override string GetStringValue()
         {
             return _value;
+        }
+
+        public override void Add(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Set(string value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

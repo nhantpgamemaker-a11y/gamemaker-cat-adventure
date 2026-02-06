@@ -26,42 +26,30 @@ MonoBehaviour:
         _id: Coin
         _name: Coin
         _title: Coin
-        _icon: {fileID: 21300000, guid: 94e903bf218a14ee9b91bef6850dc47d, type: 3}
+        _icon: {fileID: 21300000, guid: 455b9719b30c13a48a8dc1a1a83239c2, type: 3}
         _description: "Tr\u1EA7n Ph\u01B0\u1EDBc Nh\xE2n"
         _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
-        _isGain: 0
-        _perGainAmount: 0
-        _gainTime: 0
-        _maxGainValue: 0
     - rid: 4388470144226033832
       type: {class: BaseCurrencyDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
         _id: Gem
         _name: Gem
         _title: Gem
-        _icon: {fileID: 21300000, guid: e4cb060482ec24272aa2b00ae1fb45a2, type: 3}
+        _icon: {fileID: 21300000, guid: 981509b39d6ad6e428db05a47c8dec05, type: 3}
         _description: 
         _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
-        _isGain: 0
-        _perGainAmount: 0
-        _gainTime: 0
-        _maxGainValue: 0
     - rid: 4388470156526354661
       type: {class: BaseCurrencyDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
       data:
-        _id: Cash
-        _name: Cash
-        _title: Cash
-        _icon: {fileID: 0}
+        _id: Energy
+        _name: Energy
+        _title: Energy
+        _icon: {fileID: 21300000, guid: beb83cf1434ef7a4784f9420e74c45ae, type: 3}
         _description: 
         _metaData: {fileID: 0}
         _defaultValue: 0
         _maxValue: 0
-        _isGain: 0
-        _perGainAmount: 0
-        _gainTime: 0
-        _maxGainValue: 0

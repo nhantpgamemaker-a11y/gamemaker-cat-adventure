@@ -8,12 +8,10 @@ namespace GameMaker.Core.Runtime
     [System.Serializable]
     public class PlayerDetailItem : BasePlayerData, IDefinition
     {
-        private string _id;
         private string _name;
         private List<ItemPropertyDefinitionRef> _itemPropertyDefinitionRefs = new();
-        public PlayerDetailItem(string id, string name,List<ItemPropertyDefinitionRef> itemPropertyDefinitionRefs , IDefinition definition) : base(definition)
+        public PlayerDetailItem(string id, string name,List<ItemPropertyDefinitionRef> itemPropertyDefinitionRefs , IDefinition definition) : base(id,definition)
         {
-            _id = id;
             _name = name;
             _itemPropertyDefinitionRefs = itemPropertyDefinitionRefs;
         }
@@ -22,7 +20,7 @@ namespace GameMaker.Core.Runtime
 
         public override object Clone()
         {
-            return new PlayerDetailItem(_id, _name,_itemPropertyDefinitionRefs,definition);
+            return new PlayerDetailItem(GetID(), _name,_itemPropertyDefinitionRefs,definition);
         }
 
         public override void CopyFrom(BasePlayerData basePlayerData)
@@ -40,11 +38,6 @@ namespace GameMaker.Core.Runtime
                 return false;
 
             return GetID() == other.GetID();
-        }
-
-        public string GetID()
-        {
-            return _id;
         }
 
         public string GetName()

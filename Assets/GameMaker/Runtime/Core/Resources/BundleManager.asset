@@ -13,7 +13,55 @@ MonoBehaviour:
   m_Name: BundleManager
   m_EditorClassIdentifier: GameMaker.Core.Runtime::GameMaker.Core.Runtime.BundleManager
   dataManager:
-    _definitions: []
+    _definitions:
+    - rid: 4925654933096366435
+    - rid: 4925654945887158461
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4925654933096366435
+      type: {class: BundleDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: MiniCoinBundle
+        _name: Mini Coin Bundle
+        _title: Mini Coin Bundle
+        _icon: {fileID: 21300000, guid: e2140515b77ac7f40b9950556a03b357, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
+        _rewardManager:
+          _definitions:
+          - rid: 4925654945887158460
+    - rid: 4925654945887158460
+      type: {class: CurrencyRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: 
+        _name: 
+        _title: 
+        _icon: {fileID: 21300000, guid: 455b9719b30c13a48a8dc1a1a83239c2, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
+        _referenceId: Coin
+        _amount: 100
+    - rid: 4925654945887158461
+      type: {class: BundleDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: MediumCoinBundle
+        _name: Medium Coin Bundle
+        _title: Medium Coin Bundle
+        _icon: {fileID: 21300000, guid: c858be395fecbeb4bbfdc82c18eef42a, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
+        _rewardManager:
+          _definitions:
+          - rid: 4925654945887158462
+    - rid: 4925654945887158462
+      type: {class: CurrencyRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: 
+        _name: 
+        _title: 
+        _icon: {fileID: 21300000, guid: 455b9719b30c13a48a8dc1a1a83239c2, type: 3}
+        _description: 
+        _metaData: {fileID: 0}
+        _referenceId: Coin
+        _amount: 200

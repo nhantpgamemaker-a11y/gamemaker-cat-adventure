@@ -47,9 +47,8 @@ namespace GameMaker.UI.Runtime
         }
         #endregion
 
-        protected async override UniTask OnShowAsync()
+        protected override void OnShow()
         {
-            await base.OnShowAsync();
             _txtText.text = data as string;
         }
     }
