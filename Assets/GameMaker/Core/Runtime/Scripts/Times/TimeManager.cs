@@ -69,7 +69,7 @@ namespace GameMaker.Core.Runtime
             _timeStrategy = null;
         }
 
-        public  DateTime Now
+        public  DateTime UTCNow
         {
             get
             {
@@ -79,11 +79,11 @@ namespace GameMaker.Core.Runtime
                     return DateTime.UtcNow;
                 }
 
-                return _timeStrategy.GetCurrentTime();
+                return _timeStrategy.GetCurrentUTCTime();
             }
         }
 
-        public  DateTime LocalNow => Now.ToLocalTime();
+        public  DateTime LocalNow => UTCNow.ToLocalTime();
 
         public  bool IsTimeValid
         {
@@ -103,9 +103,9 @@ namespace GameMaker.Core.Runtime
             }
         }
 
-        public  long UnixTimestamp => ((DateTimeOffset)Now).ToUnixTimeSeconds();
+        public  long UnixTimestamp => ((DateTimeOffset)UTCNow).ToUnixTimeSeconds();
 
-        public long UnixTimestampMs => ((DateTimeOffset)Now).ToUnixTimeMilliseconds();
+        public long UnixTimestampMs => ((DateTimeOffset)UTCNow).ToUnixTimeMilliseconds();
         
         public DateTime FromUnixTimestamp(long timestamp)
         {
@@ -114,14 +114,14 @@ namespace GameMaker.Core.Runtime
         
         public bool IsToday(DateTime date)
         {
-            return date.Date == Now.Date;
+            return date.Date == UTCNow.Date;
         }
         
         public  TimeSpan TimeUntilMidnight
         {
             get
             {
-                DateTime now = Now;
+                DateTime now = UTCNow;
                 DateTime nextMidnight = now.Date.AddDays(1);
                 return nextMidnight - now;
             }

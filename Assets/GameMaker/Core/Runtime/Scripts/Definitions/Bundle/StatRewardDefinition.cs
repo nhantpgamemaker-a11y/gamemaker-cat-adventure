@@ -26,14 +26,14 @@ namespace GameMaker.Core.Runtime
         public override object Clone()
         {
             return new StatRewardDefinition(
-                GetID(),
-             GetName(),
+            GetID(),
+            GetName(),
             GetTitle(),
-             GetDescription(),
-              GetIcon(),
-               GetMetaData(),
-                GetReferenceID(),
-                 _amount);
+            GetDescription(),
+            GetIcon(),
+            GetMetaData(),
+            GetReferenceID(),
+            _amount);
         }
 
         public override IDefinition GetDefinition()

@@ -11,15 +11,15 @@ namespace GameMaker.Feature.Shop.Runtime
         [UnityEngine.SerializeField]
         private string _currencyReferenceId;
         [UnityEngine.SerializeField]
-        private float _amount;
+        private long _amount;
 
         public string CurrencyReferenceId { get => _currencyReferenceId;}
-        public float Amount { get => _amount; }
+        public long Amount { get => _amount; }
         public Price()
         {
             _currencyReferenceId = CurrencyManager.Instance.GetDefinitions().First().GetID();
         }
-        public Price(string currencyId, float amount)
+        public Price(string currencyId, long amount)
         {
             _currencyReferenceId = currencyId;
             _amount = amount;

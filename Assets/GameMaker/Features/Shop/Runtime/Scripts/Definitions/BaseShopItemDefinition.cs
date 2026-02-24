@@ -13,7 +13,6 @@ namespace GameMaker.Feature.Shop.Runtime
         [UnityEngine.SerializeField]
         private float _amount;
         public Price Price => _price;
-        
         public float Amount => _amount;
         public BaseShopItemDefinition() : base() { }
 

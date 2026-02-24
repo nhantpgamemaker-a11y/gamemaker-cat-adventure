@@ -164,11 +164,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    _derivedTypeNames:
-    - GameMaker.Feature.Shop.Runtime.UnRefreshPlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -339,11 +334,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    _derivedTypeNames:
-    - GameMaker.Feature.Shop.Runtime.UnRefreshPlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -514,11 +504,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    _derivedTypeNames:
-    - GameMaker.Feature.Shop.Runtime.UnRefreshPlayerShopModel, GameMaker.Feature.Shop.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:

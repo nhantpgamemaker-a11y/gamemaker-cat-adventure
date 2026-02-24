@@ -30,7 +30,7 @@ namespace GameMaker.Core.Runtime
             return true;
         }
 
-        public override DateTime GetCurrentTime()
+        public override DateTime GetCurrentUTCTime()
         {
             DateTime systemTime = DateTime.UtcNow;
             if (systemTime < _lastKnownTime)

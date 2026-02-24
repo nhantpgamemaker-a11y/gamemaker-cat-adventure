@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Reflection;
+using Cysharp.Threading.Tasks;
 
 namespace GameMaker.Feature.Shop.Runtime
 {
@@ -13,9 +14,7 @@ namespace GameMaker.Feature.Shop.Runtime
     {
         [JsonProperty("PlayerShops")]
         [UnityEngine.SerializeReference]
-        private List<BasePlayerShopModel> _playerShops = new();
-        [JsonIgnore]
-        private PlayerShopTypeFactory _playerShopFactory = new();
+        private List<PlayerShopModel> _playerShops = new();
         public LocalShopSaveData()
         {
 
@@ -26,11 +25,10 @@ namespace GameMaker.Feature.Shop.Runtime
             base.OnCreate();
             foreach (var shopDefinition in ShopManager.Instance.GetDefinitions())
             {
-                var playerShopModelType = _playerShopFactory.GetType();
-                var playerShopModel = Activator.CreateInstance( playerShopModelType,
-                                                                shopDefinition.GetID(),
-                                                                shopDefinition.GetName(),
-                                                                shopDefinition) as BasePlayerShopModel;
+                var playerShopModel = new PlayerShopModel(shopDefinition.GetID(),
+                shopDefinition.GetName(),
+                shopDefinition,
+                TimeManager.Instance.UnixTimestamp);
                 _playerShops.Add(playerShopModel);
             }
         }
@@ -48,42 +46,40 @@ namespace GameMaker.Feature.Shop.Runtime
                 var shopId = shopDefinition.GetID();
                 if (existedShopIds.Contains(shopId))
                     continue;
-                var playerShopModelType = _playerShopFactory.GetType();
-                var playerShopModel = Activator.CreateInstance(
-                    playerShopModelType,
-                    shopDefinition.GetID(),
-                    shopDefinition.GetName(),
-                    shopDefinition
-                ) as BasePlayerShopModel;
-
+                var playerShopModel = new PlayerShopModel(shopDefinition.GetID(),
+                shopDefinition.GetName(),
+                shopDefinition,
+                TimeManager.Instance.UnixTimestamp);
                 _playerShops.Add(playerShopModel);
             }
 
-             foreach(var shop in _playerShops)
+            foreach (var shop in _playerShops)
             {
                 var shopDefinition = ShopManager.Instance.GetDefinition(shop.ShopDefinitionReferenceID);
                 shop.SetShopDefinition(shopDefinition);
                 shop.OnLoad();
             }
         }
-    }
-    public class PlayerShopTypeFactory
-    {
-        private Dictionary<Type, Type> _caches;
-        public PlayerShopTypeFactory()
+        public async UniTask<PlayerShop> RefreshShopAsync(string shopDefinitionId, long lastRefreshTime, bool isSave = true)
         {
-            _caches = TypeUtils.GetAllDerivedNonAbstractTypes(typeof(BasePlayerShopModel))
-            .Where(x => x.GetCustomAttribute<GameMaker.Core.Runtime.TypeContainAttribute>()!=null)
-            .ToDictionary(x => x.GetCustomAttribute<GameMaker.Core.Runtime.TypeContainAttribute>().Type, x => x);
+            var playerShop = _playerShops.FirstOrDefault(x => x.GetID() == shopDefinitionId);
+            if (playerShop == null) return null;
+            var shopDefinition = playerShop.GetShopDefinition();
+            var config = shopDefinition.TimeResetConfig;
+            if (config.ResetType == ResetType.None) return null;
+            playerShop.Refresh(lastRefreshTime);
+
+            if (isSave)
+                await SaveAsync();
+            return playerShop.ToPlayerShop();
         }
-        public Type GetType(Type playerShopType)
+        public List<PlayerShop> GetPlayerShops()
         {
-            return _caches[playerShopType];
+            return _playerShops.Select(x => x.ToPlayerShop()).ToList();
         }
     }
     [System.Serializable]
-    [TypeCache]
-    public abstract class BasePlayerShopModel : PlayerDataModel
+    public class PlayerShopModel : PlayerDataModel
     {
         [JsonProperty("ShopDefinitionReferenceID")]
         [UnityEngine.SerializeField]        
@@ -92,16 +88,22 @@ namespace GameMaker.Feature.Shop.Runtime
         [JsonProperty("ShopItem")]
         [UnityEngine.SerializeReference]
         private List<BasePlayerShopItemModel> _shopItems = new();
+
+        [JsonProperty("LastRefreshUTCTime")]
+        private long _lastRefreshUTCTime;
         [JsonIgnore]
         private PlayerShopItemTypeFactory _playerShopItemTypeFactory = new();
         [JsonIgnore]
         protected List<BasePlayerShopItemModel> ShopItems => _shopItems;
         [JsonIgnore]
-        protected BaseShopDefinition _shopDefinition;
+        protected ShopDefinition _shopDefinition;
         [JsonIgnore]
         public string ShopDefinitionReferenceID => _shopDefinitionReferenceID;
-        public BasePlayerShopModel(string id, string name, BaseShopDefinition baseShopDefinition) : base(id, name)
+        [JsonIgnore]
+        public long LastRefreshUTCTime => _lastRefreshUTCTime;
+        public PlayerShopModel(string id, string name, ShopDefinition baseShopDefinition, long lastRefreshUTCTime) : base(id, name)
         {
+            _lastRefreshUTCTime = lastRefreshUTCTime;
             _shopDefinitionReferenceID = baseShopDefinition.GetID();
             _shopDefinition = baseShopDefinition;
             foreach (var shopItem in baseShopDefinition.ShopItems)
@@ -111,15 +113,19 @@ namespace GameMaker.Feature.Shop.Runtime
                 _shopItems.Add(shopItemModel);
             }
         }
-        public void SetShopDefinition(BaseShopDefinition shopDefinition)
+        public void SetShopDefinition(ShopDefinition shopDefinition)
         {
             _shopDefinition = shopDefinition;
         }
-        public abstract BasePlayerShop ToPlayerShop();
-        public BaseShopDefinition GetShopDefinition()
+        public PlayerShop ToPlayerShop()
+        {
+            return new PlayerShop(id, _shopDefinition, _shopItems.Select(x => x.ToPlayerShopItem()).ToList(), _lastRefreshUTCTime);
+        }
+        public ShopDefinition GetShopDefinition()
         {
             return ShopManager.Instance.GetDefinition(GetID());
         }
+
         public virtual void OnLoad()
         {
             var shopDefinition = GetShopDefinition();
@@ -146,28 +152,27 @@ namespace GameMaker.Feature.Shop.Runtime
                 _shopItems.Add(shopItemModel);
             }
 
-            foreach(var shopItem in _shopItems)
+            foreach (var shopItem in _shopItems)
             {
                 var shopItemDefinition = shopDefinition.GetShopItemDefinition(shopItem.ShopItemDefinitionReferenceID);
                 shopItem.SetShopItemDefinition(shopItemDefinition);
             }
         }
-    }
 
-    [System.Serializable]
-    [TypeContain(typeof(UnRefreshShopDefinition))]
-    public class UnRefreshPlayerShopModel : BasePlayerShopModel
-    {
-        public UnRefreshPlayerShopModel(string id, string name, BaseShopDefinition baseShopDefinition) : base(id, name, baseShopDefinition)
-        {
-        }
-
-        public override BasePlayerShop ToPlayerShop()
+        public void Refresh(long lastRefreshTime)
         {
             var shopDefinition = GetShopDefinition();
-            return new UnRefreshPlayerShop(shopDefinition.GetID(), shopDefinition,ShopItems.Select(x=>x.ToPlayerShopItem()).ToList());
+            var config = shopDefinition.TimeResetConfig;
+            if (config.ResetType == ResetType.None) return;
+            if (!config.IsReset(lastRefreshTime)) return;
+            _lastRefreshUTCTime = lastRefreshTime;
+            foreach (var item in _shopItems)
+            {
+                item.AddRemain(item.GetShopItemDefinition().Amount - item.Remain);
+            }
         }
     }
+
     public class PlayerShopItemTypeFactory
     {
         private Dictionary<Type, Type> _caches;

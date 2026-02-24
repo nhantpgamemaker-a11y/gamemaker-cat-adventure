@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameMaker.Core.Runtime::GameMaker.Core.Runtime.CurrencyDataManager
   dataManager:
     _definitions:
-    - rid: 4388470143681036465
     - rid: 4925655373323436202
+    - rid: 4388470143681036465
     - rid: 4388470156526354661
     - rid: 4925655397300175040
   references:

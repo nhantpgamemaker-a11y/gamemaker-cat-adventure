@@ -11,15 +11,12 @@ namespace GameMaker.Core.Editor
     {
         private DropdownField _statDropdownField;
         private LongField _amountLongField;
-        private EnumField _updateTypeEnumField;
         public StatRewardDefinitionHolder(VisualElement root) : base(root)
         {
         }
         public override void Bind(SerializedProperty elementProperty)
         {
             _statDropdownField = Root.Q<DropdownField>("StatDropdownField");
-            _updateTypeEnumField = Root.Q<EnumField>("UpdateTypeEnumField");
-            _updateTypeEnumField.BindProperty(elementProperty.FindPropertyRelative("_updateType"));
             _statDropdownField.choices = PropertyManager.Instance.GetStats().Select(x => x.GetName()).ToList();
             var data = PropertyManager.Instance.GetStats().FirstOrDefault(x => x.GetName() == _statDropdownField.value);
             if(data == null)

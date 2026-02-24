@@ -104,6 +104,7 @@ namespace GameMaker.Core.Runtime
             return dict;
         }
 #if UNITY_EDITOR
+        [ContextMenu("Rebuild Cache")]
         public void RebuildCache()
         {
             var allTypes = AppDomain.CurrentDomain

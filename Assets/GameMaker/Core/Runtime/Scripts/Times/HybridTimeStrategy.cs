@@ -32,15 +32,15 @@ namespace GameMaker.Core.Runtime
                 return true;
         }
 
-        public override DateTime GetCurrentTime()
+        public override DateTime GetCurrentUTCTime()
         {
             if (_preferServer && _serverStrategy.IsTimeValid())
             {
-                return _serverStrategy.GetCurrentTime();
+                return _serverStrategy.GetCurrentUTCTime();
             }
 
             Logger.LogWarning("[HybridTime] Using local time as fallback");
-            return _localStrategy.GetCurrentTime();
+            return _localStrategy.GetCurrentUTCTime();
         }
 
         public override bool IsTimeValid()

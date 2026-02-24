@@ -37,21 +37,12 @@ MonoBehaviour:
           _metaData: {fileID: 0}
           _rewardManager:
             _definitions:
-            - rid: 4925655412329414953
+            - rid: 4925655419490926675
+            - rid: 4925655419490926676
+            - rid: 4925655419490926685
         _productType: 0
         _productId: 
         _groupId: 
-    - rid: 4925655412329414953
-      type: {class: CurrencyRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
-      data:
-        _id: 
-        _name: 
-        _title: 
-        _icon: {fileID: 0}
-        _description: 
-        _metaData: {fileID: 0}
-        _referenceId: Coin
-        _amount: 
     - rid: 4925655412329414954
       type: {class: IAPDefinition, ns: GameMaker.IAP.Runtime, asm: GameMaker.IAP.Runtime}
       data:
@@ -73,3 +64,37 @@ MonoBehaviour:
         _productType: 0
         _productId: 
         _groupId: 
+    - rid: 4925655419490926675
+      type: {class: ItemRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: 
+        _name: 
+        _title: 
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _referenceId: MediumBundle
+        _amount: 1
+        _createItemTemplate: {fileID: 0}
+    - rid: 4925655419490926676
+      type: {class: StatRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: 
+        _name: 
+        _title: 
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _referenceId: Level
+        _amount: 0
+    - rid: 4925655419490926685
+      type: {class: TimedRewardDefinition, ns: GameMaker.Core.Runtime, asm: GameMaker.Core.Runtime}
+      data:
+        _id: 
+        _name: 
+        _title: 
+        _icon: {fileID: 0}
+        _description: 
+        _metaData: {fileID: 0}
+        _referenceId: Level
+        _amount: 0

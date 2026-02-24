@@ -10,14 +10,14 @@ namespace GameMaker.Feature.Shop.Runtime
     [System.Serializable]
     public class PlayerShopManager: PlayerDataManager
     {
-        public BasePlayerShop GetPlayerShop(string referenceId)
+        public PlayerShop GetPlayerShop(string referenceId)
         {
-            return GetPlayerData(referenceId) as BasePlayerShop;
+            return GetPlayerData(referenceId) as PlayerShop;
         }
 
-        public List<BasePlayerShop> GetPlayerShops()
+        public List<PlayerShop> GetPlayerShops()
         {
-            return basePlayerDatas.Cast<BasePlayerShop>().ToList();
+            return basePlayerDatas.Cast<PlayerShop>().ToList();
         }
     }
 }

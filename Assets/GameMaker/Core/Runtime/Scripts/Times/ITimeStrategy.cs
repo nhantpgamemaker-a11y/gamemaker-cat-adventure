@@ -7,7 +7,7 @@ namespace GameMaker.Core.Runtime
     public abstract  class BaseTimeStrategy
     {
         public abstract UniTask<bool> InitAsync();
-        public abstract DateTime GetCurrentTime();
+        public abstract DateTime GetCurrentUTCTime();
         public abstract  bool IsTimeValid();
         public abstract string GetTimeSource();
     }

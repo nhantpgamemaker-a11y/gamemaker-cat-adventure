@@ -168,6 +168,11 @@ namespace GameMaker.Core.Editor
         protected virtual void ItemIndexChanged(int oldIndex, int newIndex)
         {
             definitionProperty.MoveArrayElement(oldIndex, newIndex);
+            var temp = items[oldIndex];
+            items[oldIndex] = items[newIndex];
+            items[newIndex] = temp;
+            itemListView.Rebuild();
+            itemListView.RefreshItems();
             definitionProperty.serializedObject.ApplyModifiedProperties();
         }
         protected abstract BaseHolder CreateHolder();

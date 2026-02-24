@@ -33,6 +33,7 @@ namespace GameMaker.IAP.Editor
             _bundleDefinitionHolder.Bind(serializedProperty.FindPropertyRelative("_reward"));
             _productTypeEnumField.BindProperty(serializedProperty.FindPropertyRelative("_productType"));
             _productIdTextField.BindProperty(serializedProperty.FindPropertyRelative("_productId"));
+
         }
     }
 }

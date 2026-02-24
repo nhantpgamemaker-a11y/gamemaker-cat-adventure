@@ -41,7 +41,7 @@ namespace GameMaker.Core.Runtime
             return false;
         }
 
-        public override DateTime GetCurrentTime()
+        public override DateTime GetCurrentUTCTime()
         {
             if (!_isSynced)
             {

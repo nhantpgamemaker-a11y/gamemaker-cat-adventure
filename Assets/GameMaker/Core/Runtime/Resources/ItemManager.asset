@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameMaker.Item.Runtime::GameMaker.Item.Runtime.ItemManager
   dataManager:
     _definitions:
-    - rid: 4388470189476020954
     - rid: 4388470458572341330
+    - rid: 4388470189476020954
   references:
     version: 2
     RefIds:
