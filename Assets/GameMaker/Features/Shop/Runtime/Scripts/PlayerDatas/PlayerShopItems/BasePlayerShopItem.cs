@@ -8,22 +8,23 @@ namespace GameMaker.Feature.Shop.Runtime
         [UnityEngine.SerializeField]
         private string _name;
         [UnityEngine.SerializeField]
-        private float _remain;
-        public float Remain => _remain;
-        protected BasePlayerShopItem(string id, string name ,IDefinition definition, float remain) : base(id,definition)
+        private bool _canPurchase = true;
+        public bool CanPurchase => _canPurchase;
+        protected BasePlayerShopItem(string id, string name ,IDefinition definition, bool canPurchase) : base(id,definition)
         {
             _name = name;
-            _remain = remain;
+            _canPurchase = canPurchase;
         }
         public BaseShopItemDefinition GetBaseShopItemDefinition()
         {
             return definition as BaseShopItemDefinition;
         }
-        public void AddRemain(float amount)
+        public void SetCanPurchase(bool status)
         {
-            _remain += amount;
+            _canPurchase = status;
             NotifyObserver(this);
         }
+        
         public string GetName()
         {
             return _name;

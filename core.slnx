@@ -14,7 +14,6 @@
   <Project Path="Unity.Multiplayer.Center.Editor.csproj" />
   <Project Path="Unity.Cinemachine.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.csproj" />
-  <Project Path="GameMaker.IAP.Runtime.csproj" />
   <Project Path="UnityEngine.UI.csproj" />
   <Project Path="Unity.Addressables.Editor.csproj" />
   <Project Path="Unity.Collections.csproj" />
@@ -53,6 +52,7 @@
   <Project Path="Unity.VisualScripting.Flow.csproj" />
   <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
+  <Project Path="GameMaker.Feature.Shop.Editor.csproj" />
   <Project Path="LitMotion.Extensions.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="UniTask.Linq.csproj" />
@@ -80,6 +80,7 @@
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Coffee.UIParticle.csproj" />
+  <Project Path="CatAdventure.GamePlay.csproj" />
   <Project Path="Unity.Services.Core.Environments.Internal.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
   <Project Path="Unity.Services.Core.Scheduler.csproj" />
@@ -93,16 +94,16 @@
   <Project Path="Unity.Mathematics.Editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
   <Project Path="UnityEditor.UI.Analytics.csproj" />
+  <Project Path="GameMaker.IAP.Editor.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
-  <Project Path="CatAdventure.GamePlay.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Services.Core.Threading.csproj" />
   <Project Path="Coffee.UIParticle.Editor.csproj" />
   <Project Path="VFXGraph.OutputEventHandlers.csproj" />
+  <Project Path="GameMaker.IAP.Runtime.csproj" />
   <Project Path="Unity.Purchasing.Utilities.csproj" />
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
-  <Project Path="GameMaker.IAP.Editor.csproj" />
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
   <Project Path="GameMaker.Sound.Runtime.csproj" />
@@ -128,7 +129,6 @@
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
   <Project Path="Unity.Services.Core.Networking.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
-  <Project Path="GameMaker.Feature.Shop.Editor.csproj" />
   <Project Path="GameMaker.Feature.DailyReward.Editor.csproj" />
   <Project Path="Unity.ScriptableBuildPipeline.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />

@@ -12,7 +12,7 @@ namespace GameMaker.Feature.Shop.Runtime
     {
         [UnityEngine.SerializeReference]
         private List<BasePlayerShopItem> _playerShopItems;
-        protected List<BasePlayerShopItem> PlayerShopItems => _playerShopItems;
+        
         private long _lastRefreshUTCTime;
         private CancellationTokenSource _cts;
         public long LastRefreshUTCTime => _lastRefreshUTCTime;
@@ -20,6 +20,7 @@ namespace GameMaker.Feature.Shop.Runtime
         private ShopDefinition RefreshShopDefinition => GetDefinition() as ShopDefinition;
         private bool _isShopResetting = false;
         public bool IsShopResetting => _isShopResetting;
+        public List<BasePlayerShopItem> PlayerShopItems => _playerShopItems;
         public PlayerShop(string id,
             IDefinition definition,
             List<BasePlayerShopItem> playerShopItems,
@@ -37,10 +38,10 @@ namespace GameMaker.Feature.Shop.Runtime
             //StartSchedule();
         }
 
-        public void PurchaseItem(string shopItemReferenceId, float amount)
+        public void PurchaseItem(string shopItemReferenceId, bool canPurchase)
         {
             var playerShopItem = _playerShopItems.FirstOrDefault(x => x.GetReferenceID() == shopItemReferenceId);
-            playerShopItem.AddRemain(amount);
+            playerShopItem.SetCanPurchase(canPurchase);
             NotifyObserver(this);
         }
 

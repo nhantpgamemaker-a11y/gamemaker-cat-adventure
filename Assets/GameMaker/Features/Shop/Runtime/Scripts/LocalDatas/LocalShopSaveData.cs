@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace GameMaker.Feature.Shop.Runtime
 {
@@ -76,6 +77,15 @@ namespace GameMaker.Feature.Shop.Runtime
         public List<PlayerShop> GetPlayerShops()
         {
             return _playerShops.Select(x => x.ToPlayerShop()).ToList();
+        }
+
+        public async UniTask PurchaseAsync(string shopDefinitionId, string shopItemId, bool v, bool isSave = true)
+        {
+            var playerShop = _playerShops.FirstOrDefault(x => x.GetID() == shopDefinitionId);
+            if (playerShop == null) return;
+            playerShop.Purchase(shopItemId, v);
+            if (isSave)
+                await SaveAsync();
         }
     }
     [System.Serializable]
@@ -168,8 +178,15 @@ namespace GameMaker.Feature.Shop.Runtime
             _lastRefreshUTCTime = lastRefreshTime;
             foreach (var item in _shopItems)
             {
-                item.AddRemain(item.GetShopItemDefinition().Amount - item.Remain);
+                item.SetCanPurchase(true);
             }
+        }
+
+        public void Purchase(string shopItemId, bool v)
+        {
+            var playerShopItem = _shopItems.FirstOrDefault(x => x.GetID() == shopItemId);
+            if (playerShopItem == null) return;
+            playerShopItem.Purchase(v);
         }
     }
 
@@ -193,19 +210,19 @@ namespace GameMaker.Feature.Shop.Runtime
     [TypeCache]
     public abstract class BasePlayerShopItemModel : PlayerDataModel
     {
-        [JsonProperty("Remain")]
-        private float _remain;
+        [JsonProperty("CanPurchase")]
+        private bool _canPurchase;
         [JsonProperty("ShopItemDefinitionReferenceID")]
         private string _shopItemDefinitionReferenceID;
         [JsonIgnore]
         private BaseShopItemDefinition _shopItemDefinition;
         [JsonIgnore]
-        public float Remain => _remain;
+        public bool CanPurchase => _canPurchase;
         [JsonIgnore]
         public string ShopItemDefinitionReferenceID => _shopItemDefinitionReferenceID;
-        public BasePlayerShopItemModel(string id, string name, BaseShopItemDefinition baseShopItemDefinition) : base(id, name)
+        public BasePlayerShopItemModel(string id, string name, BaseShopItemDefinition baseShopItemDefinition, bool canPurchase) : base(id, name)
         {
-            _remain = baseShopItemDefinition.Amount;
+            _canPurchase = canPurchase;
             _shopItemDefinition = baseShopItemDefinition;
             _shopItemDefinitionReferenceID = baseShopItemDefinition.GetID();
         }
@@ -213,9 +230,9 @@ namespace GameMaker.Feature.Shop.Runtime
         {
             _shopItemDefinition = shopItemDefinition;
         }
-        public void AddRemain(float amount)
+        public void SetCanPurchase(bool canPurchase)
         {
-            _remain += amount;
+            _canPurchase = canPurchase;
         }
         public BaseShopItemDefinition GetShopItemDefinition()
         {
@@ -223,31 +240,36 @@ namespace GameMaker.Feature.Shop.Runtime
         }
 
         public abstract BasePlayerShopItem ToPlayerShopItem();
+
+        public void Purchase(bool v)
+        {
+            _canPurchase = v;
+        }
     }
     [System.Serializable]
-    [TypeContain(typeof(CurrencyShopItemDefinition))]
+    [TypeContain(typeof(BaseCurrencyShopItemDefinition))]
     public class CurrencyPlayerShopItemModel : BasePlayerShopItemModel
     {
-        public CurrencyPlayerShopItemModel(string id, string name,BaseShopItemDefinition baseShopItemDefinition) : base(id, name,baseShopItemDefinition)
+        public CurrencyPlayerShopItemModel(string id, string name,BaseShopItemDefinition baseShopItemDefinition, bool canPurchase) : base(id, name,baseShopItemDefinition,canPurchase)
         {
         }
 
         public override BasePlayerShopItem ToPlayerShopItem()
         {
-            return new CurrencyPlayerShopItem(id, name, GetShopItemDefinition() as IDefinition ,Remain);
+            return new CurrencyPlayerShopItem(id, name, GetShopItemDefinition() as IDefinition, CanPurchase);
         }
     }
     [System.Serializable]
     [TypeContain(typeof(ItemShopItemDefinition))]
     public class ItemPlayerShopItemModel : BasePlayerShopItemModel
     {
-        public ItemPlayerShopItemModel(string id, string name, BaseShopItemDefinition baseShopItemDefinition) : base(id, name, baseShopItemDefinition)
+        public ItemPlayerShopItemModel(string id, string name, BaseShopItemDefinition baseShopItemDefinition, bool canPurchase) : base(id, name, baseShopItemDefinition, canPurchase)
         {
         }
 
         public override BasePlayerShopItem ToPlayerShopItem()
         {
-            return new ItemPlayerShopItem(id, name, GetShopItemDefinition() as IDefinition ,Remain);
+            return new ItemPlayerShopItem(id, name, GetShopItemDefinition() as IDefinition ,CanPurchase);
         }
     }
 }

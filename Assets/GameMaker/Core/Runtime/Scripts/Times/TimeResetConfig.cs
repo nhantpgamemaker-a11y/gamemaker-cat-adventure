@@ -64,7 +64,7 @@ namespace GameMaker.Core.Runtime
         {
             DateTime utcNow = TimeManager.Instance.UTCNow;
 
-            // Interval xử lý riêng
+            
             if (_resetType == ResetType.Interval)
             {
                 if (lastResetUtcTicks == 0)

@@ -6,13 +6,13 @@ namespace GameMaker.Feature.Shop.Runtime
     [System.Serializable]
     public class ItemPlayerShopItem : BasePlayerShopItem
     {
-        public ItemPlayerShopItem(string id, string name ,IDefinition definition, float remain) : base(id, name,definition, remain)
+        public ItemPlayerShopItem(string id, string name ,IDefinition definition, bool canPurchase) : base(id, name,definition, canPurchase)
         {
         }
 
         public override object Clone()
         {
-            return new ItemPlayerShopItem(GetID(), GetName(), GetDefinition(), Remain);
+            return new ItemPlayerShopItem(GetID(), GetName(), GetDefinition(), CanPurchase);
         }
 
         public override void CopyFrom(BasePlayerData basePlayerData)

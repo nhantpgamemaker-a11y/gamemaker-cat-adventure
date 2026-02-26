@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameMaker.Core.Runtime;
@@ -6,33 +7,29 @@ using UnityEngine;
 namespace GameMaker.Feature.Shop.Runtime
 {
     [System.Serializable]
-    public class Price: IReferenceDefinition
+    [TypeCache]
+    public abstract class BasePrice:ICloneable
     {
         [UnityEngine.SerializeField]
         private string _currencyReferenceId;
-        [UnityEngine.SerializeField]
-        private long _amount;
-
         public string CurrencyReferenceId { get => _currencyReferenceId;}
-        public long Amount { get => _amount; }
-        public Price()
+        public abstract object GetAmount();
+        public BasePrice()
         {
             _currencyReferenceId = CurrencyManager.Instance.GetDefinitions().First().GetID();
         }
-        public Price(string currencyId, long amount)
+        public BasePrice(string currencyId, object amount)
         {
             _currencyReferenceId = currencyId;
-            _amount = amount;
         }
 
-        public IDefinition GetDefinition()
+        public virtual BaseCurrencyDefinition GetCurrencyDefinition()
         {
             return CurrencyManager.Instance.GetDefinition(_currencyReferenceId);
         }
 
-        public string GetReferenceID()
-        {
-            return _currencyReferenceId;
-        }
+        public abstract object Clone();
+
+        public abstract BasePrice GetNegative();
     }
 }

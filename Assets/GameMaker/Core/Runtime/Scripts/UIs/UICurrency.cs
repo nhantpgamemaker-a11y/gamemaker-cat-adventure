@@ -13,7 +13,7 @@ namespace GameMaker.Core.Runtime
         [UnityEngine.SerializeField] protected Image imgIcon;
         
         protected BasePlayerCurrency playerCurrency;
-        protected virtual void OnValidate() 
+        protected virtual void OnValidate()
         {
             this.gameObject.name = $"UICurrency-{currencyID.GetBaseCurrencyDefinition().GetName()}";
         }

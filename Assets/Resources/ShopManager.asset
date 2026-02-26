@@ -21,11 +21,11 @@ MonoBehaviour:
     - rid: 4925655419490927000
       type: {class: ShopDefinition, ns: GameMaker.Feature.Shop.Runtime, asm: GameMaker.Feature.Shop.Runtime}
       data:
-        _id: 
-        _name: 
-        _title: 
+        _id: ShopCoin
+        _name: ShopCoin
+        _title: Coin
         _icon: {fileID: 0}
-        _description: 
+        _description: ShopCoin
         _metaData: {fileID: 0}
         _timeResetConfig:
           _resetType: 0

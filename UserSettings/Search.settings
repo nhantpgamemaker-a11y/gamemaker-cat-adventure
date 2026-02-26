@@ -9,9 +9,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"picker_window_position_offset.00000000" = "446.6667;122.6667;890;550"
+	"picker_window_position_offset.00000000" = "269.3333;88;890;550"
 	"picker_visibility_flags.00000000" = "0"
-	"picker_item_size.00000000" = "0"
+	"picker_item_size.00000000" = "129"
 	"picker_inspector.00000000" = "0"
 }
 providers = {
@@ -69,6 +69,17 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"type: System.DayOfWeek"
+	"type: System."
+	"type: System"
+	"D"
+	"System.Da"
+	""
+	"DayOfWeek"
+	"type: DayOfWeek"
+	"type: DayOfWeekEnumFiel"
+	"type: ResetTimeModeEnumFiel"
+	"type: Reset"
 	"type: ProductType"
 	"type: Audito"
 	"type: BaseCreateItemTemplate"
@@ -78,16 +89,6 @@ recentSearches = [
 	"type: MetaDa"
 	"type: BaseMetaData"
 	"type: ScriptableObj"
-	"type: Scrip"
-	"type: Sc"
-	"type: GameMa"
-	"type: GameMaker.Core.Run"
-	"type: MetaD"
-	"count{...t=[AnimationClip, AudioClip,Script,Material,model,prefab,sceneasset,scriptableobject,texture2d] -is:nested}"
-	"distinct{select{a:assets, @type}}"
-	"count{...t={distinct{select{a:assets, @type}}} -is:nested}"
-	"count{p:a:allassets -is:nested}"
-	"count{p:a:assets}"
 ]
 searchItemFavorites = [
 ]
@@ -96,12 +97,11 @@ showSavedSearchPanel = true
 hideTabs = false
 indexOnEditorStartup = true
 logIndexingPerformanceReport = false
-expandedQueries = [
-]
+expandedQueries = [1197661481]
 queryBuilder = true
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "all"
 disabledIndexers = ""
 minIndexVariations = 2
 findProviderIndexHelper = true
-itemIconSize = 0
+itemIconSize = 129

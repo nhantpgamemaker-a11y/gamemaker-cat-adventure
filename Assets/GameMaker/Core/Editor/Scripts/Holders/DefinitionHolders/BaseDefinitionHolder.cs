@@ -11,6 +11,7 @@ namespace GameMaker.Core.Editor
         protected ObjectField iconField;
         protected TextField titleTextField;
         protected TextField descriptionTextField;
+        
 
 
         protected BaseDefinitionHolder(VisualElement root):base(root)

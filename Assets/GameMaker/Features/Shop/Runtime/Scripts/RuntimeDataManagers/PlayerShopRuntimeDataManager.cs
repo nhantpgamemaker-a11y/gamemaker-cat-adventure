@@ -34,23 +34,26 @@ namespace GameMaker.Feature.Shop.Runtime
             ShopGateway.Initialize(this);
             return true;
         }
-        public async UniTask<bool> PurchaseAsync(string shopDefinitionId, string shopItemId, float amount, IExtendData extendData)
+        public async UniTask<bool> PurchaseAsync(string shopDefinitionId, string shopItemId, IExtendData extendData)
         {
-            var (status, products, price) = await _shopDataSpaceProvider.PurchaseAsync(shopDefinitionId, shopItemId, amount);
+            var (status, products, price) = await _shopDataSpaceProvider.PurchaseAsync(shopDefinitionId, shopItemId);
             if (!status) return status;
+            _playerCurrencyManager.AddPlayerCurrency(price.CurrencyReferenceId, price.GetAmount());
             foreach (var product in products)
             {
                 product.Consume(_playerDataManagers, extendData);
             }
-            _playerCurrencyManager.AddPlayerCurrency(price.CurrencyReferenceId, -price.Amount);
-            RuntimeActionManager.Instance.NotifyAction(CurrencyActionData.ADD_CURRENCY_ACTION_DEFINITION, new CurrencyActionData(price.CurrencyReferenceId,  price.Amount, extendData));
+            var shopDefinition = ShopManager.Instance.GetDefinition(shopDefinitionId);
+            var playerShop = _playerShopManager.GetPlayerShop(shopDefinitionId);
+            playerShop.PurchaseItem(shopItemId, shopDefinition.TimeResetConfig.ResetType == ResetType.None);
+            RuntimeActionManager.Instance.NotifyAction(CurrencyActionData.ADD_CURRENCY_ACTION_DEFINITION, new CurrencyActionData(price.CurrencyReferenceId,  price.GetAmount(), extendData));
             return true;
         }
-        public List<PlayerShop> GetBasePlayerShops()
+        public List<PlayerShop> GetPlayerShops()
         {
             return _playerShopManager.GetPlayerShops();
         }
-        public PlayerShop GetBasePlayerShop(string shopDefinitionId)
+        public PlayerShop GetPlayerShop(string shopDefinitionId)
         {
             return _playerShopManager.GetPlayerShop(shopDefinitionId);
         }

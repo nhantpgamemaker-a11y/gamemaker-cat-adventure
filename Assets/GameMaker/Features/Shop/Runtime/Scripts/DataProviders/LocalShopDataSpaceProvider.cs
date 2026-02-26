@@ -16,11 +16,12 @@ namespace GameMaker.Feature.Shop.Runtime
         }
 
 
-        public async override UniTask<(bool status, List<BaseReceiverProduct> products, Price price)> PurchaseAsync(string shopDefinitionId, string shopItemId, float amount)
+        public async override UniTask<(bool status, List<BaseReceiverProduct> products, BasePrice price)> PurchaseAsync(string shopDefinitionId, string shopItemId)
         {
             var shopDefinition = ShopManager.Instance.GetDefinition(shopDefinitionId);
+            await _localShopSaveData.PurchaseAsync(shopDefinitionId, shopItemId, shopDefinition.TimeResetConfig.ResetType == ResetType.None);
             var shopItemDefinition = shopDefinition.GetShopItemDefinition(shopItemId);
-            return (true, new(), shopItemDefinition.Price);
+            return (true, new(), shopItemDefinition.Price.GetNegative());
         }
         public async override UniTask<(bool, List<PlayerShop>)> GetShopsAsync()
         {

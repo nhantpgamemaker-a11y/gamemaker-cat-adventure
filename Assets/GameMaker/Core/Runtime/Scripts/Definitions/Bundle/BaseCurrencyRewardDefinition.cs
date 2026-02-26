@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameMaker.Core.Runtime
 {
-     [System.Serializable]
+    [System.Serializable]
     public abstract class BaseCurrencyRewardDefinition : BaseRewardDefinition
     {
         public BaseCurrencyRewardDefinition() : base()
@@ -14,10 +14,10 @@ namespace GameMaker.Core.Runtime
         public BaseCurrencyRewardDefinition(string id,
         string name,
         string title,
-        string definition,
+        string description,
         Sprite icon,
         BaseMetaData metaData,
-        string referenceId) : base(id, name, title, definition, icon,metaData,referenceId )
+        string referenceId) : base(id, name, title, description, icon,metaData,referenceId )
         {
         }
 

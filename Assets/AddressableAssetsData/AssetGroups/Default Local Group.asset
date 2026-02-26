@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9faaec376dc95164c882ef12316e9c25
+    m_Address: ShopPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd43427ef3d1a0542bfb1d5ad5bce157
     m_Address: MapView
     m_ReadOnly: 0

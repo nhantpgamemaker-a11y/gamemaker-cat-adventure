@@ -30,7 +30,7 @@ namespace GameMaker.Core.Editor
 
         protected override BaseHolder CreateHolder()
         {
-            var asset = Resources.Load<VisualTreeAsset>(
+            var asset = UIToolkitLoaderUtils.LoadUXML(
             "TimedDefinitionElement");
             var templateContainer = asset.CloneTree();
             templateContainer.style.height = StyleKeyword.Auto;

@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: TypeCache
   m_EditorClassIdentifier: GameMaker.Core.Runtime::GameMaker.Core.Runtime.TypeCache
   _allDerivedNonAbstractTypes:
+  - _baseTypeName: GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Core.Editor.BaseRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Editor.ItemRewardDefinitionHolder, GameMaker.Core.Editor, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -82,8 +91,12 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.BaseRewardDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.ItemRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.TimedRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
@@ -171,6 +184,14 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Editor.BaseShopItemDefinitionHolder, GameMaker.Feature.Shop.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames: []
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BaseCurrencyShopItemDefinition,
+      GameMaker.Feature.Shop.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.LongCurrencyShopItemDefinition, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -178,6 +199,13 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Feature.Shop.Runtime.ItemPlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.BigIntPrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Feature.Shop.Runtime.LongPrice, GameMaker.Feature.Shop.Runtime, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.IAP.Runtime.BaseLocalRecallReward, GameMaker.IAP.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -190,10 +218,19 @@ MonoBehaviour:
     - GameMaker.IAP.Runtime.ItemLocalRecallReward, GameMaker.IAP.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   _allConcreteDerivedTypes:
+  - _baseTypeName: GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Core.Editor.BaseRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Editor.ItemRewardDefinitionHolder, GameMaker.Core.Editor, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -259,8 +296,12 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.BaseRewardDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.ItemRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.TimedRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
@@ -348,6 +389,14 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Editor.BaseShopItemDefinitionHolder, GameMaker.Feature.Shop.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames: []
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BaseCurrencyShopItemDefinition,
+      GameMaker.Feature.Shop.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.LongCurrencyShopItemDefinition, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -355,6 +404,13 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Feature.Shop.Runtime.ItemPlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.BigIntPrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Feature.Shop.Runtime.LongPrice, GameMaker.Feature.Shop.Runtime, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.IAP.Runtime.BaseLocalRecallReward, GameMaker.IAP.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -367,10 +423,19 @@ MonoBehaviour:
     - GameMaker.IAP.Runtime.ItemLocalRecallReward, GameMaker.IAP.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   _allConcreteAssignableTypes:
+  - _baseTypeName: GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Core.Editor.BaseRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - GameMaker.Core.Editor.BaseCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinitionHolder, GameMaker.Core.Editor,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Editor.ItemRewardDefinitionHolder, GameMaker.Core.Editor, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -436,8 +501,12 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.BaseRewardDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
+    - GameMaker.Core.Runtime.BigIntCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.ItemRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    - GameMaker.Core.Runtime.LongCurrencyRewardDefinition, GameMaker.Core.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.TimedRewardDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
@@ -525,6 +594,14 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Sound.Runtime.SoundRuntimeDataManager, GameMaker.Sound.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Editor.BaseShopItemDefinitionHolder, GameMaker.Feature.Shop.Editor,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames: []
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BaseCurrencyShopItemDefinition,
+      GameMaker.Feature.Shop.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.LongCurrencyShopItemDefinition, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
@@ -532,6 +609,13 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - GameMaker.Feature.Shop.Runtime.ItemPlayerShopItemModel, GameMaker.Feature.Shop.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - _baseTypeName: GameMaker.Feature.Shop.Runtime.BasePrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _derivedTypeNames:
+    - GameMaker.Feature.Shop.Runtime.BigIntPrice, GameMaker.Feature.Shop.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - GameMaker.Feature.Shop.Runtime.LongPrice, GameMaker.Feature.Shop.Runtime, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _baseTypeName: GameMaker.IAP.Runtime.BaseLocalRecallReward, GameMaker.IAP.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:

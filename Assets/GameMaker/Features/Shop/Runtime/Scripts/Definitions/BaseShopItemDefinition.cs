@@ -1,3 +1,4 @@
+using System;
 using GameMaker.Core.Runtime;
 using UnityEngine;
 
@@ -8,20 +9,16 @@ namespace GameMaker.Feature.Shop.Runtime
     {
         [UnityEngine.SerializeField]
         private string _referenceId;
-        [UnityEngine.SerializeField]
-        private Price _price;
-        [UnityEngine.SerializeField]
-        private float _amount;
-        public Price Price => _price;
-        public float Amount => _amount;
+        [UnityEngine.SerializeReference]
+        private BasePrice _price;
+        public BasePrice Price => _price;
         public BaseShopItemDefinition() : base() { }
 
-        public BaseShopItemDefinition(string id, string name, string title, string description, Sprite icon, BaseMetaData metaData, string referenceId, Price price,float amount) :
+        public BaseShopItemDefinition(string id, string name, string title, string description, Sprite icon, BaseMetaData metaData, string referenceId, BasePrice price) :
         base(id, name, title, description, icon, metaData)
         {
             _referenceId = referenceId;
             _price = price;
-            _amount = amount;
         }
         
         public override Sprite GetIcon()
@@ -40,5 +37,12 @@ namespace GameMaker.Feature.Shop.Runtime
         {
             return _referenceId;
         }
+        
+        public Type GetTypeOfPrice()
+        {
+            return _price.GetType();
+        }
+
+        public abstract string GetStringAmount();
     }
 }
