@@ -27,5 +27,10 @@ namespace GameMaker.Core.Runtime
         {
             return BigInteger.Parse(_amount);
         }
+
+        public override object GetNegativeAmount()
+        {
+            return BigInteger.Parse(_amount) * -1;
+        }
     }
 }
