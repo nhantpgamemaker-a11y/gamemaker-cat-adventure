@@ -127,10 +127,6 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.PropertyDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - CatAdventure.GamePlay.Test1, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    - CatAdventure.GamePlay.Tes2, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     - GameMaker.Core.Runtime.AttributeDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
@@ -428,10 +424,6 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.PropertyDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - CatAdventure.GamePlay.Test1, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    - CatAdventure.GamePlay.Tes2, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     - GameMaker.Core.Runtime.AttributeDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
@@ -729,10 +721,6 @@ MonoBehaviour:
   - _baseTypeName: GameMaker.Core.Runtime.PropertyDefinition, GameMaker.Core.Runtime,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _derivedTypeNames:
-    - CatAdventure.GamePlay.Test1, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    - CatAdventure.GamePlay.Tes2, CatAdventure.GamePlay, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     - GameMaker.Core.Runtime.AttributeDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     - GameMaker.Core.Runtime.StatDefinition, GameMaker.Core.Runtime, Version=0.0.0.0,

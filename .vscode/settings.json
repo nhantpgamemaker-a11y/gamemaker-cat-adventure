@@ -67,7 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "core.slnx",
+    "dotnet.defaultSolution": "cat-adventure.slnx",
     "editor.tabCompletion": "on",
     "editor.inlineSuggest.showToolbar": "always"
 }
