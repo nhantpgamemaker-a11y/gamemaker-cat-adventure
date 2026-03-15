@@ -8,15 +8,18 @@ namespace CatAdventure.GamePlay
     public abstract class CatGroundedState : BaseCatState
     {
         private Collider[] _sneakOverlapBoxResults;
+        private Collider[] _droppingOverlapBoxResults;
         public override void OnEnterState(BaseStateData baseStateData = null)
         {
             _sneakOverlapBoxResults = new Collider[1];
+            _droppingOverlapBoxResults = new Collider[1];
             StartBoolAnimation(stateMachine.CatAnimationData.GroundedAnimationHash);
             base.OnEnterState(baseStateData);
         }
         public override void OnExitState()
         {
             _sneakOverlapBoxResults = null;
+            _droppingOverlapBoxResults = null;
             base.OnExitState();
             StopBoolAnimation(stateMachine.CatAnimationData.GroundedAnimationHash);
         }
@@ -126,7 +129,20 @@ namespace CatAdventure.GamePlay
                 var distance = y + stateMachine.CatConfigData.ExtraGroundedFloatDistance;
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(bodyCollider.bounds.center, bodyCollider.bounds.center + direction * distance);
-             }
+            }
+        }
+        protected bool IsDropping()
+        {
+            var droppingCheckCollider = stateMachine.DropCheckCollider;
+            if(Physics.OverlapBoxNonAlloc(droppingCheckCollider.bounds.center,
+            droppingCheckCollider.size / 2f,
+            _droppingOverlapBoxResults,
+            droppingCheckCollider.gameObject.transform.rotation,
+            stateMachine.CatConfigData.DroppingLayerMask) != 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

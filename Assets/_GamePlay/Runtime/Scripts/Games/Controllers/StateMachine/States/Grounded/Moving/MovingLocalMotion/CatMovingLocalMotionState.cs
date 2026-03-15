@@ -28,6 +28,11 @@ namespace CatAdventure.GamePlay
                 stateMachine.ChangeState(CatStateType.SneakForward);
                 return;
             }
+            if (IsDropping())
+            {
+                stateMachine.ChangeState(CatStateType.DroppingFromEdge);
+                return;
+            }
         }
         public override void OnFixedUpdate()
         {

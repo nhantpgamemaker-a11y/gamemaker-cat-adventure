@@ -82,6 +82,26 @@ namespace CatAdventure.GamePlay
             velocity.y = 0f;
             return velocity;
         }
+        public Vector3 GetForwardDirection()
+        {
+            var moveInput = stateMachine.CatReusableData.CurrentMoveInput;
+            if (moveInput == Vector2.zero) return stateMachine.transform.forward;
+            var cameraTransform = Camera.main.transform;
+
+            var forward = cameraTransform.forward;
+            forward.y = 0;
+            forward.Normalize();
+
+            var right = cameraTransform.right;
+            right.y = 0;
+            right.Normalize();
+
+            var moveDirection = forward * moveInput.y + right * moveInput.x;
+            if (moveDirection.sqrMagnitude <= 0.0001f) return stateMachine.transform.forward;
+            moveDirection.Normalize();
+            return moveDirection;
+        }
+        
         protected void ResetVelocity()
         {
             stateMachine.Rigidbody.linearVelocity = Vector3.zero;

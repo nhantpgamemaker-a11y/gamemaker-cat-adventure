@@ -2,7 +2,7 @@ using GameMaker.Core.Runtime;
 
 namespace CatAdventure.GamePlay
 {
-    public class CatLightLandingState : CatGroundedState
+    public class CatLightLandingState : CatLandingState
     {
         public override CatStateType GetStateType()
         {

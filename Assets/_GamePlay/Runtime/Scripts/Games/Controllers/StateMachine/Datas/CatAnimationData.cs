@@ -34,6 +34,7 @@ namespace CatAdventure.GamePlay
         [SerializeField] private string _sneakBackwardAnimationName = "SneakBackward";
         [SerializeField] private string _movingLocalMotionAnimationName = "MovingLocalMotion";
         [SerializeField] private string _targetForwardAngleAnimationName = "TargetForwardAngle";
+        [SerializeField] private string _droppingFromEdgeAnimationName = "DroppingFromEdge";
 
         // Cached hashes for faster runtime access
         public int GroundedAnimationHash { get; private set; }
@@ -62,7 +63,8 @@ namespace CatAdventure.GamePlay
         public int SneakBackwardAnimationHash { get; private set; }
         public int MovingLocalMotionAnimationHash { get; private set; }
         public int TargetForwardAngleAnimationHash { get; private set; }
-        public int SneakForwardAnimationHash {get; private set;  }
+        public int SneakForwardAnimationHash { get; private set; }
+        public int DroppingFromEdgeAnimationHash { get; private set; }
         public void OnInit()
         {
             GroundedAnimationHash = Animator.StringToHash(_groundedAnimationName);
@@ -92,6 +94,7 @@ namespace CatAdventure.GamePlay
             SneakBackwardAnimationHash = Animator.StringToHash(_sneakBackwardAnimationName);
             MovingLocalMotionAnimationHash = Animator.StringToHash(_movingLocalMotionAnimationName);
             TargetForwardAngleAnimationHash = Animator.StringToHash(_targetForwardAngleAnimationName);
+            DroppingFromEdgeAnimationHash = Animator.StringToHash(_droppingFromEdgeAnimationName);
         }
     }
 }
