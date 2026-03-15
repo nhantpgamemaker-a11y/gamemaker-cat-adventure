@@ -11,8 +11,13 @@ namespace CatAdventure.GamePlay
         Walking,
         Running,
         Jumping,
-        Falling
-
+        Falling,
+        SneakIdling,
+        Sneaking,
+        SneakForward,
+        SneakBackward,
+        LightLanding,
+        HardLanding,
     }
 
     public class CatStateMachine : MonoBehaviour, IStateMachine<CatStateType>
@@ -44,6 +49,7 @@ namespace CatAdventure.GamePlay
         public BoxCollider GroundCheckCollider => _groundCheckCollider;
         public BoxCollider SneakCheckCollider => _sneakCheckCollider;
         public Collider[] BodyColliders => _bodyColliders;
+        public Collider HeadCollider => _hearCollider;
         public void ChangeState(CatStateType stateType, BaseStateData baseStateData = null)
         {
             _currentState?.OnExitState();
@@ -111,8 +117,21 @@ namespace CatAdventure.GamePlay
         IState<CatStateType> IStateMachine<CatStateType>.GetCurrentState()
         {
             return _currentState;
-
         }
 
+        internal void OnAnimationStartEvent()
+        {
+            _currentState?.OnAnimationStartEvent();
+        }
+
+        internal void OnAnimationTransitionEvent()
+        {
+            _currentState?.OnAnimationTransitionEvent();
+        }
+
+        internal void OnAnimationEndEvent()
+        {
+            _currentState?.OnAnimationEndEvent();
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace CatAdventure.GamePlay
         [SerializeField] private string _ledgeClimbingAnimationName = "LedgeClimbing";
         [SerializeField] private string _sneakLocalMotionAnimationName = "SneakLocalMotion";
         [SerializeField] private string _sneakIdlingAnimationName = "SneakIdling";
+        [SerializeField] private string _sneakForwardAnimationName = "SneakForward";
+        [SerializeField] private string _sneakBackwardAnimationName = "SneakBackward";
         [SerializeField] private string _movingLocalMotionAnimationName = "MovingLocalMotion";
         [SerializeField] private string _targetForwardAngleAnimationName = "TargetForwardAngle";
 
@@ -57,9 +59,10 @@ namespace CatAdventure.GamePlay
         public int LedgeClimbingAnimationHash { get; private set; }
         public int SneakLocalMotionAnimationHash { get; private set; }
         public int SneakIdlingAnimationHash { get; private set; }
+        public int SneakBackwardAnimationHash { get; private set; }
         public int MovingLocalMotionAnimationHash { get; private set; }
         public int TargetForwardAngleAnimationHash { get; private set; }
-
+        public int SneakForwardAnimationHash {get; private set;  }
         public void OnInit()
         {
             GroundedAnimationHash = Animator.StringToHash(_groundedAnimationName);
@@ -85,6 +88,8 @@ namespace CatAdventure.GamePlay
             LedgeClimbingAnimationHash = Animator.StringToHash(_ledgeClimbingAnimationName);
             SneakLocalMotionAnimationHash = Animator.StringToHash(_sneakLocalMotionAnimationName);
             SneakIdlingAnimationHash = Animator.StringToHash(_sneakIdlingAnimationName);
+            SneakForwardAnimationHash = Animator.StringToHash(_sneakForwardAnimationName);
+            SneakBackwardAnimationHash = Animator.StringToHash(_sneakBackwardAnimationName);
             MovingLocalMotionAnimationHash = Animator.StringToHash(_movingLocalMotionAnimationName);
             TargetForwardAngleAnimationHash = Animator.StringToHash(_targetForwardAngleAnimationName);
         }

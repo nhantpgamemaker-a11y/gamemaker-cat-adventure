@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameMaker.Core.Runtime;
@@ -27,6 +28,21 @@ namespace CatAdventure.GamePlay
         private  void FixedUpdate() 
         {
             _stateMachine.OnFixedUpdate();
+        }
+
+        internal void OnAnimationStartEvent()
+        {
+            _stateMachine.OnAnimationStartEvent();
+        }
+
+        internal void OnAnimationTransitionEvent()
+        {
+            _stateMachine.OnAnimationTransitionEvent();
+        }
+
+        internal void OnAnimationEndEvent()
+        {
+            _stateMachine.OnAnimationEndEvent();
         }
     }
 }

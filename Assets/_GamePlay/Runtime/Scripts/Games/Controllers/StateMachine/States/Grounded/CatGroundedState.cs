@@ -7,13 +7,16 @@ namespace CatAdventure.GamePlay
 {
     public abstract class CatGroundedState : BaseCatState
     {
+        private Collider[] _sneakOverlapBoxResults;
         public override void OnEnterState(BaseStateData baseStateData = null)
         {
+            _sneakOverlapBoxResults = new Collider[1];
             StartBoolAnimation(stateMachine.CatAnimationData.GroundedAnimationHash);
             base.OnEnterState(baseStateData);
         }
         public override void OnExitState()
         {
+            _sneakOverlapBoxResults = null;
             base.OnExitState();
             StopBoolAnimation(stateMachine.CatAnimationData.GroundedAnimationHash);
         }
@@ -41,7 +44,7 @@ namespace CatAdventure.GamePlay
             base.OnFixedUpdate();
             FloatHandle();
         }
-        protected void UpdateTargetForwardAngle()
+        protected virtual void UpdateTargetForwardAngle()
         {
             var moveInput = stateMachine.CatReusableData.CurrentMoveInput;
             var cameraTransform = Camera.main?.transform;
@@ -76,7 +79,7 @@ namespace CatAdventure.GamePlay
 
             SetFloatAnimation(stateMachine.CatAnimationData.TargetForwardAngleAnimationHash, smoothAngle);
         }
-        protected void FloatHandle()
+        protected virtual void FloatHandle()
         {
             var groundCheckCollider = stateMachine.GroundCheckCollider;
             var bodyColliders = stateMachine.BodyColliders;
@@ -89,7 +92,7 @@ namespace CatAdventure.GamePlay
                 var distance = y + stateMachine.CatConfigData.ExtraGroundedFloatDistance;
                 if (Physics.Raycast(bodyCollider.bounds.center, direction, out var hitInfo, distance, groundLayerMask))
                 {
-                    var floatDistance =  y - hitInfo.distance;
+                    var floatDistance = y - hitInfo.distance;
                     var verticalVelocity = GetVerticalVelocity();
                     var liftForce = new Vector3(0f, floatDistance * stateMachine.CatConfigData.StepFloatingForce);
                     liftForce = liftForce - verticalVelocity;
@@ -97,6 +100,19 @@ namespace CatAdventure.GamePlay
                     break;
                 }
             }
+        }
+        protected bool IsSneaking()
+        {
+            var sneakingCheckCollider = stateMachine.SneakCheckCollider;
+            if(Physics.OverlapBoxNonAlloc(sneakingCheckCollider.bounds.center,
+            sneakingCheckCollider.size / 2f,
+            _sneakOverlapBoxResults,
+            sneakingCheckCollider.gameObject.transform.rotation,
+            stateMachine.CatConfigData.SneakableLayerMask) != 0)
+            {
+                return true;
+            }
+            return false;
         }
         public void OnDrawGizmos()
         {

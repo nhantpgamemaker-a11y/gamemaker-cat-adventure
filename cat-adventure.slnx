@@ -5,6 +5,7 @@
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
   <Project Path="Unity.Purchasing.csproj" />
   <Project Path="Unity.Services.Core.Internal.csproj" />
+  <Project Path="CatAdventure.GamePlay.csproj" />
   <Project Path="Unity.ShaderGraph.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.csproj" />
   <Project Path="Unity.ScriptableBuildPipeline.Editor.csproj" />
@@ -74,7 +75,6 @@
   <Project Path="Unity.RenderPipelines.Universal.2D.Editor.Overrides.csproj" />
   <Project Path="GameMaker.Sound.Editor.csproj" />
   <Project Path="Unity.2D.Sprite.Editor.csproj" />
-  <Project Path="CatAdventure.GamePlay.csproj" />
   <Project Path="LitMotion.Animation.csproj" />
   <Project Path="NuGetForUnity.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />

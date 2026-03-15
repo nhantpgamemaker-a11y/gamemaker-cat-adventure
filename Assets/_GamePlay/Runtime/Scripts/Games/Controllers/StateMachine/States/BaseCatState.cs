@@ -86,5 +86,20 @@ namespace CatAdventure.GamePlay
         {
             stateMachine.Rigidbody.linearVelocity = Vector3.zero;
         }
+
+        protected internal virtual void OnAnimationStartEvent()
+        {
+            
+        }
+
+        protected internal virtual void OnAnimationTransitionEvent()
+        {
+            
+        }
+
+        protected internal virtual void OnAnimationEndEvent()
+        {
+           
+        }
     }   
 }

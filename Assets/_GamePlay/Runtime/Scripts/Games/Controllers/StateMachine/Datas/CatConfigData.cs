@@ -14,8 +14,10 @@ namespace CatAdventure.GamePlay
         [SerializeField][Range(0f, 1f)] private float _animationRotationSmoothTime = 0.2f;
         [SerializeField] private AnimationCurve _speedSlopeModifierByAngle;
         [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private LayerMask _sneakableLayerMask;
         [SerializeField] private float _extraGroundedFloatDistance = 0.1f;
         [SerializeField] private float _stepFloatingForce = 5f;
+        [SerializeField] private float _sneakForwardMaxAngle = 60f;
 
         public float WalkSpeed => _walkSpeed;
         public float RunSpeed => _runSpeed;
@@ -26,8 +28,11 @@ namespace CatAdventure.GamePlay
         public AnimationCurve SpeedSlopeModifierByAngle => _speedSlopeModifierByAngle;
         public float RotationSmoothTime => _animationRotationSmoothTime;
         public LayerMask GroundLayerMask => _groundLayerMask;
+        public LayerMask SneakableLayerMask => _sneakableLayerMask;
 
         public float ExtraGroundedFloatDistance => _extraGroundedFloatDistance;
         public float StepFloatingForce => _stepFloatingForce;
+
+        public float SneakForwardMaxAngle => _sneakForwardMaxAngle;
     }
 }

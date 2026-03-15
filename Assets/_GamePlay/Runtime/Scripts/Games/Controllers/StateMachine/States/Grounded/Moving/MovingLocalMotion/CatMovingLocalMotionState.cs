@@ -18,9 +18,15 @@ namespace CatAdventure.GamePlay
         public override void OnUpdate()
         {
             base.OnUpdate();
-            if(stateMachine.CatReusableData.CurrentMoveInput == Vector2.zero)
+            if (stateMachine.CatReusableData.CurrentMoveInput == Vector2.zero)
             {
                 stateMachine.ChangeState(CatStateType.Idling);
+                return;
+            }
+            if (IsSneaking())
+            {
+                stateMachine.ChangeState(CatStateType.SneakForward);
+                return;
             }
         }
         public override void OnFixedUpdate()
