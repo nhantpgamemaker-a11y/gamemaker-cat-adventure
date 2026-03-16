@@ -16,11 +16,17 @@ namespace CatAdventure.GamePlay
         [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private LayerMask _sneakableLayerMask;
         [SerializeField] private LayerMask _droppingLayerMask;
+        [SerializeField] private LayerMask _climbableLayerMask;
         [SerializeField] private float _extraGroundedFloatDistance = 0.1f;
         [SerializeField] private float _stepFloatingForce = 5f;
         [SerializeField] private float _sneakForwardMaxAngle = 60f;
         [SerializeField] private float _extraDroppingForce = 5f;
 
+        [SerializeField] private float _extraClimbingGroundFloatDistance = 0.1f;
+        [SerializeField] private float _climbingStepFloatingForce = 5f;
+        [SerializeField] private float _climbingLoopForce = 5f;
+        [SerializeField] private float _climbingMaxDistance = 2f;
+        [SerializeField] private float _climbingRotationSpeed = 30f;
         public float WalkSpeed => _walkSpeed;
         public float RunSpeed => _runSpeed;
         public float SneakSpeed => _sneakSpeed;
@@ -32,9 +38,15 @@ namespace CatAdventure.GamePlay
         public LayerMask GroundLayerMask => _groundLayerMask;
         public LayerMask SneakableLayerMask => _sneakableLayerMask;
         public LayerMask DroppingLayerMask => _droppingLayerMask;
+        public LayerMask ClimbableLayerMask => _climbableLayerMask;
         public float ExtraGroundedFloatDistance => _extraGroundedFloatDistance;
         public float StepFloatingForce => _stepFloatingForce;
         public float SneakForwardMaxAngle => _sneakForwardMaxAngle;
         public float ExtraDroppingForce => _extraDroppingForce;
+        public float ExtraClimbingGroundFloatDistance => _extraClimbingGroundFloatDistance;
+        public float ClimbingStepFloatingForce => _climbingStepFloatingForce;
+        public float ClimbingMaxDistance => _climbingMaxDistance;
+        public float ClimbingRotationSpeed => _climbingRotationSpeed;
+        public float ClimbingLoopForce => _climbingLoopForce;
     }
 }

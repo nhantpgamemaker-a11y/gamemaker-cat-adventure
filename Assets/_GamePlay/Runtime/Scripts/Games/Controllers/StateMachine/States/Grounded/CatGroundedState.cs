@@ -9,10 +9,12 @@ namespace CatAdventure.GamePlay
     {
         private Collider[] _sneakOverlapBoxResults;
         private Collider[] _droppingOverlapBoxResults;
+        private Collider[] _climbingOverlapBoxResults;
         public override void OnEnterState(BaseStateData baseStateData = null)
         {
             _sneakOverlapBoxResults = new Collider[1];
             _droppingOverlapBoxResults = new Collider[1];
+            _climbingOverlapBoxResults = new Collider[1];
             StartBoolAnimation(stateMachine.CatAnimationData.GroundedAnimationHash);
             base.OnEnterState(baseStateData);
         }
@@ -107,11 +109,24 @@ namespace CatAdventure.GamePlay
         protected bool IsSneaking()
         {
             var sneakingCheckCollider = stateMachine.SneakCheckCollider;
-            if(Physics.OverlapBoxNonAlloc(sneakingCheckCollider.bounds.center,
+            if (Physics.OverlapBoxNonAlloc(sneakingCheckCollider.bounds.center,
             sneakingCheckCollider.size / 2f,
             _sneakOverlapBoxResults,
             sneakingCheckCollider.gameObject.transform.rotation,
             stateMachine.CatConfigData.SneakableLayerMask) != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        protected bool IsClimbing()
+        {
+            var climbingCheckCollider = stateMachine.ClimbingCheckCollider;
+            if (Physics.OverlapBoxNonAlloc(climbingCheckCollider.bounds.center,
+            climbingCheckCollider.size / 2f,
+            _climbingOverlapBoxResults,
+            climbingCheckCollider.gameObject.transform.rotation,
+            stateMachine.CatConfigData.ClimbableLayerMask) != 0)
             {
                 return true;
             }

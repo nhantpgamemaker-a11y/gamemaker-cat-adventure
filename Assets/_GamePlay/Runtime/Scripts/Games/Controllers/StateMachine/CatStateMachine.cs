@@ -18,7 +18,10 @@ namespace CatAdventure.GamePlay
         SneakBackward,
         LightLanding,
         HardLanding,
-        DroppingFromEdge
+        DroppingFromEdge,
+        DroppingFromWall,
+        StartClimbing,
+        LoopClimbing
     }
 
     public class CatStateMachine : MonoBehaviour, IStateMachine<CatStateType>
@@ -36,7 +39,10 @@ namespace CatAdventure.GamePlay
         [SerializeField] private Collider[] _bodyColliders;
         [SerializeField] private BoxCollider _groundCheckCollider;
         [SerializeField] private BoxCollider _sneakCheckCollider;
-        [SerializeField] private BoxCollider _droppingCheckCollider;   
+        [SerializeField] private BoxCollider _droppingCheckCollider;
+        [SerializeField] private BoxCollider _climbingCheckCollider;
+        [SerializeField] private BoxCollider _climbingGroundCheckCollider;
+        [SerializeField] private BoxCollider _ledgeCheckCollider;
 
         private Dictionary<CatStateType, BaseCatState> _stateLookup;
         private CatStateType _currentStateType;
@@ -51,8 +57,12 @@ namespace CatAdventure.GamePlay
         public BoxCollider GroundCheckCollider => _groundCheckCollider;
         public BoxCollider SneakCheckCollider => _sneakCheckCollider;
         public BoxCollider DropCheckCollider => _droppingCheckCollider;
+        public BoxCollider ClimbingCheckCollider => _climbingCheckCollider;
+        public BoxCollider ClimbingGroundCheckCollider => _climbingGroundCheckCollider;
+        public BoxCollider LedgeCheckCollider => _ledgeCheckCollider;
         public Collider[] BodyColliders => _bodyColliders;
         public Collider HeadCollider => _hearCollider;
+
         public void ChangeState(CatStateType stateType, BaseStateData baseStateData = null)
         {
             _currentState?.OnExitState();

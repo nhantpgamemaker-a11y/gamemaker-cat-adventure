@@ -33,6 +33,11 @@ namespace CatAdventure.GamePlay
                 stateMachine.ChangeState(CatStateType.DroppingFromEdge);
                 return;
             }
+            if(IsClimbing())
+            {
+                stateMachine.ChangeState(CatStateType.StartClimbing);
+                return;
+            }
         }
         public override void OnFixedUpdate()
         {
