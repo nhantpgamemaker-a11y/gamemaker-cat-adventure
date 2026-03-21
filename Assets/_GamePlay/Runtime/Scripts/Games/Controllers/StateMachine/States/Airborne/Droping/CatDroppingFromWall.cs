@@ -21,11 +21,9 @@ namespace CatAdventure.GamePlay
         }
         public override void OnFixedUpdate()
         {
-            //base.OnFixedUpdate();
             if(_isStartDropping)
             {
                 RotationToForwardDirection(-_lastForwardDirection);
-                //ApplyGravity();
             }
         }
         public override void OnExitState()

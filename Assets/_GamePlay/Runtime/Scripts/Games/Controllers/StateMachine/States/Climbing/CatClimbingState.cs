@@ -67,6 +67,7 @@ namespace CatAdventure.GamePlay
         }
         public void OnDrawGizmos()
         {
+            if(stateMachine == null) return;
             var climbingGroundCheckCollider = stateMachine.ClimbingGroundCheckCollider;
             float z = climbingGroundCheckCollider.bounds.center.z;
             var bodyColliders = stateMachine.BodyColliders;

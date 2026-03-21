@@ -21,12 +21,15 @@ namespace CatAdventure.GamePlay
         [SerializeField] private float _stepFloatingForce = 5f;
         [SerializeField] private float _sneakForwardMaxAngle = 60f;
         [SerializeField] private float _extraDroppingForce = 5f;
+        [SerializeField] private float _jumpUpForce = 5f;
+        [SerializeField] private float  _jumpDistance = 1f;
 
         [SerializeField] private float _extraClimbingGroundFloatDistance = 0.1f;
         [SerializeField] private float _climbingStepFloatingForce = 5f;
         [SerializeField] private float _climbingLoopForce = 5f;
         [SerializeField] private float _climbingMaxDistance = 2f;
         [SerializeField] private float _climbingRotationSpeed = 30f;
+        [SerializeField] private float _maxClimbingSurfaceAngle = 60f;
         public float WalkSpeed => _walkSpeed;
         public float RunSpeed => _runSpeed;
         public float SneakSpeed => _sneakSpeed;
@@ -48,5 +51,8 @@ namespace CatAdventure.GamePlay
         public float ClimbingMaxDistance => _climbingMaxDistance;
         public float ClimbingRotationSpeed => _climbingRotationSpeed;
         public float ClimbingLoopForce => _climbingLoopForce;
+        public float MaxClimbingSurfaceAngle => _maxClimbingSurfaceAngle;
+        public float JumpUpForce => _jumpUpForce;
+        public float JumpDistance => _jumpDistance;
     }
 }

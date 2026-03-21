@@ -29,15 +29,24 @@ namespace CatAdventure.GamePlay
         {
             base.RegisterInputActions();
             stateMachine.CatInputAction.Cat.Move.started += OnMoveStated;
+            stateMachine.CatInputAction.Cat.Jump.started += OnJumpStarted;
         }
         protected override void UnRegisterInputActions()
         {
             base.UnRegisterInputActions();
             stateMachine.CatInputAction.Cat.Move.started -= OnMoveStated;
+            stateMachine.CatInputAction.Cat.Jump.started -= OnJumpStarted;
         }
+
+
+
         protected virtual void OnMoveStated(InputAction.CallbackContext context)
         {
 
+        }
+        protected virtual void OnJumpStarted(InputAction.CallbackContext context)
+        {
+            stateMachine.ChangeState(CatStateType.JumpingUp);
         }
         public override void OnUpdate()
         {
@@ -115,7 +124,7 @@ namespace CatAdventure.GamePlay
             sneakingCheckCollider.gameObject.transform.rotation,
             stateMachine.CatConfigData.SneakableLayerMask) != 0)
             {
-                return true;
+                return true;  
             }
             return false;
         }
@@ -134,6 +143,7 @@ namespace CatAdventure.GamePlay
         }
         public void OnDrawGizmos()
         {
+            if(stateMachine == null) return;
             var groundCheckCollider = stateMachine.GroundCheckCollider;
             var bodyColliders = stateMachine.BodyColliders;
             for (int i = 0; i < bodyColliders.Length; i++)

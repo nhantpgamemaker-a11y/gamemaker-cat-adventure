@@ -10,7 +10,7 @@ namespace CatAdventure.GamePlay
         Idling,
         Walking,
         Running,
-        Jumping,
+        JumpingUp,
         Falling,
         SneakIdling,
         Sneaking,

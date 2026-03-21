@@ -13,6 +13,7 @@ namespace CatAdventure.GamePlay
         {
             StartBoolAnimation(stateMachine.CatAnimationData.FallingAnimationHash);
             base.OnEnterState(baseStateData);
+            ResetVelocity();
         }
         public override void OnExitState()
         {

@@ -26,5 +26,13 @@ namespace CatAdventure.GamePlay
             }
             stateMachine.ChangeState(CatStateType.Idling);
         }
+        protected override void RegisterInputActions()
+        {
+            stateMachine.CatInputAction.Cat.Move.started += OnMoveStated;
+        }
+        override protected void UnRegisterInputActions()
+        {
+            stateMachine.CatInputAction.Cat.Move.started -= OnMoveStated;
+        }
     }
 }

@@ -25,23 +25,19 @@ namespace CatAdventure.GamePlay
         public override void OnUpdate()
         {
             base.OnUpdate();
-            var distance = Vector3.Distance(_startPosition, stateMachine.transform.position);
-            if(distance >= stateMachine.CatConfigData.ClimbingMaxDistance)
-            {
-                Debug.Log("Exit Loop Climbing State");
-                stateMachine.ChangeState(CatStateType.DroppingFromWall);
-            }
+            
         }
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
             var upward = Vector3.up;
+            stateMachine.Rigidbody.AddForce(upward *
+            stateMachine.CatConfigData.ClimbingLoopForce - GetVerticalVelocity(), ForceMode.VelocityChange);     
             var distance = Vector3.Distance(_startPosition, stateMachine.transform.position);
-            if(distance < stateMachine.CatConfigData.ClimbingMaxDistance)
+            if(distance >= stateMachine.CatConfigData.ClimbingMaxDistance)
             {
-                stateMachine.Rigidbody.AddForce(upward *
-                stateMachine.CatConfigData.ClimbingLoopForce - GetVerticalVelocity(), ForceMode.VelocityChange);
-            }            
+                stateMachine.ChangeState(CatStateType.DroppingFromWall);
+            }    
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CatAdventure.GamePlay
@@ -7,5 +8,6 @@ namespace CatAdventure.GamePlay
     {
         public event Action<bool> OnStatusChanged;
         private bool _status = false;
+
     }
 }

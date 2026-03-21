@@ -111,6 +111,15 @@ namespace CatAdventure.GamePlay
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pan"",
+                    ""type"": ""Value"",
+                    ""id"": ""e2672a10-6089-44e5-b6e7-4f4400fddb55"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ namespace CatAdventure.GamePlay
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1242683-846d-40a7-a634-2ea537cb806f"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -266,6 +286,7 @@ namespace CatAdventure.GamePlay
             m_Cat = asset.FindActionMap("Cat", throwIfNotFound: true);
             m_Cat_Move = m_Cat.FindAction("Move", throwIfNotFound: true);
             m_Cat_Jump = m_Cat.FindAction("Jump", throwIfNotFound: true);
+            m_Cat_Pan = m_Cat.FindAction("Pan", throwIfNotFound: true);
         }
 
         ~@CatInputAction()
@@ -348,6 +369,7 @@ namespace CatAdventure.GamePlay
         private List<ICatActions> m_CatActionsCallbackInterfaces = new List<ICatActions>();
         private readonly InputAction m_Cat_Move;
         private readonly InputAction m_Cat_Jump;
+        private readonly InputAction m_Cat_Pan;
         /// <summary>
         /// Provides access to input actions defined in input action map "Cat".
         /// </summary>
@@ -367,6 +389,10 @@ namespace CatAdventure.GamePlay
             /// Provides access to the underlying input action "Cat/Jump".
             /// </summary>
             public InputAction @Jump => m_Wrapper.m_Cat_Jump;
+            /// <summary>
+            /// Provides access to the underlying input action "Cat/Pan".
+            /// </summary>
+            public InputAction @Pan => m_Wrapper.m_Cat_Pan;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -399,6 +425,9 @@ namespace CatAdventure.GamePlay
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Pan.started += instance.OnPan;
+                @Pan.performed += instance.OnPan;
+                @Pan.canceled += instance.OnPan;
             }
 
             /// <summary>
@@ -416,6 +445,9 @@ namespace CatAdventure.GamePlay
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @Pan.started -= instance.OnPan;
+                @Pan.performed -= instance.OnPan;
+                @Pan.canceled -= instance.OnPan;
             }
 
             /// <summary>
@@ -470,6 +502,13 @@ namespace CatAdventure.GamePlay
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnJump(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Pan" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPan(InputAction.CallbackContext context);
         }
     }
 }

@@ -37,6 +37,5 @@ namespace CatAdventure.GamePlay
             // }
             stateMachine.ChangeState(CatStateType.LoopClimbing);
         }
-        
     }
 }
